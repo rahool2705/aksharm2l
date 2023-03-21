@@ -1,0 +1,250 @@
+﻿@model Business.Entities.EmployeeLeaveTxn.EmployeeLeaveTxn
+<form id="formEmployeeLeaveTxn" role="form">
+    <div class="card-content">
+        <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+            <div class="row">
+                @*<input type="hidden" asp-for="EmployeeID" />*@
+                <input type="hidden" asp-for="EmployeeLeaveTxnID" />
+                <div class="col-12">
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Employee Name:</label>
+                        <div class="col-sm-9">
+                            @*<input type="text" required="" class="form-control" asp-for="EmployeeName" id="EmployeeName" name="EmployeeName" placeholder="Search Employee Name">*@
+
+                            @*<input type="text" asp-for="EmployeeName" class="form-control mx-2" maxlength="6" data-val="true" data-val-length="1-6 character" data-val-length-max="6" data-val-length-min="1" />        Tag for Last javascript code*@
+
+                            @*<input type="text" required="" class="form-control" asp-for="EmployeeID" id="EmployeeID" name="EmployeeID" placeholder="Search Employee Name">*@
+                            <select asp-for="EmployeeID" asp-items="ViewBag.EmployeeList" class="form-control">
+                                <option value="">Select Employee</option>
+                            </select>
+                            @*<span asp-validation-for="PersonalEmail" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Leave Type:</label>
+                        <div class="col-sm-9">
+                            <select asp-for="LeaveTypeID" asp-items="ViewBag.LeaveType" class="form-control">
+                                <option value="">Select Leave Type</option>
+                            </select>
+                            @*<span asp-validation-for="PersonalEmail" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Days:</label>
+                        <div class="col-sm-9">
+                            <input type="text" required="" class="form-control" asp-for="NoOfDays" id="NoOfDays" name="NoOfDays" placeholder="">
+                            @*<span asp-validation-for="NoOfDays" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    @*                    <div class="row mb-3">
+                    <label for="" class="col-sm-3 col-form-label ">Financial Year:</label>
+                    <div class="col-sm-9">
+                    <select asp-for="FinYearID" asp-items="ViewBag.FinancialYear" class="form-control">
+                    <option value="">Select Financial Year</option>
+                    </select>
+                    *<span asp-validation-for="PersonalEmail" class="text-danger"></span>
+                    </div>
+                    </div>*@
+
+                    <div class="row">
+
+                        <label for="" class="col-sm-3 col-form-label ">Leave Date:</label>
+
+                    </div>
+
+                    <div class="row mb-3">
+                        @if (Model != null && Model.EmployeeID > 0 && Model.EmployeeLeaveTxnID > 0)
+                        {
+                            <label for="" class="col-sm-2 col-form-label ">From:</label>
+                            <div class="col-sm-4">
+                                <input type="date" required="" class="form-control" asp-for="LeaveStartDate" id="LeaveStartDate" name="LeaveStartDate" placeholder="">
+                                @*<span asp-validation-for="NoOfDays" class="text-danger"></span>*@
+                            </div>
+                            <label for="" class="col-sm-2 col-form-label ">To:</label>
+                            <div class="col-sm-4">
+                                <input type="date" required="" class="form-control" asp-for="LeaveEndDate" id="LeaveEndDate" name="LeaveEndDate" placeholder="">
+                                @*<span asp-validation-for="NoOfDays" class="text-danger"></span>*@
+                            </div>
+                        }
+                        else
+                        {
+                            <label for="" class="col-sm-2 col-form-label ">From:</label>
+                            <div class="col-sm-4">
+                                <input type="date" value="" required="" class="form-control" asp-for="LeaveStartDate" id="LeaveStartDate" name="LeaveStartDate" placeholder="">
+                                @*<span asp-validation-for="NoOfDays" class="text-danger"></span>*@
+                            </div>
+                            <label for="" class="col-sm-2 col-form-label ">To:</label>
+                            <div class="col-sm-4">
+                                <input type="date" value="" required="" class="form-control" asp-for="LeaveEndDate" id="LeaveEndDate" name="LeaveEndDate" placeholder="">
+                                @*<span asp-validation-for="NoOfDays" class="text-danger"></span>*@
+                            </div>
+                        }
+                    </div>
+
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Reason:</label>
+                        <div class="col-sm-9">
+                            <textarea required="" class="form-control" rows="2" cols="20" id="Reason" name="Reason" asp-for="Reason" placeholder=""></textarea>
+                            @*<span asp-validation-for="OfficeEmail" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Is Cancel:</label>
+                        <div class="col-sm-9">
+                            <input type="checkbox" class="form-check-input" asp-for="IsCancel">
+                            @*<span asp-validation-for="OfficeEmail" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer-sticky text-center">
+                    <button id="btnSaveEmployeeLeaveTxn" type="button" onclick="fnSubmitEmployeeLeaveTxn()" class="btn btn-primary btn-info px-5 ladda-button">Save</button>
+                    <button type="button" data-bs-dismiss="offcanvas" class="btn btn-primary btn-info px-5 my-2" aria-l abel="Close">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+
+<script type="text/javascript">
+
+    var urlsave = '@Url.Action("AddUpdateEmployeeLeaveTxn", "LeaveMaster")';
+    var urlEmpNameSearch = '@Url.Action("SearchEmployee", "LeaveMaster")';
+
+    function fnSubmitEmployeeLeaveTxn() {
+        var l = laddaStart('btnSaveEmployeeLeaveTxn');
+        modeldata = $("#formEmployeeLeaveTxn").serialize();
+        $.ajax({
+            type: 'POST',
+            url: urlsave,
+            data: modeldata,
+            dataType: 'json',
+            beforeSend: function () { },
+            success: function (data) {
+                //window.location.reload().delay(3000);
+                if (data.status) {
+                    //notification
+                    $("#canvasEmployeeLeaveTxn").hide();//('hide');
+                    Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message
+                    });
+                    setTimeout(
+                        function () {
+                            window.location.reload();
+                        }, 3000);
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message
+                    });
+                }
+            },
+            error: function (error) {
+                laddaStop(l);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: "@MessageHelper.Error"
+                });
+            }
+        }).always(function () {
+            hideLoader();
+        });
+    };
+
+    //$(function () {
+    //    $("#EmployeeName").autocomplete({
+    //        source: function (request, response) {
+    //            debugger;
+    //            $.ajax({
+    //                url: urlEmpNameSearch,
+    //                data: { "prefix": request.term },
+    //                type: "GET",
+    //                success: function (data) {
+    //                    console.table(data);
+    //                    if (data != false) {
+    //                        debugger;
+    //                        response($.map(data, function (item) {
+    //                            return item;
+    //                        }))
+    //                    }
+    //                },
+    //                error: function (response) {
+    //                    console.log("Error: " + response.responseText);
+    //                },
+    //                failure: function (response) {
+    //                    console.log("Error: " + response.responseText);
+    //                }
+    //            });
+    //        },
+    //        select: function (e, i) {
+    //            $("#EmployeeName").val(i.item.val);
+    //        },
+    //        minLength: 1
+    //    });
+    //});
+
+
+</script>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
+      rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+
+    var urlEmpNameSearch = '@Url.Action("AutoComplete", "LeaveMaster")';
+    $(function () {
+        $("#EmployeeName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    //url: urlEmpNameSearch,
+                    url: '/LeaveMaster/AutoComplete/',
+                    data: { "prefix": request.term },
+                    type: "POST",
+                    success: function (data) {
+                        console.table(data);
+                        if (data != false) {
+                            response($.map(data, function (item) {
+                                return item;
+                            }))
+                        }
+                    },
+                    error: function (response) {
+                        console.log("Error: " + response.responseText);
+                    },
+                    failure: function (response) {
+                        console.log("Error: " + response.responseText);
+                    }
+                });
+            },
+            select: function (e, i) {
+                $("#EmployeeName").val(i.item.val);
+            },
+            minLength: 1
+        });
+    });
+</script>

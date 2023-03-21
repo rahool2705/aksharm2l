@@ -1,0 +1,248 @@
+﻿@using Business.Entities.Customer
+@model CustomerMaster
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    ViewBag.Title = "Customer Details..";
+    List<CustomerContactTxn> customerContactTxns = CustomerExtension.ListOfCustomerContactPerson(Model.CustomerID);
+    List<CustomerAddressTxn> customerAddressTxns = CustomerExtension.ListOfCustomerAddress(Model.CustomerID);
+    CustomerContactDetail customerContactDetail = CustomerExtension.GetCustomerContactDetail(Model.CustomerID);
+    CustomerRegistration customerRegistration = CustomerExtension.GetCustomerRegistration(Model.CustomerID);
+    List<CustomerBankDetails> customerBankDetails = CustomerExtension.GetCustomerAllBankAccount(Model.CustomerID);
+    List<CustomerDocument> customerDocuments = CustomerExtension.GetCustomersAllDocuments(Model.CustomerID);
+    CustomerSetting customerSetting = CustomerExtension.GetCustomerSetting(Model.CustomerID);
+}
+<div class="row">
+    <div class="card-content">
+        <div class="card-body">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="details-tab" data-bs-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">Customer Details</a>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="contact-person-tab" data-bs-toggle="tab" href="#contactPerson" role="tab" aria-controls="contactPerson" aria-selected="true" disabled>Contact Person</a>
+                </li>                
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="contact-address-tab" data-bs-toggle="tab" href="#contactAddress" role="tab" aria-controls="contactAddress" aria-selected="true" disabled>Address</a>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="contact-detail-tab" data-bs-toggle="tab" href="#customerContactDetail" role="tab" aria-controls="customerContactDetail" aria-selected="true" disabled>Customer Contact Detail</a>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="contact-registration-tab" data-bs-toggle="tab" href="#customerRegistration" role="tab" aria-controls="customerRegistration" aria-selected="true" disabled>Registration</a>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="customer-banking-tab" data-bs-toggle="tab" href="#customerBankingDetail" role="tab" aria-controls="customerBankingDetail" aria-selected="true" disabled>Banking detail</a>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="customer-document-tab" data-bs-toggle="tab" href="#customerDocument" role="tab" aria-controls="customerDocument" aria-selected="true" disabled>Documents</a>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="customer-setting-tab" data-bs-toggle="tab" href="#customerSetting" role="tab" aria-controls="customerSetting" aria-selected="true" disabled>Settings</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+                <form id="formEmployee" asp-action="AddUpdateCustomer" asp-controller="Customer" asp-area="Admin" class="row g-3" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="CustomerID" />
+                    <div class="row pt-3">
+
+                        <div class=" col-sm-12 col-md-6 col-lg-6">
+                            @if (Model != null && Model.CustomerID > 0)
+                            {
+                                <div class="row mb-2">
+                                    <label for="" class="col-sm-4 col-form-label ">Customer Code:<span class="required">*</span></label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="CustomerCode" name="CustomerCode" asp-for="CustomerCode" placeholder="" disabled>
+                                        @*<span asp-validation-for="CustomerCode" class="text-danger" disabled />*@
+                                    </div>
+                                </div>
+                            }
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Customer Name:<span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" required="" class="form-control" id="CustomerName" name="CustomerName" asp-for="CustomerName" placeholder="">
+                                    <span asp-validation-for="CustomerName" class="text-danger" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Customer Group Name:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="GroupName" name="GroupName" asp-for="GroupName" placeholder="">
+                                    @*<span asp-validation-for="GroupName" class="text-danger" />*@
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Owner Name:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="OwnerName" name="OwnerName" asp-for="OwnerName" placeholder="">
+                                    @*<span asp-validation-for="OwnerName" class="text-danger" />*@
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Unit No/Name:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="UnitNoName" name="UnitNoName" asp-for="UnitNoName" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Industry Type:<span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <select asp-for="IndustryTypeID" asp-items="@CustomerExtension.GetAllIndustryTypeMaster()" class="form-control">
+                                        <option value="">Select Industry type</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Business Type:<span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <select asp-for="BusinessTypeID" asp-items="@CustomerExtension.GetAllBusinessTypeMaster()" class="form-control">
+                                        <option value="">Select Business type</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Is Active:</label>
+                                <div class="col-sm-8">
+                                    @Html.CheckBoxFor(s => s.IsActive)
+                                    @*<span asp-validation-for="OwnerName" class="text-danger" />*@
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Contact No.:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="ContactPhone1" name="ContactPhone1" asp-for="ContactPhone1" placeholder="">
+                                    @*<span asp-validation-for="OwnerName" class="text-danger" />*@
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Mobile No.:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Mobile1" name="Mobile1" asp-for="Mobile1" placeholder="">
+                                    @*<span asp-validation-for="OwnerName" class="text-danger" />*@
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Fax No.:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="FaxNo" name="FaxNo" asp-for="FaxNo" placeholder="">
+                                    @*<span asp-validation-for="OwnerName" class="text-danger" />*@
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label asp-for="LogoImage" class="col-form-label ">Logo Image:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input asp-for="LogoImage" type="file" class="form-control" accept="image/*" name="logoImage" id="logoImage" onchange="loadFile(event)" style="display: none;" />
+                                    <label for="logoImage" style="cursor: pointer; color:darkblue">
+                                        Upload the image for logo<br />
+                                        @if (Model != null && !string.IsNullOrEmpty(Model.LogoImagePath))
+                                        {
+                                            <img class="rounded border border-dark" id="output" width="200" height="200" src="@ViewBag.LogoImage" />
+                                        }
+                                        else
+                                        {
+                                            <img class="rounded border border-dark" id="output" width="200" height="200" src="~/assets/images/DefaultProfilePicture/defaultprofilepicture.png" />
+                                        }
+                                    </label>
+                                    <script>
+                                        var loadFile = function (event) {
+                                            var image = document.getElementById('output');
+                                            image.src = URL.createObjectURL(event.target.files[0]);
+                                        };
+                                    </script>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button id="btnSave" type="submit" class="btn btn-primary btn-info px-5 ladda-button">Save</button>
+
+                        <a id="btnCancel" type="button" class="btn btn-primary btn-info px-5 ladda-button" href="/Admin/Customer/Index">Cancel</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="contactPerson" role="tabpanel" aria-labelledby="customerContact-tab" disabled>
+                <div id="customerContactPersonTable">
+                    @await Html.PartialAsync("_customerContactPersonList", customerContactTxns)
+                </div>
+            </div>
+            <div class="tab-pane fade" id="contactAddress" role="tabpanel" aria-labelledby="customerAddress-tab" disabled>
+                <div id="customerContactPersonTable">
+                    @await Html.PartialAsync("_customerAddressList", customerAddressTxns)
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="customerContactDetail" role="tabpanel" aria-labelledby="customerContactDetail-tab" disabled>
+                <div id="customerContactDetailTable">
+                    @await Html.PartialAsync("_customerContactDetail", customerContactDetail)
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="customerRegistration" role="tabpanel" aria-labelledby="customerRegistration-tab" disabled>
+                <div id="customerregistrationTable">
+                    @await Html.PartialAsync("_customerRegistration", customerRegistration)
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="customerBankingDetail" role="tabpanel" aria-labelledby="customerBankingDetail-tab" disabled>
+                <div id="customerBankingDetailTable">
+                    @await Html.PartialAsync("_customerBankAccountList", customerBankDetails)
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="customerDocument" role="tabpanel" aria-labelledby="customerDocument-tab" disabled>
+                <div id="customerDocumentTable">
+                    @await Html.PartialAsync("_customerDocumentList", customerDocuments)
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="customerSetting" role="tabpanel" aria-labelledby="customerSetting-tab" disabled>
+                <div id="customerDocumentTable">
+                     @await Html.PartialAsync("_customerContactSetting", customerSetting)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (Model != null && Model.CustomerID > 0)
+{
+    <script type="text/javascript">
+        document.getElementById("contact-person-tab").removeAttribute("disabled");
+        document.getElementById("contact-address-tab").removeAttribute("disabled");
+        document.getElementById("contact-detail-tab").removeAttribute("disabled");
+        document.getElementById("contact-registration-tab").removeAttribute("disabled");
+        document.getElementById("customer-banking-tab").removeAttribute("disabled");
+        document.getElementById("customer-document-tab").removeAttribute("disabled");
+        document.getElementById("customer-setting-tab").removeAttribute("disabled");
+    </script>
+}

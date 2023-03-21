@@ -1,0 +1,483 @@
+﻿<!--Main Sidebar Start-->
+@using ERP.Controllers
+@{
+    string path = SettingsController.LOGOPATH;
+    bool isLogo = false;
+    if (path.IsNotStringNullOrEmpty())
+    {
+        isLogo = true;
+    }
+}
+<div class="sidebar-wrapper" data-simplebar="true">
+    <div class="sidebar-header toggle-icon ms-auto">
+        @if (isLogo)
+        {
+            <div>
+                <img src="@SettingsController.LOGOPATH" class="logo-icon" alt="logo icon">
+            </div>
+        }
+        else
+        {
+            <div>
+                <h4 class="logo-text">@SettingsController.COMPANYNAME</h4>
+            </div>
+        }
+    </div>
+    <!--navigation-->
+    <ul class="metismenu" id="menu">
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon">
+                    <i class='bx bx-user'></i>
+                </div>
+                <div class="menu-title">Admin</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </div>
+                        <div class="menu-title">Company</div>
+                    </a>
+                    <ul>
+                        @*<li>
+                        <a asp-area="Admin" asp-controller="CompanySetting" asp-action="Edit"><iconify-icon icon="mdi:company" class="parent-icon"></iconify-icon> &nbsp; Register Company</a>
+                        </li>*@
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="Company" asp-action="Register"><iconify-icon icon="mdi:company" class="parent-icon"></iconify-icon> &nbsp; Register Company</a>
+                        </li>
+                        @*<li>
+                        <a asp-controller="Company" asp-action="Register" asp-area="SuperAdmin"><iconify-icon icon="mdi:company" class="parent-icon"></iconify-icon> &nbsp;Register Company</a>
+                        </li>*@
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="Company" asp-action="Index"><iconify-icon icon="fluent-mdl2:company-directory" class="parent-icon"></iconify-icon> &nbsp; Company List</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </div>
+                        <div class="menu-title">User</div>
+                    </a>
+                    <ul>
+                        @*<li>
+                        <a asp-area="SuperAdmin" asp-controller="Role" asp-action="Create"><i class="bx bx-right-arrow-alt"></i>Add Role</a>
+                        </li>
+                        <li>
+                        <a asp-area="SuperAdmin" asp-controller="Role" asp-action="Index"><i class="bx bx-right-arrow-alt"></i>Roles</a>
+                        </li>*@
+                        <li>
+                            @*<a class="nav-link " asp-controller="UserRoles" asp-action="Index" asp-area="SuperAdmin">
+                            <iconify-icon icon="mdi:user-edit" class="parent-icon"></iconify-icon> &nbsp; Manage Users
+                            </a>*@
+                            <a class="nav-link" asp-area="Admin" asp-controller="Users" asp-action="Index">
+                                <iconify-icon icon="mdi:user-edit" class="parent-icon"></iconify-icon> &nbsp; Manage Users
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </div>
+                        <div class="menu-title">Configuration</div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a asp-area="HR" asp-controller="HRConfig" asp-action="Index"><iconify-icon icon="mdi:account-filter-outline" class="parent-icon"></iconify-icon> &nbsp; HR Config</a>
+                        </li>
+                        <li>
+                            <a asp-area="HR" asp-controller="WagesConfig" asp-action="Index"><iconify-icon icon="uil:money-withdrawal" class="parent-icon"></iconify-icon> &nbsp; Wages Config</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="" asp-action=""><iconify-icon icon="material-symbols:contact-mail-outline" class="parent-icon"></iconify-icon> &nbsp; Email Config</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="" asp-action=""><iconify-icon icon="material-symbols:sms-outline" class="parent-icon"></iconify-icon> &nbsp; SMS Config</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="" asp-action=""><iconify-icon icon="carbon:notification" class="parent-icon"></iconify-icon> &nbsp; Notification Config</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="" asp-action=""><iconify-icon icon="line-md:cloud-print-outline-loop" class="parent-icon"></iconify-icon> &nbsp; Cloud Notification Config</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </div>
+                        <div class="menu-title">Accesibility</div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="Package" asp-action="Detail"><iconify-icon icon="clarity:form-line" class="parent-icon"></iconify-icon> &nbsp; Form Assign To Package</a>
+                        </li>
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="Package" asp-action="Detail"><iconify-icon icon="mdi:package-check" class="parent-icon"></iconify-icon> &nbsp; Package Assign to User</a>
+                        </li>
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="Package" asp-action="Index"><iconify-icon icon="lucide:package-plus" class="parent-icon"></iconify-icon> &nbsp; Package Master</a>
+                        </li>
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="FormMaster" asp-action="Index"><iconify-icon icon="fluent:form-new-24-regular" class="parent-icon"></iconify-icon> &nbsp; Form Master</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon">
+                    <i class='bx bxs-book-add'></i>
+                </div>
+                <div class="menu-title">Master</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </div>
+                        <div class="menu-title">HR</div>
+                    </a>
+                    <ul>
+
+                        @*<li>
+                        <a asp-area="Admin" asp-controller="Employee" asp-action="EmployeeIndex"><iconify-icon icon="clarity:employee-group-line" class="parent-icon"></iconify-icon> &nbsp;Employee Index</a>
+                        </li>*@
+
+                        <li>
+                            <a asp-area="Admin" asp-controller="Employee" asp-action="Index"><iconify-icon icon="clarity:employee-group-line" class="parent-icon"></iconify-icon> &nbsp; Employee Master</a>
+                        </li>
+
+                        <li>
+                            <a asp-area="Admin" asp-controller="Contractor" asp-action="Index"><iconify-icon icon="mingcute:contacts-line" class="parent-icon"></iconify-icon> &nbsp; Contractor List</a>
+                        </li>
+
+                        <li>
+                            <a asp-area="HR" asp-controller="SalaryFormula" asp-action="GetAllSalaryHeads"><iconify-icon icon="ri:hand-coin-line" class="parent-icon"></iconify-icon> &nbsp; Salary Heads</a>
+                        </li>
+
+                        <li>
+                            <a asp-area="HR" asp-controller="SalaryFormula" asp-action="Index"><iconify-icon icon="tabler:coin-rupee" class="parent-icon"></iconify-icon> &nbsp; Salary Formula</a>
+                        </li>
+
+                        @*<li>
+                        <a asp-area="Admin" asp-controller="RequestTypeModule" asp-action="Index"><iconify-icon icon="tabler:coin-rupee" class="parent-icon"></iconify-icon> &nbsp; Salary Formula</a>
+                        </li>*@
+                        <li>
+                            <a asp-area="HR" asp-controller="LeaveMaster" asp-action="Index"><iconify-icon icon="ic:outline-leave-bags-at-home" class="parent-icon"></iconify-icon> &nbsp; Leave Master</a>
+                        </li>
+                        <li>
+                            <a asp-area="Admin" asp-controller="SecurityOfficer" asp-action="Index"><iconify-icon icon="healthicons:security-worker-outline" class="parent-icon"></iconify-icon> &nbsp; Security Officer</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Department" asp-action="Index" asp-area="SuperAdmin"><iconify-icon icon="fluent-emoji-high-contrast:department-store" class="parent-icon"></iconify-icon> &nbsp; Department</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Designation" asp-action="Index" asp-area="SuperAdmin"><iconify-icon icon="eos-icons:role-binding" class="parent-icon"></iconify-icon> &nbsp; Designation</a>
+                        </li>
+                        <li>
+                            <a asp-area="Admin" asp-controller="MarketingCompanyFinancialYearMaster" asp-action="Index"><iconify-icon icon="healthicons:i-schedule-school-date-time-outline" class="parent-icon"></iconify-icon> &nbsp; Financial Year</a>
+                        </li>
+                        <li>
+                            <a asp-area="Admin" asp-controller="EmployeeCategory" asp-action="Index"><iconify-icon icon="bx:category" class="parent-icon"></iconify-icon> &nbsp; Employee Category</a>
+                        </li>
+                        <li>
+                            <a asp-area="Admin" asp-controller="EmployementType" asp-action="Index"><iconify-icon icon="iconoir:plug-type-l" class="parent-icon"></iconify-icon> &nbsp; Employement Type</a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </div>
+                        <div class="menu-title">CRM</div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a asp-area="Admin" asp-controller="Customer" asp-action="Index"><iconify-icon icon="mdi:person-group-outline" class="parent-icon"></iconify-icon> &nbsp; Customer List</a>
+                        </li>
+
+                        @*<li>
+                        <a asp-area="Admin" asp-controller="RequestType" asp-action="Index"><iconify-icon icon="bi:person-vcard" class="parent-icon"></iconify-icon> &nbsp; Client</a>
+                        </li>*@
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="PartyType" asp-action="Index"><iconify-icon icon="fluent:share-screen-person-p-16-regular" class="parent-icon"></iconify-icon> &nbsp; Party Type</a>
+                        </li>
+                        @*<li>
+                        <a asp-area="Admin" asp-controller="MarketingCompanyFinancialYearMaster" asp-action="Index"><iconify-icon icon="material-symbols:location-city-rounded" class="parent-icon"></iconify-icon> &nbsp; Venu Type</a>
+                        </li>*@
+                        <li>
+                            <a asp-area="Admin" asp-controller="UploadProductImages" asp-action="Index"><iconify-icon icon="dashicons:products" class="parent-icon"></iconify-icon> &nbsp; Product List</a>
+                        </li>
+                        @*<li>
+                        <a asp-area="Admin" asp-controller="MachineryMaster" asp-action="Index"><iconify-icon icon="healthicons:factory-worker" class="parent-icon"></iconify-icon> &nbsp; Machinery Master</a>
+                        </li>*@
+                        <li>
+                            <a asp-area="Admin" asp-controller="MachineryMaintainance" asp-action="Index"><iconify-icon icon="game-icons:factory-arm" class="parent-icon"></iconify-icon> &nbsp; Machinery</a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+                <!--Visitor Tab Start-->
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </div>
+                        <div class="menu-title">Visitor</div>
+                    </a>
+                    <ul>
+                        <!--Visitor requests list-->
+                        <li>
+                            @*<secure-content asp-area="Admin" asp-controller="VisitorRequests" asp-action="Index">*@
+                            <a asp-area="Admin" asp-controller="VisitorRequests" asp-action="Index"><i class="bx bx-right-arrow-alt"></i>Visitor requests list</a>
+                            @*</secure-content>*@
+                        </li>
+                        <!--Visitor requests list-->
+                        <!--Direct visitor entry-->
+                        <li>
+                            @*<secure-content asp-area="Admin" asp-controller="VisitorRequests" asp-action="Create">*@
+                            <a asp-area="Admin" asp-controller="VisitorRequests" asp-action="Create"><i class="bx bx-right-arrow-alt"></i>Direct visitor entry</a>
+                            @*</secure-content>*@
+                        </li>
+                        <!--Direct visitor entry-->
+                    </ul>
+                </li>
+                <!--Visitor Tab End-->
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </div>
+                        <div class="menu-title">Address Master</div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="Country" asp-action="Index"><iconify-icon icon="uiw:global" class="parent-icon"></iconify-icon> &nbsp; Countries</a>
+                        </li>
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="State" asp-action="Index"><iconify-icon icon="uiw:global" class="parent-icon"></iconify-icon> &nbsp; State</a>
+                        </li>
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="City" asp-action="Index"><iconify-icon icon="uiw:global" class="parent-icon"></iconify-icon> &nbsp; City</a>
+                        </li>
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="District" asp-action="Index"><iconify-icon icon="uiw:global" class="parent-icon"></iconify-icon> &nbsp; District</a>
+                        </li>
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="Taluka" asp-action="Index"><iconify-icon icon="uiw:global" class="parent-icon"></iconify-icon> &nbsp; Taluka</a>
+                        </li>
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="Zipcode" asp-action="Index"><iconify-icon icon="uiw:global" class="parent-icon"></iconify-icon> &nbsp; Zipcode</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a asp-area="SuperAdmin" asp-controller="AddressType" asp-action="Index"><iconify-icon icon="icon-park-outline:bill" class="parent-icon"></iconify-icon> &nbsp; Address Type</a>
+                </li>
+                <li>
+                    <a asp-area="SuperAdmin" asp-controller="BusinessType" asp-action="Index"><iconify-icon icon="ic:baseline-business-center" class="parent-icon"></iconify-icon> &nbsp; Business Type</a>
+                </li>
+                <li>
+                    <a asp-area="SuperAdmin" asp-controller="DocumentType" asp-action="Index"><iconify-icon icon="mdi:file-document-box-plus-outline" class="parent-icon"></iconify-icon> &nbsp; Document Type</a>
+                </li>
+                <li>
+                    <a asp-area="SuperAdmin" asp-controller="IndustryType" asp-action="Index"><iconify-icon icon="cil:industry" class="parent-icon"></iconify-icon> &nbsp; Industry Type</a>
+                </li>
+
+
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon">
+                    @*<i class='bx bx-line-chart'></i>*@
+                    <iconify-icon icon="material-symbols:compare-arrows"></iconify-icon>
+                </div>
+                <div class="menu-title">Transaction</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </div>
+                        <div class="menu-title">HR</div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a asp-area="Admin" asp-controller="Employee" asp-action="GetEmployeePresent"> <iconify-icon icon="clarity:employee-solid" class="parent-icon"></iconify-icon> &nbsp; Emp-Attendance</a>
+                        </li>
+                        <li>
+                            <a asp-area="HR" asp-controller="LeaveMaster" asp-action="GetAllEmployeeLeaveTxn">
+                                <iconify-icon icon="mdi:bag-suitcase-outline" class="parent-icon"></iconify-icon> &nbsp; Employee Leave
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="HR" asp-controller="CanteenCharges" asp-action="Index">
+                                <iconify-icon icon="game-icons:meal" class="parent-icon"></iconify-icon> &nbsp; Canteen Charges
+                            </a>
+                        </li>
+
+                        <li>
+                            <a asp-area="HR" asp-controller="LoanAdvance" asp-action="Index">
+                                <iconify-icon icon="game-icons:take-my-money" class="parent-icon"></iconify-icon> &nbsp; Employee Loan
+                            </a>
+                        </li>
+
+                        <li>
+                            <a asp-area="HR" asp-controller="LoanAdvance" asp-action="GetAllEmployeeAdvances">
+                                <iconify-icon icon="fluent:money-hand-24-regular" class="parent-icon"></iconify-icon> &nbsp; Employee Advance
+                            </a>
+                        </li>
+
+                        @*<li>
+                        <a asp-area="Admin" asp-controller="RequestType" asp-action="Index"><iconify-icon icon="mdi:calendar-multiple-check" class="parent-icon"></iconify-icon>&nbsp;Employee Present</a>
+                        </li>*@
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </div>
+                        <div class="menu-title">CRM</div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a asp-area="Marketing" asp-controller="Feedback" asp-action="Index"><iconify-icon icon="clarity:employee-solid" class="parent-icon"></iconify-icon> &nbsp; Client Feedback</a>
+                        </li>
+
+                        <li>
+
+                            <a asp-area="Marketing" asp-controller="MarketingCommunicationLog" asp-action="Index"><iconify-icon icon="material-symbols:communication" class="parent-icon"></iconify-icon> &nbsp; Communication Log</a>
+
+                        </li>
+
+                        <li>
+                            <a asp-area="Marketing" asp-controller="MarketingMeeting" asp-action="Index"><iconify-icon icon="mdi:virtual-meeting" class="parent-icon"></iconify-icon> &nbsp; Meeting Schedule</a>
+                        </li>
+                        <li>
+                            <a asp-area="Marketing" asp-controller="MarketingVisitingDetail" asp-action="Index"><iconify-icon icon="material-symbols:nest-doorbell-visitor-outline" class="parent-icon"></iconify-icon> &nbsp; Visiting Detail</a>
+                        </li>
+                        <!--Company Target Start-->
+                        <li>
+                            <a asp-area="Marketing" asp-controller="MarketingCompanyTarget" asp-action="Index"><iconify-icon icon="wpf:factory" class="parent-icon"></iconify-icon> &nbsp; Company Target </a>
+                        </li>
+                        <!--Company Target  End-->
+                        <!--Sales Target Start-->
+                        <li>
+                            <a asp-area="Marketing" asp-controller="MarketingSalesTarget" asp-action="Index"><iconify-icon icon="ic:twotone-point-of-sale" class="parent-icon"></iconify-icon> &nbsp; Sales Target </a>
+                        </li>
+                        <!--Sales Target  End-->
+                        <!--Employee Sales Target Start-->
+                        <li>
+                            <a asp-area="Marketing" asp-controller="MarketingEmployeeSalesTargetSummary" asp-action="Index"><iconify-icon icon="tabler:target-arrow" class="parent-icon"></iconify-icon> &nbsp; Employee Sales Target </a>
+                        </li>
+                        <!--Employee Sales Target End-->
+                        <!--Our Product Start-->
+                        <li>
+                            <a asp-area="Admin" asp-controller="OurProduct" asp-action="Index"><iconify-icon icon="fluent-mdl2:product-variant" class="parent-icon"></iconify-icon>&nbsp; Our Product</a>
+                        </li>
+                        <!--Our Product End-->
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+
+        <!-- Added By Rahul Mistry on 14-March-2023 -->
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon">
+                    @*<i class='bx bx-line-chart'></i>*@
+                    <iconify-icon icon="tabler:report-search"></iconify-icon>
+                </div>
+                <div class="menu-title">Reports</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </div>
+                        <div class="menu-title">HR</div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a asp-area="HR" asp-controller="Reports" asp-action="GetEmployeeAttendanceSummary"> <iconify-icon icon="pepicons-pop:cv" class="parent-icon"></iconify-icon> &nbsp; Employee Attendance Summary</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <!-- Added By Rahul Mistry on 14-March-2023 -->
+
+    </ul>
+    <!--end navigation-->
+</div>
+
+<script>
+
+    showLoader();
+
+    function laddaStart(id) {
+        var l = Ladda.create(document.getElementById(id));
+        l.start();
+        return l;
+    }
+
+    function laddaStop(l) {
+        l.stop();
+    }
+
+    function showLoader() {
+        $("body").LoadingOverlay("show", {
+            background: "rgba(136,251,155 0.3)",
+            imageColor: '#8833ff'
+        });
+    }
+
+    function hideloader() {
+        $("body").LoadingOverlay("hide", true);
+    }
+
+    $(function () {
+        hideloader();
+    });
+    $(function () {
+        //hideLoader();
+        ////Handle tooltip behaviour (It will init in all controls)
+        //var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        //var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        //    return new bootstrap.Tooltip(tooltipTriggerEl)
+        //});
+    });
+
+</script>
+
+<!--Main Sidebar End-->

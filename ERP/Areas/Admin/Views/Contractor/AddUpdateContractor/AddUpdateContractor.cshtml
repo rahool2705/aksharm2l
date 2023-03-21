@@ -1,0 +1,254 @@
+﻿@using Business.Entities.Contractor
+@model ContractorMaster
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    ViewBag.Title = "Contractor Details..";
+
+    List<ContractorContactTxn> ContractorContactTxns = ContractorExtension.ListOfContractorContactPerson(Model.ContractorID);
+    List<LeadAddressTxn> ContractorAddressTxns = ContractorExtension.ListOfContractorAddress(Model.ContractorID);
+    LeadContactDetail ContractorContactDetail = ContractorExtension.GetContractorContactDetail(Model.ContractorID);
+    LeadRegistration ContractorRegistration = ContractorExtension.GetContractorRegistration(Model.ContractorID);
+    List<LeadBankDetails> ContractorBankDetails = ContractorExtension.GetContractorAllBankAccount(Model.ContractorID);
+    List<LeadDocument> ContractorDocuments = ContractorExtension.GetContractorsAllDocuments(Model.ContractorID);
+    LeadSetting ContractorSetting = ContractorExtension.GetContractorSetting(Model.ContractorID);
+}
+<div class="row">
+    <div class="card-content">
+        <div class="card-body">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="details-tab" data-bs-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">Contractor Details</a>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="contact-person-tab" data-bs-toggle="tab" href="#contactPerson" role="tab" aria-controls="contactPerson" aria-selected="true" disabled>Contact Person</a>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="contact-address-tab" data-bs-toggle="tab" href="#contactAddress" role="tab" aria-controls="contactAddress" aria-selected="true" disabled>Address</a>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="contact-detail-tab" data-bs-toggle="tab" href="#ContractorContactDetail" role="tab" aria-controls="ContractorContactDetail" aria-selected="true" disabled>Contact Detail</a>
+                </li>
+
+                
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="contact-registration-tab" data-bs-toggle="tab" href="#ContractorRegistration" role="tab" aria-controls="ContractorRegistration" aria-selected="true" disabled>Registration</a>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="Contractor-banking-tab" data-bs-toggle="tab" href="#ContractorBankingDetail" role="tab" aria-controls="ContractorBankingDetail" aria-selected="true" disabled>Banking detail</a>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="Contractor-document-tab" data-bs-toggle="tab" href="#ContractorDocument" role="tab" aria-controls="ContractorDocument" aria-selected="true" disabled>Documents</a>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link " id="Contractor-setting-tab" data-bs-toggle="tab" href="#ContractorSetting" role="tab" aria-controls="ContractorSetting" aria-selected="true" disabled>Settings</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+                <form id="formContrator" asp-area="Admin" asp-controller="Contractor" asp-action="AddUpdateContractor" class="row g-3" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="ContractorID" />
+                    <input type="hidden" asp-for="EncryptedId" />
+                    <div class="row pt-3">
+
+                        <div class=" col-sm-12 col-md-6 col-lg-6">
+                            @if (Model != null && Model.ContractorID > 0)
+                            {
+                                <div class="row mb-2">
+                                    <label for="" class="col-sm-4 col-form-label ">Contractor Code:<span class="required">*</span></label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="ContractorCode" name="ContractorCode" asp-for="ContractorCode" placeholder="" disabled>
+                                        @*<span asp-validation-for="ContractorCode" class="text-danger" disabled />*@
+                                    </div>
+                                </div>
+                            }
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Contractor Name:<span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" required="" class="form-control" id="ContractorName" name="ContractorName" asp-for="ContractorName" placeholder="">
+                                    <span asp-validation-for="ContractorName" class="text-danger" />
+                                </div>
+                            </div>
+
+                            @*<div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Contractor Group Name:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="GroupName" name="GroupName" asp-for="GroupName" placeholder="">
+                                    <span asp-validation-for="GroupName" class="text-danger" />*
+                                </div>
+                            </div>*@
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Owner Name:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="OwnerName" name="OwnerName" asp-for="OwnerName" placeholder="">
+                                    @*<span asp-validation-for="OwnerName" class="text-danger" />*@
+                                </div>
+                            </div>
+
+                            @*<div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Unit No/Name:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="UnitNoName" name="UnitNoName" asp-for="UnitNoName" placeholder="">
+                                </div>
+                            </div>*@
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Industry Type:<span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <select asp-for="IndustryTypeID" asp-items="@CustomerExtension.GetAllIndustryTypeMaster()" class="form-control" required="">
+                                        <option value="">Select Industry type</option>
+                                    </select>
+                                    <span asp-validation-for="IndustryTypeID" class="text-danger" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Business Type:<span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <select asp-for="BusinessTypeID" asp-items="@CustomerExtension.GetAllBusinessTypeMaster()" class="form-control" required="">
+                                        <option value="">Select Business type</option>
+                                    </select>
+                                    <span asp-validation-for="BusinessTypeID" class="text-danger" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Is Active:</label>
+                                <div class="col-sm-8">
+                                    @Html.CheckBoxFor(s => s.IsActive)
+                                    @*<span asp-validation-for="OwnerName" class="text-danger" />*@
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Contact No.:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="ContactPhone1" name="ContactPhone1" asp-for="ContactPhone1" placeholder="">
+                                    @*<span asp-validation-for="OwnerName" class="text-danger" />*@
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Mobile No.:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Mobile1" name="Mobile1" asp-for="Mobile1" placeholder="">
+                                    @*<span asp-validation-for="OwnerName" class="text-danger" />*@
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <label for="" class="col-sm-4 col-form-label ">Fax No.:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="FaxNo" name="FaxNo" asp-for="FaxNo" placeholder="">
+                                    @*<span asp-validation-for="OwnerName" class="text-danger" />*@
+                                </div>
+                            </div>                           
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label asp-for="LogoImage" class="col-form-label ">Logo Image:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input asp-for="LogoImage" type="file" class="form-control " accept="image/*" name="logoImage" id="logoImage" onchange="loadFile(event)" style="display: none;" />
+                                    <label for="logoImage" style="cursor: pointer; color:darkblue">
+                                        Upload the image for logo<br />
+                                        @if (Model != null && !string.IsNullOrEmpty(Model.LogoImagePath))
+                                        {
+                                            <img class="rounded border border-dark" id="output" width="200" height="200" src="@ViewBag.LogoImage" />
+                                        }
+                                        else
+                                        {
+                                            <img class="rounded border border-dark" id="output" width="200" height="200" src="~/assets/images/DefaultProfilePicture/defaultprofilepicture.png" />
+                                        }
+                                    </label>
+                                    <script>
+                                        var loadFile = function (event) {
+                                            var image = document.getElementById('output');
+                                            image.src = URL.createObjectURL(event.target.files[0]);
+                                        };
+                                    </script>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button id="btnSave" type="submit" class="btn btn-primary btn-info px-5 ladda-button">Save</button>
+
+                        <a id="btnCancel" type="button" class="btn btn-primary btn-info px-5 ladda-button" href="/Admin/Contractor/Index">Cancel</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="contactPerson" role="tabpanel" aria-labelledby="ContractorContact-tab" disabled>
+                <div id="ContractorContactPersonTable">
+                    @await Html.PartialAsync("ContactPerson/_ContractorContactPersonList", ContractorContactTxns)
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="contactAddress" role="tabpanel" aria-labelledby="ContractorAddress-tab" disabled>
+                <div id="ContractorContactPersonTable">
+                    @await Html.PartialAsync("Address/_ContractorAddressList", ContractorAddressTxns)
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="ContractorContactDetail" role="tabpanel" aria-labelledby="ContractorContactDetail-tab" disabled>
+                <div id="ContractorContactDetailTable">
+                    @await Html.PartialAsync("ContactDetail/_ContarctorContactDetail", ContractorContactDetail)
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="ContractorRegistration" role="tabpanel" aria-labelledby="ContractorRegistration-tab" disabled>
+                <div id="ContractorregistrationTable">
+                    @await Html.PartialAsync("Registration/_ContractorRegistration", ContractorRegistration)
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="ContractorBankingDetail" role="tabpanel" aria-labelledby="ContractorBankingDetail-tab" disabled>
+                <div id="ContractorBankingDetailTable">
+                    @await Html.PartialAsync("BankDetail/_ContractorBankAccountList", ContractorBankDetails)
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="ContractorDocument" role="tabpanel" aria-labelledby="ContractorDocument-tab" disabled>
+                <div id="ContractorDocumentTable">
+                    @await Html.PartialAsync("Document/_ContractorDocumentList", ContractorDocuments)
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="ContractorSetting" role="tabpanel" aria-labelledby="ContractorSetting-tab" disabled>
+                <div id="ContractorDocumentTable">
+                    @await Html.PartialAsync("Setting/_ContractorContactSetting", ContractorSetting)
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+@if (Model != null && Model.ContractorID > 0)
+{
+   <script type="text/javascript">
+        document.getElementById("contact-person-tab").removeAttribute("disabled");
+        document.getElementById("contact-address-tab").removeAttribute("disabled");
+       document.getElementById("contact-detail-tab").removeAttribute("disabled");
+        document.getElementById("contact-registration-tab").removeAttribute("disabled");
+        document.getElementById("Contractor-banking-tab").removeAttribute("disabled");
+        document.getElementById("Contractor-document-tab").removeAttribute("disabled");
+        document.getElementById("Contractor-setting-tab").removeAttribute("disabled");
+    </script>
+}

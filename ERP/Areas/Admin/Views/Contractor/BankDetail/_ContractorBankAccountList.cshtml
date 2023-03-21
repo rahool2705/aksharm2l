@@ -1,0 +1,106 @@
+﻿@using Business.Entities.Contractor
+@model PagedDataTable<LeadBankDetails>
+<link href="~/admin/assets/vendors/simple-datatables/style.css" rel="stylesheet" />
+<div id="ContractorBankAccountTable">
+    <div class="row">
+        <div class="col-lg-6">
+            <h6 class="cards-title">
+                Bank Account List
+            </h6>
+        </div>
+        <div class="col-lg-12 text-align-right">
+            <a onclick="fnContractorBankAccount(0)"
+               class="btn btn-primary px-5"
+               href="javascript:void(0)"
+               data-id="0"
+               data-bs-toggle="offcanvas"
+               data-bs-target="#canvasContractorBankAccount"
+               aria-controls="canvasContractorBankAccount">
+                Add Bank Account
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped" id="tblContractorBankAccounts">
+            <thead>
+                <tr>
+                    <td>SrNo</td>
+                    <td>Bank Name</td>
+                    <td>Bank Code</td>
+                    <td>Account No</td>
+                    <td>Account Name</td>
+                    <td>IFSC Code</td>
+                    <td>Branch</td>
+                    <td>Country</td>
+                    <td>IsActive</td>
+                    <td>Update</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.SrNo</td>
+                            <td>@item.BankName</td>
+                            <td>@item.BankCode</td>
+                            <td>@item.AccountNO</td>
+                            <td>@item.AccountName</td>
+                            <td>@item.IFSCCode</td>
+                            <td>@item.BranchLocation</td>
+                            <td>@item.CountryName</td>
+                            <td>@item.IsActive</td>
+                            <td>
+                                <a class='btn editaddress' onclick="fnContractorBankAccount(@item.ContractorBankDetailsID)"
+                           href="javascript:void(0)"
+                           data-bs-toggle="offcanvas"
+                           data-bs-target="#canvasContractorBankAccount"
+                           aria-controls="canvasContractorBankAccount"
+                           data-id="@item.ContractorBankDetailsID"
+                           Contractorid="@item.ContractorID"><i class='bx bx-edit'></i></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasContractorBankAccount" style="visibility: visible; width : 75% !important">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasHeaderNameContractorBank"></h5>
+        <button type="button" class="btn-close te  xt-reset" data-bs-dismiss="offcanvas" aria-l abel="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-3 pb-5" >
+        <div id="dvInfoContractorBank">
+        </div>
+    </div>
+</div>
+
+<script src="~/admin/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script type="text/javascript">
+    //var urlDeleteCompanyFromUser = 'Url.Action("DeleteBankAccount", "Contractor")';
+    var urlAddUpdateBankAccount = '@Url.Action("AddUpdateContractorBankAccount", "Contractor")';
+    function fnContractorBankAccount(ContractorBankDetailId) {
+        var _id = ContractorBankDetailId;//$(this).data('id');
+        var _ContractorId = $("#ContractorID").val();
+        if (_id > 0) {
+            document.getElementById("canvasHeaderNameContractorBank").innerHTML = "Update Contractor bank details";
+        }
+        else {
+            document.getElementById("canvasHeaderNameContractorBank").innerHTML = "Add Contractor bank details";
+        }
+        var _parameters = { ContractorBankDetailId: _id, ContractorId: _ContractorId };
+        $.ajax({
+            url: urlAddUpdateBankAccount,
+            type: "GET",
+            data: _parameters,
+            success: function (data, textStatus, jqXHR) {
+                $("#canvasContractorBankAccount").show();//('hide');
+                $('#dvInfoContractorBank').html(data);
+            }
+        });
+    }
+</script>

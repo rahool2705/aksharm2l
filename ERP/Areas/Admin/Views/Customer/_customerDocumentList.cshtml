@@ -1,0 +1,165 @@
+﻿@using Business.Entities.Customer
+@using DocumentFormat.OpenXml.Office2010.Excel;
+@model PagedDataTable<CustomerDocument>
+<link href="~/admin/assets/vendors/simple-datatables/style.css" rel="stylesheet" />
+<div id="CustomerDocumentTable">
+    <div class="row">
+        <div class="col-lg-6">
+            <h6 class="cards-title">
+                Document List
+            </h6>
+        </div>
+        <div class="col-lg-12 text-align-right">
+            <a onclick="fnCustomerDocument(0)"
+               class="btn btn-primary px-5"
+               href="javascript:void(0)"
+               data-id="0"
+               data-bs-toggle="offcanvas"
+               data-bs-target="#canvasCustomerDocument"
+               aria-controls="canvasCustomerDocument">
+                Add Document
+            </a>
+        </div>
+    </div>
+    @if (TempData["message"] != null)
+    {
+        var test = TempData["message"];
+        <div class="alert alert-success">
+            <strong>@TempData["message"]</strong>
+        </div>
+    }
+    <div class="row">
+        <table class="table table-striped" id="tblBankAccounts">
+            <thead>
+                <tr>
+                    <td>Sr No</td>
+                    <td>Document Name</td>
+                    <td>Description</td>
+                    <td>IsActive</td>
+                    <td>Open</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.SrNo</td>
+                            <td>@item.DocumentName</td>
+                            <td>@item.DocumentDescription</td>
+                            <td>
+                                <input type="checkbox" class="form-check-input" asp-for="@item.IsActive" onchange="fnCustomerDocumentActiveInactive(@item.CustomerDocumentID)" id="docActiveInactive">
+                                @*<a class='btn editaddress' onchange="fnCustomerDocumentActiveInactive(@item.CustomerDocumentID)"
+                        href="javascript:void(0)"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#canvasCustomerDocument"
+                        aria-controls="canvasCustomerDocument"
+                        data-id="@item.CustomerDocumentID"
+                        customerid="@item.CustomerID"><i class='bx bx-checkbox' id="docActiveInactive"></i></a>*@
+                            </td>
+
+                            <td>
+                                <a class='btn editaddress' onclick="fnCustomerDocument(@item.CustomerDocumentID)"
+                           href="javascript:void(0)"
+                           data-bs-toggle="offcanvas"
+                           data-bs-target="#canvasCustomerDocument"
+                           aria-controls="canvasCustomerDocument"
+                           data-id="@item.CustomerDocumentID"
+                           customerid="@item.CustomerID"><i class='bx bx-edit'></i></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasCustomerDocument" style="visibility: visible; width : 75% !important">*@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasCustomerDocument">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasHeaderNameDocument"></h5>
+        <button type="button" class="btn-close te  xt-reset" data-bs-dismiss="offcanvas" aria-l abel="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-3 pb-5">
+        <div id="dvInfoDocument">
+        </div>
+    </div>
+</div>
+
+<script src="~/admin/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script type="text/javascript">
+    //var urlDeleteCompanyFromUser = 'Url.Action("DeleteBankAccount", "Customer")';
+    var urlAddUpdateDocument = '@Url.Action("AddUpdateCustomerDocument", "Customer")';
+    var urlisActiveInActive = '@Url.Action("ActiveInActiveCustomerDocument","Customer")';
+
+    function fnCustomerDocument(customerDocumentId) {
+        var _id = customerDocumentId;//$(this).data('id');
+        var _customerId = $("#CustomerID").val();
+        if (_id > 0) {
+            document.getElementById("canvasHeaderNameDocument").innerHTML = "Update customer document details";
+        }
+        else {
+            document.getElementById("canvasHeaderNameDocument").innerHTML = "Add customer document details";
+        }
+        var _parameters = { customerDocumentId: _id, customerId: _customerId };
+        $.ajax({
+            url: urlAddUpdateDocument,
+            type: "GET",
+            data: _parameters,
+            success: function (data, textStatus, jqXHR) {
+                $("#canvasCustomerDocument").show();//('hide');
+                $('#dvInfoDocument').html(data);
+            }
+        });
+    }
+
+    function fnCustomerDocumentActiveInactive(customerDocumentId) {
+        var _empDocId = customerDocumentId;//$(this).data('id');
+        var customerId = $("#CustomerID").val();
+        var _checkBox = $("#docActiveInactive").is(':checked');
+        var _docParameters = { customerDocumentId: _empDocId, customerId: customerId, isActive: _checkBox };
+        $.ajax({
+            url: urlisActiveInActive,
+            type: 'POST',
+            data: _docParameters,
+            success: function (data) {
+                if (data.status) {
+                    var test = Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message,
+                    });
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+                $("#CustomerDocumentTable").load(window.location.href + " #CustomerDocumentTable");
+            },
+            error: function (error) {
+                laddaStop(ls);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: '@MessageHelper.Error'
+                });
+            }
+        }).always(function () {
+            hideloader();
+        });
+    }
+</script>

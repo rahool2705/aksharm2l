@@ -1,0 +1,151 @@
+﻿@model Business.Entities.Employee.EmployeeEducation
+<div class="row">
+    <div class="card-content">
+        <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+            <form id="formEmployeeEducation" asp-action="AddUpdateEmployeeEducation" asp-controller="Employee" asp-area="Admin" method="post" class="row g-3">
+                <input type="hidden" asp-for="EmployeeID" />
+                <input type="hidden" asp-for="EmployeeEducationID" />
+                <div class=" col-sm-12 col-md-6 col-lg-6">
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">School/University Name:</label>
+                        <div class="col-sm-9">
+                            @*To validate, Uncomment below code, By Rahul mistry on 02-Jan-2023.*@
+                            @*<input type="text" required="" class="form-control" id="SchoolOrUniversity" asp-for="SchoolOrUniversity" name="SchoolOrUniversity" placeholder="">*@
+                            @*<span asp-validation-for="SchoolOrUniversity" class="text-danger"></span>*@
+                            <input type="text" class="form-control" id="SchoolOrUniversity" asp-for="SchoolOrUniversity" name="SchoolOrUniversity" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Degree:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="Degree" id="Degree" name="Degree" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Field of Study:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="FieldOfStudy" id="FieldOfStudy" name="FieldOfStudy" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Start Date:</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="StartDate" name="StartDate" asp-for="StartDate" placeholder="">
+                            @*<span asp-validation-for="PersonalEmail" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">End Date:</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="EndDate" name="EndDate" asp-for="EndDate" placeholder="">
+                            @*<span asp-validation-for="PersonalEmail" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-6">
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Grade:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="Grade" id="Grade" name="Grade" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Activities and Socialities:</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" asp-for="ActivitiesAndSocialities" id="ActivitiesAndSocialities" name="ActivitiesAndSocialities" placeholder=""></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Description:</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" asp-for="Description" id="Description" name="Description" placeholder=""></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Is Current Education:</label>
+                        <div class="col-sm-9">
+                            <input type="checkbox" class="form-check-input" asp-for="IsCurrentEducation">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer-sticky text-center">
+                    <button type="button" onclick="fnSubmitEmployeeEducation()" class="btn btn-primary btn-info px-5 ladda-button" id="btnSave">Save</button>
+                    <button type="button" class="btn btn-primary btn-info px-5 ladda-button" data-bs-dismiss="offcanvas" aria-l abel="Close">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<link href="~/admin/assets/vendors/typehead/jquery.typeahead.min.css" rel="stylesheet" />
+<script src="~/admin/assets/vendors/typehead/jquery.typeahead.min.js"></script>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+<script type="text/javascript">
+    function fnSubmitEmployeeEducation() {
+       // alert($("#formEmployeeEducation").valid());
+        if ($("#formEmployeeEducation").valid()) {
+            var ls = laddaStart('btnSave');
+            modeldata = $("#formEmployeeEducation").serialize();
+            $.ajax({
+                type: 'POST',
+                url: '/Admin/Employee/AddUpdateEmployeeEducation/',
+                data: modeldata,
+                dataType: 'json',
+                beforeSend: function () { },
+                success: function (data) {
+                    console.log(data.status);
+                    if (data.status) {
+                        //notification
+                        $("#canvasEmployeeEducation").hide();//('hide');
+                        var test = Lobibox.notify('success', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: data.message,
+                        });
+                        setTimeout(
+                            function () {
+                                //window.location.reload();
+                                $("#tblEmployeeEducations").load(window.location.href + " #tblEmployeeEducations");
+                            }, 3000);
+                        
+                    }
+                    else {
+                        Lobibox.notify('error', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: '@MessageHelper.Error'
+                        });
+                    }
+                },
+                error: function (error) {
+                    laddaStop(ls);
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+            }).always(function () {
+                hideloader();
+            });
+        }
+    };
+</script>

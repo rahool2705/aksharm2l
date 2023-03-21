@@ -1,0 +1,266 @@
+﻿@model Business.Entities.Employee.EmployeeSalaryBreakup
+<form method="post" id="formAddUpdateEmployeeSalaryBreakup" class="row g-3 needs-validation" asp-area="Admin" asp-controller="Employee" asp-action="AddUpdateEmployeeSalaryBreakup">
+    <input type="hidden" asp-for="EmployeeID" />
+    <input type="hidden" asp-for="EmployeeSalaryBreakupID" />
+
+    <div class=" col-sm-12 col-md-6 col-lg-6 border border-dark">
+
+        <div class="row mb-2">
+            <label for="" class="col-sm-3 col-form-label " color="blue">EARNINGS:</label>
+        </div>
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Basic:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="Basic" id="Basic" name="Basic" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Dearness Allowence:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="DearnessAllowence" id="DearnessAllowence" name="DearnessAllowence" placeholder="">
+            </div>
+        </div>
+
+        @*        <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">Employement Status:</label>
+        <div class="col-sm-9">
+        <select class="form-select" asp-for="EmploymentStatusID" id="EmploymentStatusID" name="EmploymentStatusID" asp-items="@EmployeeExtension.GetAllEmploymentStatus()">
+        <option value="">--Select--</option>
+        </select>
+        </div>
+        </div>*@
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">House Rent Allowence:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="HouseRentAllowence" id="HouseRentAllowence" name="HouseRentAllowence" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Other Allowence:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="OtherAllowence" id="OtherAllowence" name="OtherAllowence" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">All Cash Reembersments:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="AllCashReembersment" id="AllCashReembersment" name="AllCashReembersment" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">LTA:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="LTA" id="LTA" name="LTA" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Medical:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="Medical" id="Medical" name="Medical" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Arrears:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="Arrears" id="Arrears" name="Arrears" placeholder="">
+            </div>
+        </div>
+
+        
+
+        <!--
+        @*        <div class="row mb-3">
+                    <label for="" class="col-sm-3 col-form-label ">Yearly CTC:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="YearlyCTC" id="YearlyCTC" name="YearlyCTC" placeholder="">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="" class="col-sm-3 col-form-label ">Monthly CTC:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="MonthlyCTC" id="MonthlyCTC" name="MonthlyCTC" placeholder="">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-sm-9">
+                        <a class='btn btn-primary btn-info px-5 ladda-button'>Gate Pass</a>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-9">
+                        <a class='btn btn-primary btn-info px-5 ladda-button'>Canteen Detail</a>
+                    </div>
+                </div>*@-->
+
+    </div>
+
+    <div class=" col-sm-12 col-md-6 col-lg-6 border border-dark">
+
+        @*        <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">Website:</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" asp-for="Website" id="Website" name="Website" placeholder="">
+        </div>
+        </div>*@
+        <div class="row">
+            <label for="" class="col-sm-3 col-form-label " color="blue">DEDUCTIONS:</label>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">PF:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="ProvidentFund" id="ProvidentFund" name="ProvidentFund" placeholder="">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">ESI:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="EmployeeStateInsurance" id="EmployeeStateInsurance" name="EmployeeStateInsurance" placeholder="">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Income Tax:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="IncomeTax" id="IncomeTax" name="IncomeTax" placeholder="">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Professional Tax:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="ProfessionalTax" id="ProfessionalTax" name="ProfessionalTax" placeholder="">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Loan & Andvance:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="LoanAndAdvance" id="LoanAndAdvance" name="LoanAndAdvance" placeholder="">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Prerequisites:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="Prerequisites" id="Prerequisites" name="Prerequisites" placeholder="">
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class=" col-sm-12 col-md-6 col-lg-6 border border-dark">
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Gross Earnings (A):</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="GrossEarnings" id="GrossEarnings" name="GrossEarnings" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Net Salary Payable(A-B):</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="NetSalaryPayable" id="NetSalaryPayable" name="NetSalaryPayable" placeholder="">
+            </div>
+        </div>
+
+    </div>
+    
+    <div class=" col-sm-12 col-md-6 col-lg-6 border border-dark">
+        
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Gross Deductions (B):</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="GrossDeduction" id="GrossDeduction" name="GrossDeduction" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Cost To Company (A+B):</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="CostToCompany" id="CostToCompany" name="CostToCompany" placeholder="">
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        <button type="button" class="btn btn-primary btn-info px-5 ladda-button">Salary Calculation Formula</button>
+        
+            <label for="" class="col-sm-4 col-form-label text-end">Salary Calculation with Formula</label>&nbsp;
+                <input type="checkbox" class="form-check-input" asp-for="SalaryCalculateWithFormula">
+    </div>
+    <div>
+        <button type="submit" onclick="fnSaveEmployeeSalaryBreakup()" class="btn btn-primary btn-info px-5 ladda-button" id="btnSaveEmployeeSalaryBreakup">Save</button>
+        @*<button type="button" class="btn btn-primary btn-info px-5 ladda-button" data-bs-dismiss="offcanvas" aria-l abel="Close">Cancel</button>*@
+    </div>
+</form>
+
+<link href="~/admin/assets/vendors/typehead/jquery.typeahead.min.css" rel="stylesheet" />
+<script src="~/admin/assets/vendors/typehead/jquery.typeahead.min.js"></script>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+<script type="text/javascript">
+    function fnSaveEmployeeSalaryBreakup() {
+        var ls = laddaStart('btnSaveEmployeeSalaryBreakup');
+        modeldata = $("#formAddUpdateEmployeeSalaryBreakup").serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/Employee/AddUpdateEmployeeSalaryBreakup/',
+            data: modeldata,
+            dataType: 'json',
+            beforeSend: function () { },
+            success: function (data) {
+                console.log(data.status);
+                if (data.status) {
+                    //notification
+                    //$("#canvasEmployeeHRAdministration").hide();//('hide');
+                    var test = Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message,
+                    });
+                    setTimeout(
+                        function () {
+                            //window.location.reload();
+                            $("#formAddUpdateEmployeeSalaryBreakup").load(window.location.href + " #formAddUpdateEmployeeSalaryBreakup");
+                        }, 3000);
+                    
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+            },
+            error: function (error) {
+                laddaStop(ls);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: '@MessageHelper.Error'
+                });
+            }
+        }).always(function () {
+            hideloader();
+        });
+
+    };
+</script>

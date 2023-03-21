@@ -1,0 +1,117 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Business.SQL
+@using GridCore
+@inject SignInManager<UserMasterMetadata> SignInManager
+@inject UserManager<UserMasterMetadata> UserManager
+
+
+@addTagHelper *, GridMvc
+
+@model ISGrid
+@{
+    ViewData["Title"] = "Set - Salary Formula for employee";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    var EmpCateID = ViewBag.EmployeeCategoryID;
+    //var userlogin = UserManager.GetUserAsync(User).Result;
+    //var roles = UserManager.GetRolesAsync(userlogin).Result;
+}
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <div class="row">
+            <label for="" class="col-sm-4 col-form-label ">Employee Category:</label>
+            <div class="col-sm-8">
+
+                <select class="form-select" id="EmployeeCategoryID" name="EmployeeCategoryId" asp-for="@EmpCateID" asp-items="@EmployeeExtension.GetAllEmployeeCategoryMaster()" onchange="fnSalaryFormulaByEmployeeCategoryId()">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 text-align-right">
+        <a class="btn btn-primary px-5" onclick="fnSalaryFormula(this)"
+           href="javascript:void(0)"
+           data-key="0"
+           data-id="0"
+           data-bs-toggle="offcanvas"
+           data-bs-target="#canvasSalaryFormula"
+           aria-controls="canvasSalaryFormula">
+            Add Formula
+        </a>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasSalaryFormula" style="visibility: visible; width : 75% !important">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasHeaderNameSalaryFormula"></h5>
+        <button type="button" class="btn-close te  xt-reset" data-bs-dismiss="offcanvas" aria-l abel="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-3 pb-5">
+        <div id="dvInfoSalaryFormula">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <grid model="@Model" />
+    </div>
+</div>
+<script type="text/javascript">
+
+    var urlGetSalaryFormulaByEmployeeCatogeryId = '@Url.Action("GetSalaryFormulaByEmployeeCategoryId", "SalaryFormula")';
+    var urlGetSalaryFormulaByFormulaId = '@Url.Action("GetSalaryFormula", "SalaryFormula")';
+
+    var id = '';
+
+    function fnSalaryFormulaByEmployeeCategoryId() {
+        var _id = document.getElementById('EmployeeCategoryID').value;
+        var urlWithId = urlGetSalaryFormulaByEmployeeCatogeryId + '?employeeCategoryId=' + _id;
+        window.location.href = urlWithId;
+    }
+    //function fnSalaryFormulaByEmployeeCategoryId() {
+    //    alert("Start");
+    //    var _id = document.getElementById('EmployeeCategoryId').value;
+
+    //    var _parameters = { employeeCategoryId: _id };
+
+
+    //    $.ajax({
+    //        url: urlGetSalaryFormulaByEmployeeCatogeryId,
+    //        type: "GET",
+    //        data: _parameters,
+    //        success: function (data) {
+    //            //$('#reloadTab').load(window.location.reload());
+    //            //$('#dataGrid').html(data);
+    //            //$('#dataGrid').after(data);
+    //            //$('#dataGrid').append(data);
+    //            //$('#dataGrid').before(data);
+    //            $('#dataGrid').html(data);
+    //            //document.getElementById('EmployeeCategoryId').setAttribute('selected', _id);
+    //            alert("Finish");
+    //        }
+    //    });
+    //}
+
+
+    function fnSalaryFormula(obj) {
+        var _id = $(obj).data('id');
+        //debugger;
+        if (_id > 0) {
+            document.getElementById("canvasHeaderNameSalaryFormula").innerHTML = "Update Salary Formula";
+        }
+        else {
+            document.getElementById("canvasHeaderNameSalaryFormula").innerHTML = "Add Salary Formula";
+        }
+        var _parameters = { salaryFormulaId: _id };
+        $.ajax({
+            url: urlGetSalaryFormulaByFormulaId,
+            type: "GET",
+            data: _parameters,
+            success: function (data, textStatus, jqXHR) {
+                $("#canvasSalaryFormula").show();//('hide');
+                $('#dvInfoSalaryFormula').html(data);
+            }
+        });
+    }
+</script>

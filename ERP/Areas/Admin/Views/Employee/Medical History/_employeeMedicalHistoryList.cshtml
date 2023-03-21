@@ -1,0 +1,122 @@
+﻿@using Business.Entities.Employee.EmployeeMedicalHistory;
+@using System.Globalization;
+@model PagedDataTable<EmployeeMedicalHistory>
+@{
+    DateTimeFormatInfo mfi = new DateTimeFormatInfo();
+}
+<link href="~/admin/assets/vendors/simple-datatables/style.css" rel="stylesheet" />
+<div id="EmployeeMedicalHistoryTable">
+    <div class="row">
+        <div class="col-lg-6">
+            <h6 class="cards-title">
+                Medical History
+            </h6>
+        </div>
+        <div class="col-lg-12 text-align-right">
+            <a onclick="fnEmployeeMedicalHistory(0)"
+               class="btn btn-primary px-5"
+               href="javascript:void(0)"
+               data-id="0"
+               data-bs-toggle="offcanvas"
+               data-bs-target="#canvasEmployeeMedicalHistory"
+               aria-controls="canvasEmployeeMedicalHistory">
+                Add Medical History
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped" id="tblEmployeeMedicalHistory">
+            <thead>
+                <tr>
+                    <td>SrNo</td>
+                    <td>Hospital Name</td>
+                    <td>Doctor Name</td>
+                    <td>Reason</td>
+                    <td>Month</td>
+                    <td>Year</td>
+                    <td>Facing Any Problem</td>
+                    <td>Taking Treatment Now</td>
+                    <td>Taking Medicines Now</td>
+                    <td>Place of Treatment</td>
+                    <td>Update</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.SrNo</td>
+                            <td>@item.HospitalName</td>
+                            <td>@item.DoctorName</td>
+                            <td>@item.MedicalReason</td>
+                            @if (item.TreatmentMonth > 0 && item.TreatmentMonth <= 12)
+                            {
+                                string strMonthName = mfi.GetMonthName(item.TreatmentMonth).ToString();
+                                <td>@strMonthName</td>
+                            }
+                            else
+                            {
+                                <td>-NA-</td>
+                            }
+                            @*<td>@item.TreatmentMonth</td>*@
+
+                            <td>@item.TreatmentYear</td>
+                            <td>@item.FacingAnyProblem</td>
+                            <td>@item.TakingTreatmentNow</td>
+                            <td>@item.TakingMedicinesNow</td>
+                            <td>@item.PlaceofTreatment</td>
+                            <td>
+                                <a class='btn editaddress' onclick="fnEmployeeMedicalHistory(this)"
+                           href="javascript:void(0)"
+                           data-bs-toggle="offcanvas"
+                           data-bs-target="#canvasEmployeeMedicalHistory"
+                           aria-controls="canvasEmployeeMedicalHistory"
+                           data-id="@item.EmployeeMedicalDetailsID"
+                           employeeid="@item.EmployeeID"><i class='bx bx-edit'></i></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasEmployeeMedicalHistory">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasHeaderMedicalHistory"></h5>
+        <button type="button" class="btn-close te  xt-reset" data-bs-dismiss="offcanvas" aria-l abel="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-3 pb-5">
+        <div id="dvInfoMedicalHistory">
+        </div>
+    </div>
+</div>
+
+<script src="~/admin/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script type="text/javascript">
+    //var urlDeleteCompanyFromUser = 'Url.Action("DeleteEmployeeExperience", "Employee")';
+    var urlAddUpdateEmployeeMedicalHistory = '@Url.Action("AddUpdateEmployeeMedicalHistory", "Employee")';
+    function fnEmployeeMedicalHistory(obj) {
+        var _id = $(obj).data('id');
+        var _employeeId = $("#EmployeeID").val();
+        if (_id > 0) {
+            document.getElementById("canvasHeaderMedicalHistory").innerHTML = "Update medical history";
+        }
+        else {
+            document.getElementById("canvasHeaderMedicalHistory").innerHTML = "Add medical history";
+        }
+        var _parameters = { employeeMedicalDetailsID: _id, employeeId: _employeeId };
+        $.ajax({
+            url: urlAddUpdateEmployeeMedicalHistory,
+            type: "GET",
+            data: _parameters,
+            success: function (data, textStatus, jqXHR) {
+                $("#canvasEmployeeMedicalHistory").show();//('hide');
+                $('#dvInfoMedicalHistory').html(data);
+            }
+        });
+    }
+</script>

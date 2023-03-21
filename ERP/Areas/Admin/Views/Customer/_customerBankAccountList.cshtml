@@ -1,0 +1,106 @@
+﻿@using Business.Entities.Customer
+@model PagedDataTable<CustomerBankDetails>
+<link href="~/admin/assets/vendors/simple-datatables/style.css" rel="stylesheet" />
+<div id="CustomerBankAccountTable">
+    <div class="row">
+        <div class="col-lg-6">
+            <h6 class="cards-title">
+                Bank Account List
+            </h6>
+        </div>
+        <div class="col-lg-12 text-align-right">
+            <a onclick="fnCustomerBankAccount(0)"
+               class="btn btn-primary px-5"
+               href="javascript:void(0)"
+               data-id="0"
+               data-bs-toggle="offcanvas"
+               data-bs-target="#canvasCustomerBankAccount"
+               aria-controls="canvasCustomerBankAccount">
+                Add Bank Account
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped" id="tblCustomerBankAccounts">
+            <thead>
+                <tr>
+                    <td>SrNo</td>
+                    <td>Bank Name</td>
+                    <td>Bank Code</td>
+                    <td>Account No</td>
+                    <td>Account Name</td>
+                    <td>IFSC Code</td>
+                    <td>Branch</td>
+                    <td>Country</td>
+                    <td>IsActive</td>
+                    <td>Update</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.SrNo</td>
+                            <td>@item.BankName</td>
+                            <td>@item.BankCode</td>
+                            <td>@item.AccountNO</td>
+                            <td>@item.AccountName</td>
+                            <td>@item.IFSCCode</td>
+                            <td>@item.BranchLocation</td>
+                            <td>@item.CountryName</td>
+                            <td>@item.IsActive</td>
+                            <td>
+                                <a class='btn editaddress' onclick="fnCustomerBankAccount(@item.CustomerBankDetailsID)"
+                           href="javascript:void(0)"
+                           data-bs-toggle="offcanvas"
+                           data-bs-target="#canvasCustomerBankAccount"
+                           aria-controls="canvasCustomerBankAccount"
+                           data-id="@item.CustomerBankDetailsID"
+                           Customerid="@item.CustomerID"><i class='bx bx-edit'></i></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasCustomerBankAccount" style="visibility: visible; width : 75% !important">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasHeaderNameCustomerBank"></h5>
+        <button type="button" class="btn-close te  xt-reset" data-bs-dismiss="offcanvas" aria-l abel="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-3 pb-5" >
+        <div id="dvInfoCustomerBank">
+        </div>
+    </div>
+</div>
+
+<script src="~/admin/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script type="text/javascript">
+    //var urlDeleteCompanyFromUser = 'Url.Action("DeleteBankAccount", "Customer")';
+    var urlAddUpdateBankAccount = '@Url.Action("AddUpdateCustomerBankAccount", "Customer")';
+    function fnCustomerBankAccount(CustomerBankDetailId) {
+        var _id = CustomerBankDetailId;//$(this).data('id');
+        var _CustomerId = $("#CustomerID").val();
+        if (_id > 0) {
+            document.getElementById("canvasHeaderNameCustomerBank").innerHTML = "Update Customer bank details";
+        }
+        else {
+            document.getElementById("canvasHeaderNameCustomerBank").innerHTML = "Add Customer bank details";
+        }
+        var _parameters = { CustomerBankDetailId: _id, customerId: _CustomerId };
+        $.ajax({
+            url: urlAddUpdateBankAccount,
+            type: "GET",
+            data: _parameters,
+            success: function (data, textStatus, jqXHR) {
+                $("#canvasCustomerBankAccount").show();//('hide');
+                $('#dvInfoCustomerBank').html(data);
+            }
+        });
+    }
+</script>

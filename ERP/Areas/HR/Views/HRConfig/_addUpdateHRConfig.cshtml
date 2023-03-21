@@ -1,0 +1,181 @@
+﻿@using ERP.Extensions;
+@using ERP.Helpers;
+@model Business.Entities.HR.HRConfig
+<form id="formHRConfig" role="form">
+    <div class="row">
+        <div class="card-content">
+            <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+
+                <div class="row mt-3">
+                    <div class=" col-12">
+
+                        <input type="hidden" asp-for="HRConfigID" />
+                        @*
+                        <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Employee Name:</label>
+                        <div class="col-sm-9">
+                        <select asp-for="EmployeeID" asp-items="ViewBag.EmployeeList" class="form-select">
+                        <option value="">Select Employee</option>
+                        </select>
+
+                        </div>
+                        </div*@
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Employee Category:</label>
+                            <div class="col-sm-9">
+                                <select class="form-select" asp-for="EmployeeCategoryId" id="EmployeeCategoryId" name="EmployeeCategoryId" asp-items="@EmployeeExtension.GetAllEmployeeCategoryMaster()">
+                                    <option value="">Select Employee Category</option>
+                                </select>
+                                @*<span asp-validation-for="" class="text-danger"></span>*@
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Year:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="Year" asp-for="Year" name="Year" placeholder="">
+                                @*<span asp-validation-for="" class="text-danger"></span>*@
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Working Day in Month:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="WorkingDayInMonth" asp-for="WorkingDayInMonth" name="WorkingDayInMonth" placeholder="">
+                                @*<span asp-validation-for="" class="text-danger"></span>*@
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Working Hours in Day:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="WorkingHrsInDay" asp-for="WorkingHrsInDay" name="WorkingHrsInDay" placeholder="">
+                                @*<span asp-validation-for="" class="text-danger"></span>*@
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">OT-Payment:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="OTPaymentIn" asp-for="OTPaymentIn" name="OTPaymentIn" placeholder="">
+                                @*<span asp-validation-for="" class="text-danger"></span>*@
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Week-Off-1:</label>
+                            <div class="col-sm-3">
+                                <select asp-for="WeekOff1" class="form-control">
+                                    <option value="">Select 1st Week Off</option>
+                                    <option value="Sunday">Sunday</option>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                </select>
+                            </div>
+
+                            <label for="" class="col-sm-3 col-form-label ">Week-Off-2:</label>
+                            <div class="col-sm-3">
+                                <select asp-for="WeekOff2" class="form-control">
+                                    <option value="">Select 2nd Week Off</option>
+                                    <option value="Sunday">Sunday</option>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        @*<div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Is Active:</label>
+                            <div class="col-sm-9">
+                                <input type="checkbox" class="form-check-input" asp-for="IsActive" name="IsActive">
+                                <span asp-validation-for="OfficeEmail" class="text-danger"></span>
+                            </div>
+                        </div>*@
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Interest Rate(%) on Loan:</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="InterestOnLoan" asp-for="InterestOnLoan" name="InterestOnLoan" placeholder="">
+                                @*<span asp-validation-for="OfficeEmail" class="text-danger"></span>*@
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer-sticky text-center">
+                    <button id="btnSaveHRConfig" type="button" onclick="fnSubmitHRConfig()" class="btn btn-primary btn-info px-5 ladda-button">Save</button>
+                    <button type="button" data-bs-dismiss="offcanvas" class="btn btn-primary btn-info px-5 my-2" aria-l abel="Close">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+
+<script type="text/javascript">
+    var urlsave = '@Url.Action("AddUpdateHRConfig", "HRConfig")';
+    function fnSubmitHRConfig() {
+        var l = laddaStart('btnSaveHRConfig');
+        modeldata = $("#formHRConfig").serialize();
+        $.ajax({
+            type: 'POST',
+            url: urlsave,
+            data: modeldata,
+            dataType: 'json',
+            beforeSend: function () { },
+            success: function (data) {
+                if (data.status) {
+                    //notification
+                    $("#canvasLeaveHRConfig").hide();//('hide');
+                    Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message
+                    });
+                    setTimeout(
+                        function () {
+                            window.location.reload();
+                        }, 3000);
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message
+                    });
+                }
+            },
+            error: function (error) {
+                laddaStop(l);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: "@MessageHelper.Error"
+                });
+            }
+        }).always(function () {
+            hideLoader();
+        });
+
+    };
+</script>

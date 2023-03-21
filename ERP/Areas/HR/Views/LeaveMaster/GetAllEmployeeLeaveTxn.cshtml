@@ -1,0 +1,150 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Business.SQL
+@using GridCore
+@inject SignInManager<UserMasterMetadata> SignInManager
+@inject UserManager<UserMasterMetadata> UserManager
+
+
+@addTagHelper *, GridMvc
+
+@model ISGrid
+@{
+    ViewData["Title"] = "Leave Type Master";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+
+    var userlogin = UserManager.GetUserAsync(User).Result;
+    var roles = UserManager.GetRolesAsync(userlogin).Result;
+}
+
+<div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+    <div class="card border-1 shadow rounded-7 p-1">
+        <div class="row border-bottom">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="page-breadcrumb align-items-center">
+                    <div class="p-2">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 p-0">
+                                <li class="breadcrumb-item">
+                                    <a asp-area="HR" asp-controller="LeaveMaster" asp-action="GetAllEmployeeLeaveTxn"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Employee Leave Transaction List</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-6 text-end my-2">
+                <a class="btn btn-primary px-5" onclick="fnEmployeeLeaveTxn(this)"
+                   href="javascript:void(0)"
+                   data-key="0"
+                   data-bs-toggle="offcanvas"
+                   data-bs-target="#canvasEmployeeLeaveTxn"
+                   aria-controls="canvasEmployeeLeaveTxn">
+                    Add Leave Type
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <grid model="@Model" />
+            </div>
+        </div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="canvasEmployeeLeaveTxn">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="canvasHeaderNameEmployeeLeaveTxn"></h5>
+                <button type="button" class="btn-close te  xt-reset" data-bs-dismiss="offcanvas" aria-l abel="Close"></button>
+            </div>
+            <div class="offcanvas-body pt-3 pb-5">
+                <div id="dvInfoEmployeeLeaveTxn">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+
+    var urlAddUpdateLeaveType = '@Url.Action("AddUpdateEmployeeLeaveTxn", "LeaveMaster")';
+    var urlIsCancel = '@Url.Action("CancelEmployeeLeave", "LeaveMaster")';
+
+    function fnEmployeeLeaveTxn(obj) {
+        var _employeeId = $(obj).data('key');
+        var _Id = $(obj).data('id');
+        //var _id = leaveTypeId;//$(this).data('id');
+        //var _employeeId = $("#EmployeeID").val();
+        //var _employeeId = $(obj).data('employeeId');
+        if (_Id > 0) {
+            document.getElementById("canvasHeaderNameEmployeeLeaveTxn").innerHTML = "Update Employee Leave";
+        }
+        else {
+            document.getElementById("canvasHeaderNameEmployeeLeaveTxn").innerHTML = "Add Employee Leave";
+        }
+        var _parameters = { employeeLeaveTxnID: _Id, empliyeeId: _employeeId };
+        $.ajax({
+            url: urlAddUpdateLeaveType,
+            type: "GET",
+            data: _parameters,
+            success: function (data, textStatus, jqXHR) {
+                $("#canvasEmployeeLeaveTxn").show();//('hide');
+                $('#dvInfoEmployeeLeaveTxn').html(data);
+            }
+        });
+    }
+
+
+    function fnIsCancel(obj) {
+        var _employeeId = $(obj).data('key');
+        var _Id = $(obj).data('id');
+        var _val = $(obj).data('value');
+        var _checkBox = $("#docCancel").is(':checked');
+        var _docParameters = { employeeLeaveTxnID: _Id, empliyeeId: _employeeId, isCancel: _checkBox };
+        $.ajax({
+            url: urlIsCancel,
+            type: 'POST',
+            data: _docParameters,
+            success: function (data) {
+                if (data.status) {
+                    var test = Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message,
+                    });
+                    setTimeout(
+                        function () {
+                            window.location.reload();
+                        }, 3000);
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+                $("#EmployeeDocumentTable").load(window.location.href + " #EmployeeDocumentTable");
+            },
+            error: function (error) {
+                laddaStop(ls);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: '@MessageHelper.Error'
+                });
+            }
+        }).always(function () {
+            hideloader();
+        });
+    }
+    //    document.getElementById("docCancel").value = "2014-02-09";
+</script>

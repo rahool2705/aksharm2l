@@ -1,0 +1,336 @@
+﻿@using System.Security.Claims
+@model Business.Entities.Employee.EmployeeHRAdministration
+@inject SignInManager<UserMasterMetadata> SignInManager
+@inject UserManager<UserMasterMetadata> UserManager
+@{
+    ClaimsPrincipal user = User;
+    var userlogin = UserManager.GetUserAsync(User).Result;
+    var roles = UserManager.GetRolesAsync(userlogin).Result;
+    var claimRoleName = user.Claims.FirstOrDefault(x => x.Type == "RoleName");
+}
+<form method="post" id="formAddUpdateEmployeeHRAdministration" class="row g-3 needs-validation" asp-area="Admin" asp-controller="Employee" asp-action="AddUpdateEmployeeContactPerson">
+    <input type="hidden" asp-for="EmployeeID" />
+    <input type="hidden" asp-for="EmployeeAdminID" />
+    <div class=" col-sm-12 col-md-10 col-lg-10">
+
+        @*<div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">Company:</label>
+        <div class="col-sm-9">
+        <select class="form-select form-select-Employee-HRAdministrator" asp-for="CompanyID" id="CompanyID" name="CompanyID" asp-items="@EmployeeExtension.GetAllCompanyAsync()">
+        <option value="">--Select--</option>
+        </select>
+        </div>
+        </div>*@
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Company:</label>
+            <div class="col-sm-8">
+                <select class="form-select form-select-Employee-HRAdministrator" asp-for="CompanyID" id="CompanyID" name="CompanyID" asp-items="@EmployeeExtension.GetAllCompanyAsync()">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+            @if (claimRoleName.Value.Equals("HR Super Admin"))
+            {
+                <div class="col-sm-1">
+                    <a onclick="fnSalaryPaidHour(this)"
+                       href="javascript:void(0)"
+                       data-id="@Model.EmployeeID"
+                       data-bs-toggle="offcanvas"
+                       data-bs-target="#canvasSalaryPaidHr"
+                       aria-controls="canvasSalaryPaidHr">
+                        <iconify-icon icon="mdi:ellipsis-vertical" class="parent-icon"></iconify-icon>
+                    </a>
+                </div>
+            }
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Employee Category:</label>
+            <div class="col-sm-9">
+                <select class="form-select form-select-Employee-HRAdministrator" asp-for="EmployeeCategoryID" id="EmployeeCategoryID" name="EmployeeCategoryID" asp-items="@EmployeeExtension.GetAllEmployeeCategoryMaster()">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+
+        @if (Model != null && Model.EmployeeID > 0 && Model.EmployeeAdminID > 0 && Model.JoiningDate != null)
+        {
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Joining Date:</label>
+                <div class="col-sm-9">
+                    <input type="date" class="form-control" asp-for="JoiningDate" id="JoiningDate" name="JoiningDate" placeholder="">
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Joining Date:</label>
+                <div class="col-sm-9">
+                    <input type="date" value="" class="form-control" asp-for="JoiningDate" id="JoiningDate" name="JoiningDate" placeholder="">
+                </div>
+            </div>
+        }
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Employement Status:</label>
+            <div class="col-sm-9">
+                <select class="form-select form-select-Employee-HRAdministrator" asp-for="EmploymentStatusID" id="EmploymentStatusID" name="EmploymentStatusID" asp-items="@EmployeeExtension.GetAllEmploymentStatus()">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+
+        @if (Model != null && Model.EmployeeID > 0 && Model.EmployeeAdminID > 0 && Model.ConfirmationDate != null)
+        {
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Confirmation Date:</label>
+                <div class="col-sm-9">
+                    <input type="date" class="form-control" asp-for="ConfirmationDate" id="ConfirmationDate" name="ConfirmationDate" placeholder="">
+                </div>
+            </div>
+
+        }
+        else
+        {
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Confirmation Date:</label>
+                <div class="col-sm-9">
+                    <input type="date" value="" class="form-control" asp-for="ConfirmationDate" id="ConfirmationDate" name="ConfirmationDate" placeholder="">
+                </div>
+            </div>
+
+        }
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Employment Type:</label>
+            <div class="col-sm-9">
+                <select class="form-select form-select-Employee-HRAdministrator" asp-for="EmploymentTypeID" id="EmploymentTypeID" name="EmploymentTypeID" asp-items="@EmployeeExtension.GetAllEmploymentType()" onchange="hideSecondDropdown()">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+
+        @*@if (Model.EmploymentTypeID == 7 && Model.EmploymentTypeText.Equals("Contract"))
+        {*@
+        <div class="row mb-3" id="divContractorList">
+            <label for="" class="col-sm-3 col-form-label ">Contractor Name:</label>
+            <div class="col-sm-9">
+                <select class="form-select form-select-Employee-HRAdministrator" asp-for="ContractorID" id="ContractorID" name="ContractorID" asp-items="@EmployeeExtension.GetAllContractorList()">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+        @*}*@
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Yearly CTC:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="YearlyCTC" id="YearlyCTC" name="YearlyCTC" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Monthly CTC:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="MonthlyCTC" id="MonthlyCTC" name="MonthlyCTC" placeholder="">
+            </div>
+        </div>
+
+        @*<div class="row mb-3">
+        <div class="col-sm-9">
+        <a class='btn btn-primary btn-info px-5 ladda-button'>Gate Pass</a>
+        </div>
+        </div>
+        <div class="row mb-3">
+        <div class="col-sm-9">
+        <a class='btn btn-primary btn-info px-5 ladda-button'>Canteen Detail</a>
+        </div>
+        </div>*@
+
+    </div>
+
+    @* <div class="col-sm-12 col-md-6 col-lg-6">
+
+    <div class="row mb-3">
+    <label for="" class="col-sm-3 col-form-label ">Website:</label>
+    <div class="col-sm-9">
+    <input type="text" class="form-control" asp-for="Website" id="Website" name="Website" placeholder="">
+    </div>
+    </div>
+
+    <div class="row mb-3">
+    <div class="col-sm-9">
+    <a class='btn btn-primary btn-info px-5 ladda-button'>Employee Time Sheet</a>
+    </div>
+    </div>
+    <div class="row mb-3">
+    <div class="col-sm-9">
+    <a class='btn btn-primary btn-info px-5 ladda-button'>Employee Leave</a>
+    </div>
+    </div>
+
+    <div class="row mb-3">
+    <div class="col-sm-9">
+    <a class='btn btn-primary btn-info px-5 ladda-button' asp-area="Admin" asp-controller="Employee" asp-action="EmployeeSalaryBreakUp">Employee Salary</a>
+    </div>
+    </div>
+
+    <div class="row mb-3">
+    <div class="col-sm-9">
+    <a class='btn btn-primary btn-info px-5 ladda-button'>Employee Task</a>
+    </div>
+    </div>
+
+    <div class="row mb-3">
+    <div class="col-sm-9">
+    <a class='btn btn-primary btn-info px-5 ladda-button'>Experiences</a>
+    </div>
+    </div>
+    <div class="row mb-3">
+    <div class="col-sm-9">
+    <a class='btn btn-primary btn-info px-5 ladda-button'>Education</a>
+    </div>
+    </div>
+
+    </div>*@
+
+    <div class="text-center">
+        <button type="submit" onclick="fnSaveEmployeeHRAdministration()" class="btn btn-primary btn-info px-5 ladda-button" id="btnSaveEmployeeHRAdministration">Save</button>
+        @*<button type="button" class="btn btn-primary btn-info px-5 ladda-button" data-bs-dismiss="offcanvas" aria-l abel="Close">Cancel</button>*@
+    </div>
+</form>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasSalaryPaidHr" aria-labelledby="offcanvasCompanyLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasHeaderSalaryPaidHr">Update Salary Paid Hours</h5>
+        <button type="button" class="btn-close te  xt-reset" data-bs-dismiss="offcanvas" aria-l abel="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-3 pb-5">
+        <div id="dvInfoSalaryPaidHr">
+        </div>
+    </div>
+</div>
+
+
+<link href="~/admin/assets/vendors/typehead/jquery.typeahead.min.css" rel="stylesheet" />
+<script src="~/admin/assets/vendors/typehead/jquery.typeahead.min.js"></script>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+<script type="text/javascript">
+
+    function fnSaveEmployeeHRAdministration() {
+        var ls = laddaStart('btnSaveEmployeeHRAdministration');
+        modeldata = $("#formAddUpdateEmployeeHRAdministration").serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/Employee/AddUpdateEmployeeHRAdministration/',
+            data: modeldata,
+            dataType: 'json',
+            beforeSend: function () { },
+            success: function (data) {
+                console.log(data.status);
+                if (data.status) {
+                    //notification
+                    //$("#canvasEmployeeHRAdministration").hide();//('hide');
+                    var test = Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message,
+                    });
+                    setTimeout(
+                        function () {
+                            //window.location.reload();
+                            $("#formAddUpdateEmployeeHRAdministration").load(window.location.href + " #formAddUpdateEmployeeHRAdministration");
+                        }, 3000);
+
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+            },
+            error: function (error) {
+                laddaStop(ls);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: '@MessageHelper.Error'
+                });
+            }
+        }).always(function () {
+            hideloader();
+        });
+
+    };
+
+    $(document).ready(function () {
+        var employmentType = document.getElementById("EmploymentTypeID");
+        var contractorId = document.getElementById("EmploymentTypeID");
+        var value = employmentType.value;
+        var text = employmentType.options[employmentType.selectedIndex].text;
+        if (value != 7 && text != 'Contract') {
+            document.getElementById("divContractorList").setAttribute('hidden', true);
+        }
+    });
+
+    $("#EmploymentTypeID").change(function () {
+        var employmentType = document.getElementById("EmploymentTypeID");
+        var contractorId = document.getElementById("EmploymentTypeID");
+        var value = employmentType.value;
+        var text = employmentType.options[employmentType.selectedIndex].text;
+        if (value == 7 && text == 'Contract') {
+            //$('#divContractorList').removeAttr('hidden');
+            document.getElementById("divContractorList").removeAttribute("hidden");
+        }
+        else if (value != 7 && text != 'Contract') {
+            document.getElementById("divContractorList").setAttribute('hidden', true);
+        }
+        else {
+            //$("#divContractorList").load(window.location.href + " #divContractorList");
+            document.getElementById("divContractorList").setAttribute('hidden', true);
+        }
+    });
+</script>
+<script type="text/javascript">
+    //var urlDeleteCompanyFromUser = 'Url.Action("DeleteSalaryPaidHr", "Employee")';
+    var urlAddUpdateSalaryPaidHr = '@Url.Action("AddUpdateEmployeeSalaryPaidHr", "Employee")';
+    function fnSalaryPaidHour() {
+        var _employeeId = $("#EmployeeID").val();
+        var _parameters = { employeeId: _employeeId };
+        $.ajax({
+            url: urlAddUpdateSalaryPaidHr,
+            type: "GET",
+            data: _parameters,
+            success: function (data, textStatus, jqXHR) {
+                $("#canvasSalaryPaidHr").show();//('hide');
+                $('#dvInfoSalaryPaidHr').html(data);
+            }
+        });
+    }
+</script>
+
+@*<script>
+    function hideSecondDropdown() {
+        var EmploymentTypeID = document.getElementById("EmploymentTypeID");
+        var selectedOption = firstDropdown.options[EmploymentTypeID.selectedIndex].value;
+        var ContractorID = document.getElementById("ContractorID");
+
+        // Hide second dropdown if selected value is "hide"
+        if (selectedOption == "Contract") {
+            secondDropdown.style.display = "none";
+        } else {
+            secondDropdown.style.display = "block";
+        }
+    }
+</script>*@

@@ -1,0 +1,158 @@
+﻿@model Business.Entities.SalaryFormula.SalaryFormula
+
+<form method="post" id="formAddUpdateSalaryFormula" class="row g-3 needs-validation" asp-area="Admin" asp-controller="Employee" asp-action="AddUpdateSalaryFormula">
+    <input type="hidden" asp-for="SalaryFormulaID" />
+
+    <div class=" col-sm-12 col-md-6 col-lg-6">
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Employee Category:</label>
+            <div class="col-sm-9">
+                <select class="form-select" asp-for="EmployeeCategoryId" id="EmployeeCategoryId" name="EmployeeCategoryId" asp-items="@EmployeeExtension.GetAllEmployeeCategoryMaster()">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Salary Head:</label>
+            <div class="col-sm-9">
+                <select class="form-select" asp-for="SalaryHeadID" id="SalaryHeadID" name="SalaryHeadID" asp-items="@SalaryExtension.GetAllSalaryHead()">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Salary Head Label:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="SalaryHeadLabel" id="SalaryHeadLabel" name="SalaryHeadLabel" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Salary Formula:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="SalaryFormulaText" id="SalaryFormulaText" name="SalaryFormulaText" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Label Percentage:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="LabelPercentage" id="LabelPercentage" name="LabelPercentage" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Label Value:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="LabelValue" id="LabelValue" name="LabelValue" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Is Active:</label>
+            <div class="col-sm-9">
+                <input type="checkbox" class="form-check-input" asp-for="IsActive" name="IsActive" id="IsActive">
+                @*<span asp-validation-for="OfficeEmail" class="text-danger"></span>*@
+            </div>
+        </div>
+
+    </div>
+
+    <div class=" col-sm-12 col-md-6 col-lg-6">
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Employment Type:</label>
+            <div class="col-sm-9">
+                <select class="form-select" asp-for="EmploymentTypeID" id="EmploymentTypeID" name="EmploymentTypeID" asp-items="@EmployeeExtension.GetAllEmploymentType()">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Salary Type:</label>
+            <div class="col-sm-9">
+                <select class="form-select" asp-for="SalaryTypeID" id="SalaryTypeID" name="SalaryTypeID" asp-items="@SalaryExtension.GetAllSalaryType()">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer-sticky text-center">
+        <button id="btnSaveSalaryFormula" type="button" onclick="fnSaveSalaryFormula()" class="btn btn-primary btn-info px-5 ladda-button">Save</button>
+        <button type="button" data-bs-dismiss="offcanvas" class="btn btn-primary btn-info px-5 my-2" aria-l abel="Close">Cancel</button>
+    </div>
+</form>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+@if (Model.SalaryFormulaID > 0)
+{
+    <script>
+        
+        $('#SalaryHeadID').attr('disabled', true);
+        $('#SalaryHeadLabel').attr('disabled', true);
+        $('#EmploymentTypeID').attr('disabled', true);
+        $('#SalaryTypeID').attr('disabled', true);
+        $('#EmployeeCategoryId').attr('disabled', true);
+    </script>
+}
+<script type="text/javascript">
+    var urlsave = '@Url.Action("AddUpdateSalaryFormula", "SalaryFormula")';
+    function fnSaveSalaryFormula() {
+        //debugger;
+        var l = laddaStart('btnSaveSalaryFormula');
+        modeldata = $("#formAddUpdateSalaryFormula").serialize();
+        $.ajax({
+            type: 'POST',
+            url: urlsave,
+            data: modeldata,
+            dataType: 'json',
+            beforeSend: function () { },
+            success: function (data) {
+                if (data.status) {
+                    //notification
+                    $("#canvasSalaryFormula").hide();//('hide');
+                    Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message
+                    });
+                    setTimeout(
+                        function () {
+                            window.location.reload();
+                        }, 3000);
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message
+                    });
+                }
+            },
+            error: function (error) {
+                laddaStop(l);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: "@MessageHelper.Error"
+                });
+            }
+        }).always(function () {
+            hideLoader();
+        });
+
+    };
+</script>

@@ -1,0 +1,238 @@
+﻿@model Business.Entities.Employee.EmployeeExperience
+<div class="row">
+    <div class="card-content">
+        <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+            <form id="formEmployeeExperience" asp-action="AddUpdateEmployeeExperience" asp-controller="Employee" asp-area="Admin" method="post" class="row g-3">
+                <input type="hidden" asp-for="EmployeeID" />
+                <input type="hidden" asp-for="EmployeeExperienceID" />
+                <div class=" col-sm-12 col-md-6 col-lg-6">
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Job Title:</label>
+                        <div class="col-sm-9">
+                            @*To validate, Uncomment below code, By Rahul mistry on 03-Jan-2023.*@
+                            @*<input type="text" required="" class="form-control" id="JobTitle" asp-for="JobTitle" name="JobTitle" placeholder="">*@
+                            @*<span asp-validation-for="JobTitle" class="text-danger"></span>*@
+                            <input type="text" class="form-control" id="JobTitle" asp-for="JobTitle" name="JobTitle" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Employment Type:</label>
+                        <div class="col-sm-9">
+                            <select class="form-select" asp-for="EmploymentTypeID" id="EmploymentTypeID" name="EmploymentTypeID" asp-items="@EmployeeExtension.GetAllEmploymentTypeMaster()">
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Company Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="CompanyName" id="CompanyName" name="CompanyName" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Company Location:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="Location" id="Location" name="Location" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Location Type:</label>
+                        <div class="col-sm-9">
+                            <select class="form-select" asp-for="LocationTypeID" id="LocationTypeID" name="LocationTypeID" required="" asp-items="@EmployeeExtension.GetAllEmploymentLocationTypeMaster()">
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Is Current Working:</label>
+                        <div class="col-sm-9">
+                            <input type="checkbox" class="form-check-input" asp-for="IsCurrentlyWorking" id="isCurrntlyWorking" onchange="fnDisableElements()">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-6">
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Start Year:</label>
+                        <div class="col-sm-5">
+                            @*<input type="month" class="form-control" id="StartDate" name="StartDate" asp-for="StartMonth" placeholder="">*@
+                            @*<span asp-validation-for="PersonalEmail" class="text-danger"></span>*@
+                            <select asp-for="StartMonth" class="form-control">
+                                <option value="">Select Month</option>
+                                <option value='1'>Janaury</option>
+                                <option value='2'>February</option>
+                                <option value='3'>March</option>
+                                <option value='4'>April</option>
+                                <option value='5'>May</option>
+                                <option value='6'>June</option>
+                                <option value='7'>July</option>
+                                <option value='8'>August</option>
+                                <option value='9'>September</option>
+                                <option value='10'>October</option>
+                                <option value='11'>November</option>
+                                <option value='12'>December</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="StartYear" name="StartYear" asp-for="StartYear" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">End Year:</label>
+                        <div class="col-sm-5">
+                            @*<input type="month" class="form-control" id="StartDate" name="StartDate" asp-for="StartMonth" placeholder="">*@
+                            @*<span asp-validation-for="PersonalEmail" class="text-danger"></span>*@
+                            <select asp-for="EndMonth" class="form-control" id="dropDownListEndMonth" disabled>
+                                <option value="">Select Month</option>
+                                <option value='1'>Janaury</option>
+                                <option value='2'>February</option>
+                                <option value='3'>March</option>
+                                <option value='4'>April</option>
+                                <option value='5'>May</option>
+                                <option value='6'>June</option>
+                                <option value='7'>July</option>
+                                <option value='8'>August</option>
+                                <option value='9'>September</option>
+                                <option value='10'>October</option>
+                                <option value='11'>November</option>
+                                <option value='12'>December</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="EndYear" name="EndYear" asp-for="EndYear" placeholder="" disabled>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Industry Type:</label>
+                        <div class="col-sm-9">
+                            <select asp-for="IndustryTypeID" asp-items="@CustomerExtension.GetAllIndustryTypeMaster()" class="form-control">
+                                <option value="">Select Industry type</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Company Description:</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" asp-for="CompanyDescription" id="CompanyDescription" name="CompanyDescription" placeholder=""></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Profile Headline:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="ProfileHeadLine" id="ProfileHeadLine" name="ProfileHeadLine" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Skills:</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" asp-for="Skills" id="Skills" name="Skills" placeholder=""></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer-sticky text-center">
+                    <button type="button" onclick="fnSubmitEmployeeExperience()" class="btn btn-primary btn-info px-5 ladda-button" id="btnSave">Save</button>
+                    <button type="button" class="btn btn-primary btn-info px-5 ladda-button" data-bs-dismiss="offcanvas" aria-l abel="Close">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<link href="~/admin/assets/vendors/typehead/jquery.typeahead.min.css" rel="stylesheet" />
+<script src="~/admin/assets/vendors/typehead/jquery.typeahead.min.js"></script>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+<script type="text/javascript">
+    function fnSubmitEmployeeExperience() {
+        //alert($("#formEmployeeExperience").valid());
+        //if ($("#formEmployeeExperience").valid()) {
+        var ls = laddaStart('btnSave');
+        modeldata = $("#formEmployeeExperience").serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/Employee/AddUpdateEmployeeExperience/',
+            data: modeldata,
+            dataType: 'json',
+            beforeSend: function () { },
+            success: function (data) {
+                console.log(data.status);
+                if (data.status) {
+                    //notification
+                    $("#canvasEmployeeExperience").hide();//('hide');
+                    var test = Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message,
+                    });
+                    setTimeout(
+                        function () {
+                            //window.location.reload();
+                            $("#tblEmployeeExperiences").load(window.location.href + " #tblEmployeeExperiences");
+                        }, 3000);
+                    
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+            },
+            error: function (error) {
+                laddaStop(ls);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: '@MessageHelper.Error'
+                });
+            }
+        }).always(function () {
+            hideloader();
+        });
+        //}
+    };
+
+    function fnDisableElements() {
+        var _checkBox = $("#isCurrntlyWorking").is(':checked');
+        if (!_checkBox) {
+            //document.getElementById("experience-tab").removeAttribute("disabled");
+            document.getElementById("dropDownListEndMonth").removeAttribute("disabled");
+            document.getElementById("EndYear").removeAttribute("disabled");
+            $("#tblEmployeeExperiences").load(window.location.href + " #tblEmployeeExperiences");
+            //var date = new Date();
+            //var currentDate = date.toISOString().slice(0, 10);
+            //var currentMonth = date.getMonth().slice(0, 10);
+            //var currentTime = date.getHours() + ':' + date.getMinutes();
+            //document.getElementById('CustomerInquiryDate').value = currentDate;
+            //document.getElementById('InquiryDate').value = currentDate;
+            //document.getElementById('QuotationDueDate').value = currentDate;
+        }
+        if (_checkBox) {
+            document.getElementById("dropDownListEndMonth").setAttribute('disabled', true);
+            document.getElementById("EndYear").setAttribute('disabled', true);
+            $("#tblEmployeeExperiences").load(window.location.href + " #tblEmployeeExperiences");
+        }
+    };
+</script>

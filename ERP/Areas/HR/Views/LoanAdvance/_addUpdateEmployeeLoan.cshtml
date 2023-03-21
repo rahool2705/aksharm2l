@@ -1,0 +1,158 @@
+﻿@using ERP.Extensions;
+@using ERP.Helpers;
+@model Business.Entities.EmployeeLoan.EmployeeLoan
+<form id="formEmployeeLoan" role="form">
+    <div class="row">
+        <div class="card-content">
+            <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+
+                <div class="row mt-3">
+                    <div class=" col-12">
+
+                        <input id="EmployeeLoanID" type="hidden" asp-for="EmployeeLoanID" />
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Employee Name:</label>
+                            <div class="col-sm-9">
+                                <select class="form-select" asp-items="ViewBag.EmployeeName" asp-for="EmployeeID" id="EmployeeID" name="EmployeeID">
+                                    <option value="">Select Employee</option>
+                                </select>
+                                <span asp-validation-for="EmployeeID" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Employee Loan Amount:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="EmployeeLoanAmount" asp-for="EmployeeLoanAmount" name="EmployeeLoanAmount" >
+                                <span asp-validation-for="EmployeeLoanAmount" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Payment Date:</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="PaymentDate" asp-for="PaymentDate" name="PaymentDate" >
+                                <span asp-validation-for="PaymentDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Tenure Months:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="TenureMonths" asp-for="TenureMonths" name="TenureMonths" oninput="fnBreakfastTotal()">
+                                <span asp-validation-for="TenureMonths" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Interest Rate:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="InterestRate" asp-for="InterestRate" name="InterestRate" oninput="fnBreakfastTotal()">
+                                <span asp-validation-for="InterestRate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Adjustment Amount:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="AdjustmentAmount" asp-for="AdjustmentAmount" name="AdjustmentAmount" oninput="fnBreakfastTotal()">
+                                <span asp-validation-for="AdjustmentAmount" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        @*<div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Is Active:</label>
+                            <div class="col-sm-9">
+                                <input type="checkbox" class="form-check-input" asp-for="IsActive" name="IsActive">
+                                @*<span asp-validation-for="OfficeEmail" class="text-danger"></span>
+                            </div>
+                        </div>*@
+
+                    </div>
+                </div>
+
+                <div class="modal-footer-sticky text-center">
+                    <button id="btnSaveEmployeeLoan" type="button" onclick="fnSubmitEmployeeLoan()" class="btn btn-primary btn-info px-5 ladda-button">Save</button>
+                    <button type="button" data-bs-dismiss="offcanvas" class="btn btn-primary btn-info px-5 my-2" aria-l abel="Close">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+
+<script type="text/javascript">
+    var urlsave = '@Url.Action("AddUpdateEmployeeLoan", "LoanAdvance")';
+    function fnSubmitEmployeeLoan() {
+        if ($("#formEmployeeLoan").valid()) {
+            var l = laddaStart('btnSaveEmployeeLoan');
+            modeldata = $("#formEmployeeLoan").serialize();
+            $.ajax({
+                type: 'POST',
+                url: urlsave,
+                data: modeldata,
+                dataType: 'json',
+                beforeSend: function () { },
+                success: function (data) {
+                    if (data.status) {
+                        //notification
+                        $("#canvasEmployeeLoan").hide();//('hide');
+                        Lobibox.notify('success', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: data.message
+                        });
+                        setTimeout(
+                            function () {
+                                window.location.reload();
+                            }, 3000);
+                    }
+                    else {
+                        Lobibox.notify('error', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: data.message
+                        });
+                    }
+                },
+                error: function (error) {
+                    laddaStop(l);
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: "@MessageHelper.Error"
+                    });
+                }
+            }).always(function () {
+                hideLoader();
+            });
+        }
+    };
+
+    //$(document).ready(function () {
+    //    document.getElementById("BreakfastTotal").value = parseFloat('0' + $('#BreakfastQuantity').val()) * parseFloat('0' +$('#BreakfastRate').val());
+    //    document.getElementById("LunchTotal").value = parseFloat('0' + $('#LunchQuantity').val()) * parseFloat('0' + $('#LunchRate').val());
+    //    document.getElementById("DinnerTotal").value = parseFloat('0' + $('#DinnerQuantity').val()) * parseFloat('0' + $('#DinnerRate').val());
+    //});
+    //function fnBreakfastTotal() {
+    //    document.getElementById("BreakfastTotal").value = parseFloat('0' + $('#BreakfastQuantity').val()) * parseFloat('0' +$('#BreakfastRate').val());
+    //};
+    //function fnLunchTotal() {
+    //    document.getElementById("LunchTotal").value = parseFloat('0' + $('#LunchQuantity').val()) * parseFloat('0' + $('#LunchRate').val());
+    //};
+    //function fnDinnerTotal() {
+    //    document.getElementById("DinnerTotal").value = parseFloat('0' + $('#DinnerQuantity').val()) * parseFloat('0' + $('#DinnerRate').val());
+    //};
+
+</script>

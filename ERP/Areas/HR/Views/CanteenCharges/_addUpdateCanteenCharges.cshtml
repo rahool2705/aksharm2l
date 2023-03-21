@@ -1,0 +1,184 @@
+﻿@using ERP.Extensions;
+@using ERP.Helpers;
+@model Business.Entities.CanteenCharges.CanteenCharges
+<form id="formCanteenCharges" role="form">
+    <div class="row">
+        <div class="card-content">
+            <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+
+                <div class="row mt-3">
+                    <div class=" col-12">
+
+                        <input id="CanteenChargesID" type="hidden" asp-for="CanteenChargesID" />
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Employee Name:</label>
+                            <div class="col-sm-9">
+                                <select class="form-select" asp-items="ViewBag.EmployeeName" asp-for="EmployeeID" id="EmployeeID" name="EmployeeID">
+                                    <option value="">Select Employee</option>
+                                </select>
+                                <span asp-validation-for="EmployeeID" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Month:</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="Month" asp-for="Month" name="Month" placeholder="">
+                                <span asp-validation-for="Month" class="text-danger"></span>
+                            </div>
+                            <label for="" class="col-sm-3 col-form-label ">Year:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="Year" asp-for="Year" name="Year" placeholder="">
+                                <span asp-validation-for="Year" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-2 col-form-label ">Breakfast:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="BreakfastQuantity" asp-for="BreakfastQuantity" name="BreakfastQuantity" placeholder="Qty." oninput="fnBreakfastTotal()">
+                                <span asp-validation-for="BreakfastQuantity" class="text-danger"></span>
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="BreakfastRate" asp-for="BreakfastRate" name="BreakfastRate" placeholder="Rate" oninput="fnBreakfastTotal()">
+                                <span asp-validation-for="BreakfastRate" class="text-danger"></span>
+                            </div>
+
+                            <label for="" class="col-sm-2 col-form-label ">Total:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="BreakfastTotal" placeholder="" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-2 col-form-label ">Lunch:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="LunchQuantity" asp-for="LunchQuantity" name="LunchQuantity" placeholder="Qty." oninput="fnLunchTotal()">
+                                <span asp-validation-for="LunchQuantity" class="text-danger"></span>
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="LunchRate" asp-for="LunchRate" name="LunchRate" placeholder="Rate" oninput="fnLunchTotal()">
+                                <span asp-validation-for="LunchRate" class="text-danger"></span>
+                            </div>
+
+                            <label for="" class="col-sm-2 col-form-label ">Total:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="LunchTotal" placeholder="" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-2 col-form-label ">Dinner:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="DinnerQuantity" asp-for="DinnerQuantity" name="DinnerQuantity" placeholder="Qty." oninput="fnDinnerTotal()">
+                                <span asp-validation-for="DinnerQuantity" class="text-danger"></span>
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="DinnerRate" asp-for="DinnerRate" name="DinnerRate" placeholder="Rate" oninput="fnDinnerTotal()">
+                                <span asp-validation-for="DinnerRate" class="text-danger"></span>
+                            </div>
+
+                            <label for="" class="col-sm-2 col-form-label ">Total:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="DinnerTotal" placeholder="" disabled>
+                            </div>
+                        </div>
+
+              <!--          <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Is Active:</label>
+                            <div class="col-sm-9">
+                                <input type="checkbox" class="form-check-input" asp-for="IsActive" name="IsActive">
+                                @*<span asp-validation-for="OfficeEmail" class="text-danger"></span>*@
+                            </div>
+                        </div>  -->
+
+                    </div>
+                </div>
+
+                <div class="modal-footer-sticky text-center">
+                    <button id="btnSaveCanteenCharges" type="button" onclick="fnSubmitCanteenCharges()" class="btn btn-primary btn-info px-5 ladda-button">Save</button>
+                    <button type="button" data-bs-dismiss="offcanvas" class="btn btn-primary btn-info px-5 my-2" aria-l abel="Close">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+
+<script type="text/javascript">
+    var urlsave = '@Url.Action("AddUpdateCanteenCharges", "CanteenCharges")';
+    function fnSubmitCanteenCharges() {
+        if ($("#formCanteenCharges").valid()) {
+            var l = laddaStart('btnSaveCanteenCharges');
+            modeldata = $("#formCanteenCharges").serialize();
+            $.ajax({
+                type: 'POST',
+                url: urlsave,
+                data: modeldata,
+                dataType: 'json',
+                beforeSend: function () { },
+                success: function (data) {
+                    if (data.status) {
+                        //notification
+                        $("#canvasCanteenCharges").hide();//('hide');
+                        Lobibox.notify('success', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: data.message
+                        });
+                        setTimeout(
+                            function () {
+                                window.location.reload();
+                            }, 3000);
+                    }
+                    else {
+                        Lobibox.notify('error', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: data.message
+                        });
+                    }
+                },
+                error: function (error) {
+                    laddaStop(l);
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: "@MessageHelper.Error"
+                    });
+                }
+            }).always(function () {
+                hideLoader();
+            });
+        }
+    };
+
+    $(document).ready(function () {
+        document.getElementById("BreakfastTotal").value = parseFloat('0' + $('#BreakfastQuantity').val()) * parseFloat('0' + $('#BreakfastRate').val());
+        document.getElementById("LunchTotal").value = parseFloat('0' + $('#LunchQuantity').val()) * parseFloat('0' + $('#LunchRate').val());
+        document.getElementById("DinnerTotal").value = parseFloat('0' + $('#DinnerQuantity').val()) * parseFloat('0' + $('#DinnerRate').val());
+    });
+
+     function fnBreakfastTotal() {
+        document.getElementById("BreakfastTotal").value = parseFloat('0' + $('#BreakfastQuantity').val()) * parseFloat('0' + $('#BreakfastRate').val());
+     };
+     
+     function fnLunchTotal() {
+        document.getElementById("LunchTotal").value = parseFloat('0' + $('#LunchQuantity').val()) * parseFloat('0' + $('#LunchRate').val());
+     };
+     
+     function fnDinnerTotal() {
+        document.getElementById("DinnerTotal").value = parseFloat('0' + $('#DinnerQuantity').val()) * parseFloat('0' + $('#DinnerRate').val());
+     };
+</script>

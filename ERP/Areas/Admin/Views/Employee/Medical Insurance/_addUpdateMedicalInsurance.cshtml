@@ -1,0 +1,149 @@
+﻿@model Business.Entities.Employee.EmployeeMedicalInsurance.EmployeeMedicalInsurance;
+<div class="row">
+    <div class="card-content">
+        <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+            <form id="formEmployeeMedicalInsurance" asp-action="AddUpdateEmployeeHistory" asp-controller="Employee" asp-area="Admin" method="post" class="row g-3">
+                <input type="hidden" asp-for="EmployeeID" />
+                <input type="hidden" asp-for="EmployeeMedicalInsuranceID" />
+                <div class=" col-sm-12 col-md-12 col-lg-12">
+                    
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Insurance Company</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="InsuranceCompany" id="InsuranceCompany" name="InsuranceCompany">
+                            @*<span asp-validation-for="InsuranceCompany" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Policy Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="PolicyName" id="PolicyName" name="PolicyName">
+                            @*<span asp-validation-for="PolicyName" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Policy Number</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="PolicyNumber" name="PolicyNumber" asp-for="PolicyNumber">
+                            @*<span asp-validation-for="PolicyNumber" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                    
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Policy Start Date</label>
+                        <div class="col-sm-9">
+                            <input type="date"  class="form-control" id="PolicyStartDate" name="PolicyStartDate" asp-for="PolicyStartDate">
+                            @*<span asp-validation-for="PolicyStartDate" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Policy Expiry Date</label>
+                        <div class="col-sm-9">
+                            <input type="date"  class="form-control" id="PolicyExpiryDate" name="PolicyExpiryDate" asp-for="PolicyExpiryDate">
+                            @*<span asp-validation-for="PolicyExpiryDate" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Policy Premium Amount</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="PolicyPremiumAmt" name="PolicyPremiumAmt" asp-for="PolicyPremiumAmt">
+                            @*<span asp-validation-for="PolicyPremiumAmt" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Agent Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="AgentName" name="AgentName" asp-for="AgentName">
+                            @*<span asp-validation-for="AgentName" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                    
+                    
+
+                   
+
+                    @*<div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Submit:</label>
+                        <div class="col-sm-9">
+                            @Html.CheckBoxFor(s => s.IsActive)
+                        </div>
+                    </div>*@
+
+                </div>
+
+                <div class="modal-footer-sticky text-center">
+                    <button type="button" onclick="fnSubmitEmployeeMedicalInsurance()" class="btn btn-primary btn-info px-5 ladda-button" id="btnSave">Save</button>
+                    <button type="button" class="btn btn-primary btn-info px-5 ladda-button" data-bs-dismiss="offcanvas" aria-l abel="Close">Cancel</button>
+                </div>              
+
+            </form>
+        </div>
+    </div>
+</div>
+<link href="~/admin/assets/vendors/typehead/jquery.typeahead.min.css" rel="stylesheet" />
+<script src="~/admin/assets/vendors/typehead/jquery.typeahead.min.js"></script>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+<script type="text/javascript">
+    function fnSubmitEmployeeMedicalInsurance() {
+        var ls = laddaStart('btnSave');
+        modeldata = $("#formEmployeeMedicalInsurance").serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/Employee/AddUpdateEmployeeMedicalInsurance/',
+            data: modeldata,
+            dataType: 'json',
+            beforeSend: function () { },
+            success: function (data) {
+                console.log(data.status);
+                if (data.status) {
+                    //notification
+                    $("#canvasEmployeeMedicalInsurance").hide();//('hide');
+                    var test = Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message,
+                    });                   
+                   
+                    setTimeout(
+                        function () {
+                            //window.location.reload();
+                            $("#EmployeeMedicalInsuranceTable").load(window.location.href + " #EmployeeMedicalInsuranceTable");
+                        }, 3000);
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+            },
+            error: function (error) {
+                laddaStop(ls);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: '@MessageHelper.Error'
+                });
+            }
+        }).always(function () {
+            hideloader();
+        });
+    };
+</script>

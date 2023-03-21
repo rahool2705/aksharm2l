@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Business.SQL
+@using GridCore
+@addTagHelper *, GridMvc
+@model ISGrid
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+<div class="row pt-1">
+    <div class="col-md-12">
+        <grid model="@Model" />
+    </div>
+</div>

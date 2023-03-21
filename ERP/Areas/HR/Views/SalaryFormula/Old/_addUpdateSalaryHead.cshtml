@@ -1,0 +1,96 @@
+﻿@using ERP.Extensions;
+@using ERP.Helpers;
+@model Business.Entities.SalaryFormula.SalaryHead
+<form id="formSalaryHead" role="form">
+    <div class="row">
+        <div class="card-content">
+            <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+
+                <div class="row mt-3">
+                    <div class=" col-12">
+                        <div class="row mb-3">
+                            <input type="hidden" asp-for="SalaryHeadID" />
+                            <label for="" class="col-sm-3 col-form-label ">Salary Head Name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" required="" class="form-control" id="SalaryHeadName" asp-for="SalaryHeadName" name="SalaryHeadName" placeholder="">
+                                <span asp-validation-for="SalaryHeadName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label ">Is Active:</label>
+                            <div class="col-sm-9">
+                                <input type="checkbox" class="form-check-input" asp-for="IsActive" name="IsActive">
+                                @*<span asp-validation-for="OfficeEmail" class="text-danger"></span>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer-sticky text-center">
+                    <button id="btnSaveSalaryHead" type="button" onclick="fnSubmitSalaryHead()" class="btn btn-primary btn-info px-5 ladda-button">Save</button>
+                    <button type="button" data-bs-dismiss="offcanvas" class="btn btn-primary btn-info px-5 my-2" aria-l abel="Close">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+
+<script type="text/javascript">
+    var urlsave = '@Url.Action("AddUpdateSalaryHead", "SalaryFormula")';
+    function fnSubmitSalaryHead() {
+        var l = laddaStart('btnSaveSalaryHead');
+        modeldata = $("#formSalaryHead").serialize();
+        $.ajax({
+            type: 'POST',
+            url: urlsave,
+            data: modeldata,
+            dataType: 'json',
+            beforeSend: function () { },
+            success: function (data) {
+                if (data.status) {
+                    //notification
+                    $("#canvasSalaryHead").hide();//('hide');
+                    Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message
+                    });
+                    setTimeout(
+                        function () {
+                            window.location.reload();
+                        }, 3000);
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message
+                    });
+                }
+            },
+            error: function (error) {
+                laddaStop(l);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: "@MessageHelper.Error"
+                });
+            }
+        }).always(function () {
+            hideLoader();
+        });
+
+    };
+</script>

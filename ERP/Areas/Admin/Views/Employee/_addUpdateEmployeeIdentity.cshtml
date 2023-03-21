@@ -1,0 +1,105 @@
+﻿@model Business.Entities.Employee.EmployeeIdentity
+<div class="row">
+    <div class="card-content">
+        <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+            <form id="formEmployeeIdentity" asp-action="AddUpdateEmployeeIdentity" asp-controller="Employee" asp-area="Admin" method="post" class="row g-3">
+                <input type="hidden" asp-for="EmployeeID" />
+                <input type="hidden" asp-for="EmployeeIdentityID" />
+                <div class=" col-sm-12 col-md-12 col-lg-12">
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Identity Type:<span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <select class="form-select" asp-for="IdentityProofTypeID" id="IdentityProofTypeID" name="IdentityProofTypeID" required="" asp-items="@EmployeeExtension.GetAllIdentityTypeMaster()">
+                                <option value="">--Select--</option>
+                            </select>
+                            <span asp-validation-for="IdentityProofTypeID" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Identity Code:<span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <input type="text" required="" class="form-control" asp-for="IdentityProofCode" id="IdentityProofCode" name="IdentityProofCode" placeholder="">
+                            <span asp-validation-for="IdentityProofCode" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">IsActive:</label>
+                        <div class="col-sm-9">
+                            @Html.CheckBoxFor(s => s.IsActive)
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer-sticky text-center">
+                    <button type="button" onclick="fnSubmitEmployeeIdentity()" class="btn btn-primary btn-info px-5 ladda-button" id="btnSave">Save</button>
+                    <button type="button" class="btn btn-primary btn-info px-5 ladda-button" data-bs-dismiss="offcanvas" aria-l abel="Close">Cancel</button>
+                </div>              
+
+            </form>
+        </div>
+    </div>
+</div>
+<link href="~/admin/assets/vendors/typehead/jquery.typeahead.min.css" rel="stylesheet" />
+<script src="~/admin/assets/vendors/typehead/jquery.typeahead.min.js"></script>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+<script type="text/javascript">
+    function fnSubmitEmployeeIdentity() {
+        var ls = laddaStart('btnSave');
+        modeldata = $("#formEmployeeIdentity").serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/Employee/AddUpdateEmployeeIdentity/',
+            data: modeldata,
+            dataType: 'json',
+            beforeSend: function () { },
+            success: function (data) {
+                console.log(data.status);
+                if (data.status) {
+                    //notification
+                    $("#canvasEmployeeIdentity").hide();//('hide');
+                    var test = Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message,
+                    });
+                    //EmployeeIdentityTable
+                   
+                    setTimeout(
+                        function () {
+                            //window.location.reload();
+                            $("#EmployeeIdentityTable").load(window.location.href + " #EmployeeIdentityTable");
+                        }, 3000);
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+            },
+            error: function (error) {
+                laddaStop(ls);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: '@MessageHelper.Error'
+                });
+            }
+        }).always(function () {
+            hideloader();
+        });
+    };
+</script>

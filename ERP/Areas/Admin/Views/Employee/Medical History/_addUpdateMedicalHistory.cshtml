@@ -1,0 +1,180 @@
+﻿@model Business.Entities.Employee.EmployeeMedicalHistory.EmployeeMedicalHistory;
+<div class="row">
+    <div class="card-content">
+        <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+            <form id="formEmployeeMedicalHistory" asp-action="AddUpdateEmployeeHistory" asp-controller="Employee" asp-area="Admin" method="post" class="row g-3">
+                <input type="hidden" asp-for="EmployeeID" />
+                <input type="hidden" asp-for="EmployeeMedicalDetailsID" />
+                <div class=" col-sm-12 col-md-12 col-lg-12">
+                    @*<div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Identity Type:<span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <select class="form-select" asp-for="IdentityProofTypeID" id="IdentityProofTypeID" name="IdentityProofTypeID" required="" asp-items="@EmployeeExtension.GetAllIdentityTypeMaster()">
+                                <option value="">--Select--</option>
+                            </select>
+                            <span asp-validation-for="IdentityProofTypeID" class="text-danger"></span>
+                        </div>
+                    </div>*@
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Hospital Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="HospitalName" id="HospitalName" name="HospitalName">
+                            @*<span asp-validation-for="HospitalName" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Doctor Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="DoctorName" id="DoctorName" name="DoctorName">
+                            @*<span asp-validation-for="DoctorName" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Reason</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control" rows="2" id="MedicalReason" name="MedicalReason" asp-for="MedicalReason"></textarea>
+                            @*<span asp-validation-for="MedicalReason" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Treatment Date</label>
+                        <div class="col-sm-5">
+                            
+                            <select asp-for="TreatmentMonth" class="form-control">
+                                <option value="">Select Month</option>
+                                <option value='1'>Janaury</option>
+                                <option value='2'>February</option>
+                                <option value='3'>March</option>
+                                <option value='4'>April</option>
+                                <option value='5'>May</option>
+                                <option value='6'>June</option>
+                                <option value='7'>July</option>
+                                <option value='8'>August</option>
+                                <option value='9'>September</option>
+                                <option value='10'>October</option>
+                                <option value='11'>November</option>
+                                <option value='12'>December</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" id="TreatmentYear" name="TreatmentYear" asp-for="TreatmentYear" placeholder="YYYY">
+                            <span asp-validation-for="TreatmentYear" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Facing Any Problem<span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control" rows="2" asp-for="FacingAnyProblem" required=""></textarea>
+                            <span asp-validation-for="FacingAnyProblem" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Taking Treatment Now</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control" rows="2" id="TakingTreatmentNow" name="TakingTreatmentNow" asp-for="TakingTreatmentNow"></textarea>
+                            @*<span asp-validation-for="TakingTreatmentNow" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Taking Medicines Now</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control" rows="2" id="TakingMedicinesNow" name="TakingMedicinesNow" asp-for="TakingMedicinesNow"></textarea>
+                            @*<span asp-validation-for="TakingMedicinesNow" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Place of Treatment</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control" rows="2" id="PlaceofTreatment" name="PlaceofTreatment" asp-for="PlaceofTreatment"></textarea>
+                            @*<span asp-validation-for="PlaceofTreatment" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    @*<div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Submit:</label>
+                        <div class="col-sm-9">
+                            @Html.CheckBoxFor(s => s.IsActive)
+                        </div>
+                    </div>*@
+
+                </div>
+
+                <div class="modal-footer-sticky text-center">
+                    <button type="button" onclick="fnSubmitEmployeeMedicalHistory()" class="btn btn-primary btn-info px-5 ladda-button" id="btnSave">Save</button>
+                    <button type="button" class="btn btn-primary btn-info px-5 ladda-button" data-bs-dismiss="offcanvas" aria-l abel="Close">Cancel</button>
+                </div>              
+
+            </form>
+        </div>
+    </div>
+</div>
+<link href="~/admin/assets/vendors/typehead/jquery.typeahead.min.css" rel="stylesheet" />
+<script src="~/admin/assets/vendors/typehead/jquery.typeahead.min.js"></script>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+<script type="text/javascript">
+    function fnSubmitEmployeeMedicalHistory() {
+        var ls = laddaStart('btnSave');
+        modeldata = $("#formEmployeeMedicalHistory").serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/Employee/AddUpdateEmployeeMedicalHistory/',
+            data: modeldata,
+            dataType: 'json',
+            beforeSend: function () { },
+            success: function (data) {
+                console.log(data.status);
+                if (data.status) {
+                    //notification
+                    
+                    $("#canvasEmployeeMedicalHistory").hide();//('hide');
+                    var test = Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message,
+                    });
+                    //EmployeeHistoryTable
+                   
+                    setTimeout(
+                        function () {
+                            //window.location.reload();
+                            $("#EmployeeMedicalHistoryTable").load(window.location.href + " #EmployeeMedicalHistoryTable");
+                        }, 3000);
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+            },
+            error: function (error) {
+                laddaStop(ls);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: '@MessageHelper.Error'
+                });
+            }
+        }).always(function () {
+            hideloader();
+        });
+    };
+</script>

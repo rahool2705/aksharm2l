@@ -1,0 +1,175 @@
+﻿@model CompanyMasterMetadata
+@*<form method="post" asp-action="Register" asp-controller="Company" asp-area="SuperAdmin" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">*@
+<form method="post" id="frmCompnayRegister" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-12">
+
+            <input type="hidden" asp-for="CompanyID" />
+            <input type="hidden" asdp-for="CompanyLogoID" />
+
+            <div class="row my-3">
+                <label for="" class="col-sm-3 col-form-label ">Company Name<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <input type="text" required="" class="form-control" id="CompanyName" name="CompanyName" asp-for="CompanyName"  maxlength="100">
+                    <span asp-validation-for="CompanyName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Company Group Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" asp-for="CompanyGroupName"  maxlength="50">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Unit No / Name</label>
+                <div class="col-sm-9">
+                    <input type="text"  class="form-control" asp-for="UnitName"  maxlength="50">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Business Type<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <select class="form-select" id="BusinessTypeID" name="BusinessTypeID" asp-for="BusinessTypeID" asp-items="@SuperCompanyDropdownBinder.BusinessType()">
+                        <option value="">--Select--</option>
+                    </select>
+                    <span asp-validation-for="BusinessTypeID" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Industry Type<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <select class="form-select" asp-for="IndustryTypeID" asp-items="@SuperCompanyDropdownBinder.IndustryType()">
+                        <option value="">--Select--</option>
+                    </select>
+                    <span asp-validation-for="IndustryTypeID" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Email<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <input type="text" autocomplete="off" required="" class="form-control" id="Email" name="Email" asp-for="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">First Name<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <input type="text" required="" class="form-control" id="FirstName" name="FirstName" asp-for="FirstName" >
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Last Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="LastName" name="LastName" asp-for="LastName" >
+                    
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Contact Number<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <input type="text" required="" class="form-control" id="Mobile" name="Mobile" asp-for="Mobile" >
+                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Password<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <input type="password" required="" class="form-control" id="Password" name="Password" asp-for="Password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Confirm Password<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <input type="password" required="" class="form-control" id="ConfirmPassword" name="ConfirmPassword" asp-for="ConfirmPassword" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Company Logo<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <input class="form-control" asp-for="ImageFile" accept="image/*" />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label ">Is Active</label>
+                <div class="col-sm-9">
+                    @Html.CheckBoxFor(s => s.IsActive)
+                </div>
+            </div>
+
+            <div class="modal-footer-sticky text-center">                
+                <button class="btn btn-primary btn-info px-5 ladda-button" id="btnSave" type="button" onclick="fnCompanyRegister()">Submit</button>
+                <button type="button" data-bs-dismiss="offcanvas" class="btn btn-primary btn-info px-5">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+@await Html.PartialAsync("_ValidationScriptsPartial")
+<script type="text/javascript">
+    var urlRegisterCompany = '@Url.Action("RegisterCompany", "Company")';
+    function fnCompanyRegister() 
+    {
+        if ($("#frmCompnayRegister").valid()) 
+        {            
+            var l = laddaStart('btnSave');           
+            modeldata = $("#frmCompnayRegister").serialize();   
+            debugger;
+            $.ajax({
+                type:'POST',
+                url: urlRegisterCompany,
+                data: modeldata,
+                dataType:'json',
+                beforeSend:function(){},
+                success:function(data){
+                    console.log(data.status);
+                    if (data.status) {
+                        alert('success');
+                        //notification
+                        $("#canvas_contact").hide();//('hide');
+                        Lobibox.notify('success', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: '@MessageHelper.Added'
+                        });
+                    }
+                    else {
+                        Lobibox.notify('error', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: '@MessageHelper.Error'
+                        });
+                    }
+                },
+                error: function (error) {
+                    laddaStop(l);
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+            }).always(function () {
+                laddaStop(l);
+                hideloader();
+            });
+        }
+    };
+</script>
+

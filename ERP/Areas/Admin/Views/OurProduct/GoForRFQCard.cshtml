@@ -1,0 +1,399 @@
+﻿@model Business.Entities.OurProduct.GoForRFQCard;
+
+@using Microsoft.AspNetCore.Identity
+@using Business.SQL
+@using GridCore
+@addTagHelper *, GridMvc
+@*@model ISGrid*@
+@{
+    ViewData["Title"] = "Go For RFQ Card";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+<div class="container" id="GoForItemRFQSession">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+            <div class="card border-0 shadow rounded-3">
+                <div class="card-body">
+
+                    <div class="row ProductImageUpload">
+                        <div class="ps-3 col-md-6">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0 p-0">
+                                    <li class="breadcrumb-item">
+                                        <a asp-area="Admin" asp-controller="OurProduct" asp-action="Index"><i class="bx bx-home-alt"></i></a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a asp-area="Admin" asp-controller="OurProduct" asp-action="Index">Our Product</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">Go For RFQ Card</li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                        <div class="col-md-6 text-align-right">
+                            @*<a class="btn btn-primary px-5" onclick="fnOurProductImage(this)"
+                            href="javascript:void(0)"
+                            data-key="0"
+                            data-bs-toggle="offcanvas"
+                            data-bs-target="#canvas_OurProductImage"
+                            aria-controls="canvas_OurProductImage">
+                            Add
+                            </a>
+                            <a asp-area="Admin" asp-controller="OurProduct" asp-action="GoForRFQCard" class="btn btn-primary">Go For RFQ Card</a>*@
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row pt-1">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <form class="form-horizontal" role="form" id="formGoForRFQItemCard">
+
+                                    @*<input type="hidden" formaction="@Url.Action("SetSession")" />*@
+                                    @*<h1>SessionId: @TempData["SessionID"]</h1>
+                                    <h1>ItemCollectionID: @TempData["ItemCollectionID"]</h1>*@
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row mb-3">
+                                                <input type="hidden" asp-for="ItemRFQCardID" />
+                                                <label class="col-sm-4 col-form-label">Customer Name<span class="required">*</span></label>
+                                                <div class="col-sm-8">
+                                                    @*                                                    <input type="text" required="" class="form-control" id="CustomerName"
+                                                    name="CustomerName" asp-for="CustomerName" placeholder="">
+                                                    <span asp-validation-for="CustomerName" class="text-danger"></span>*@
+                                                    <select asp-for="CustomerID" asp-items="@CustomerExtension.GetAllCustomerAsync()" class="form-control">
+                                                        <option value="">Select Customer</option>
+                                                    </select>
+                                                    <span asp-validation-for="CustomerID" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="row mb-3">
+                                                <label class="col-sm-4 col-form-label">Cust Request Date</label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" value="asd" class="form-control" id="CustomerInquiryDate"
+                                                           name="CustomerInquiryDate" asp-for="CustomerInquiryDate" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row mb-3">
+                                                <label class="col-sm-4 col-form-label">Inquiry Code</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="InquiryNo"
+                                                           name="InquiryNo" asp-for="InquiryNo" placeholder="Auto Generate Inq. No. { INQ0000001 }" readonly>
+                                                    <span asp-validation-for="InquiryNo" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="row mb-3">
+                                                <label class="col-sm-4 col-form-label">Inquiry Date<span class="required">*</span></label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" value="asd" class="form-control" id="InquiryDate"
+                                                           name="InquiryDate" asp-for="InquiryDate" placeholder="" required="">
+                                                    <span asp-validation-for="InquiryDate" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row mb-3">
+                                                <label class="col-sm-4 col-form-label">Mediator</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="Mediator"
+                                                           name="Mediator" asp-for="Mediator" placeholder="" readonly>
+                                                    <span asp-validation-for="Mediator" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="row mb-3">
+                                                <label class="col-sm-4 col-form-label">Finacial Year<span class="required">*</span></label>
+                                                <div class="col-sm-8">
+                                                    <select asp-for="FinYearID" asp-items="ViewBag.FinYearText" class="form-control" required="">
+                                                        <option value="">Select Financial Year</option>
+                                                    </select>
+                                                    <span asp-validation-for="FinYearID" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row mb-3">
+                                                <label class="col-sm-4 col-form-label">Inquired By</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="InquiredBy"
+                                                           name="InquiredBy" asp-for="InquiredBy" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="row mb-3">
+                                                <label class="col-sm-4 col-form-label">Inquiry Type:<span class="required">*</span></label>
+                                                <div class="col-sm-8">
+                                                    <select asp-for="InquiryType" asp-items="ViewBag.InquiryType" class="form-control" required="">
+                                                        <option value="">Select Inquriy</option>
+                                                    </select>
+                                                    <span asp-validation-for="InquiryType" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row mb-3">
+                                                <label class="col-sm-4 col-form-label">Quotation Due Date:<span class="required">*</span></label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" value="asd" class="form-control" id="QuotationDueDate"
+                                                           name="QuotationDueDate" asp-for="QuotationDueDate" placeholder="" required="">
+                                                           <span asp-validation-for="InquiryDate" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*<div class="row">
+                                    <grid model="@Model" />
+                                    </div>*@
+
+                                    <div class="table-responsive-md">
+                                        <table class="table">
+                                            <thead class="border border-dark">
+                                                <tr>
+                                                    <th scope="col">Sr No</th>
+                                                    <th scope="col">Item Description</th>
+                                                    <th scope="col">Item Name</th>
+                                                    <th scope="col">UOM</th>
+                                                    <th scope="col">Quantity</th>
+                                                    @*<th scope="col">Remark</th>*@
+                                                    <th scope="col">Cancel</th>
+                                                </tr>
+                                            </thead>
+                                            @if (Model != null && Model.LstGoForRFQCardTable.Count() > 0)
+                                            {
+                                                @foreach (var item in Model.LstGoForRFQCardTable)
+                                                {
+                                                    <tbody class="border border-dark">
+                                                        <tr>
+                                                            <th scope="row">@item.SrNo</th>
+                                                            <td>@item.ItemDescription</td>
+                                                            <td>@item.Item</td>
+                                                            <td>@item.UOMText</td>
+                                                            <td>@item.Quantity</td>
+                                                            @*<td>@item.Remark</td>*@
+                                                            <td>
+                                                                <a class="btn" onclick="fnGoForRFQItemInactive(this)"
+                                                           href="javascript:void(0)"
+                                                           data-key="0"
+                                                           data-id="@item.ItemForRFQID"
+                                                           data-bs-toggle="offcanvas"
+                                                           id="goForRFQItemInactive">                                                            
+                                                                     <iconify-icon icon="material-symbols:cancel-outline" id="" style="font-size: 20px; color: red;"></iconify-icon>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Select your products</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            }
+                                        </table>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row mb-3">
+                                                <label class="col-sm-3 col-form-label">Quotation Due Date:</label>
+                                                <div class="col-sm-9">
+                                                    <textarea type="text" class="form-control" rows="4" id="Remark" name="Remark" asp-for="Remark"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button id="btnSave" type="button" onclick="fnSubmit()" class="btn btn-primary btn-info px-5 ladda-button">Submit</button>
+                                        <a asp-area="Admin" asp-controller="OurProduct" asp-action="Index" class="btn btn-primary btn-info px-5 my-2">Back</a>
+                                        @*<input type="reset" data-bs-dismiss="offcanvas" class="btn btn-primary btn-info px-5 my-2" value="Clear">*@
+                                    </div>
+
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvas_OurProductImage">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasHeaderPackage">Add Product</h5>
+        <button type="button" class="btn-close te  xt-reset" data-bs-dismiss="offcanvas" aria-l abel="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-3 pb-5">
+        <div id="dvInfo">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var urlGoForRFQItemInactive = '@Url.Action("GoForRFQItemInactive","OurProduct")';
+    var urlsave = '@Url.Action("IGoForRFQCardItem", "OurProduct")';
+    var urlsaveList = '@Url.Action("IGoForRFQCardItemList", "OurProduct")';
+    var listModel = @Json.Serialize(Model.LstGoForRFQCardTable);
+    var inqMstId = 0;
+   
+
+    function fnGoForRFQItemInactive(obj) {
+        var id = $(obj).data('id');        ;
+        //var _itemForRFQID = ItemForRFQID;//$(this).data('id');        
+        var _docParameters = { itemForRFQID: id };
+        $.ajax({
+            url: urlGoForRFQItemInactive,
+            type: 'POST',
+            data: _docParameters,
+            success: function (data) {
+                if (data.status) {
+                    var test = Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message,
+                    });
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+                window.location.reload().delay(3000);
+                //$("#GoForItemRFQSession").load(window.location.href + " #GoForItemRFQSession");
+            },
+            error: function (error) {
+                laddaStop(ls);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: '@MessageHelper.Error'
+                });
+            }
+        }).always(function () {
+            hideloader();
+        });
+    }
+
+    function fnSubmit() {
+        if ($("#formGoForRFQItemCard").valid()) {
+            var l = laddaStart('btnSave');
+
+            var modeldata = $("#formGoForRFQItemCard").serialize();
+            $.ajax({
+                type: 'POST',
+                url: urlsave,
+                data: modeldata,
+                dataType: 'json',
+                success: function (data) {
+
+                    inqMstId = data;
+                    var parameters = { goForRFQCardTables: listModel, inquiryMasterId: inqMstId }
+                    $.ajax({
+                        type: 'POST',
+                        url: urlsaveList,
+                        data: parameters,
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.status) {
+                                //notification
+                                $("#formGoForRFQItemCard").hide();//('hide');
+                                Lobibox.notify('success', {
+                                    pauseDelayOnHover: true,
+                                    size: 'mini',
+                                    icon: 'bx bx-check-circle',
+                                    continueDelayOnInactiveTab: false,
+                                    position: 'bottom right',
+                                    msg: data.message,
+                                });
+                                //window.location.reload().delay(30000);
+                                window.location.href = "/Admin/OurProduct/Index";
+                            }
+                            else {
+                                Lobibox.notify('error', {
+                                    pauseDelayOnHover: true,
+                                    size: 'mini',
+                                    icon: 'bx bx-check-circle',
+                                    continueDelayOnInactiveTab: false,
+                                    position: 'bottom right',
+                                    msg: data.message
+                                });
+                            }
+                        }
+                    });
+                },
+                error: function (error) {
+                    laddaStop(l);
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: "@MessageHelper.Error"
+                    });
+                }
+            });
+
+        }
+    };
+
+    $(document).ready(function () {
+        var date = new Date();
+            var currentDate = date.toISOString().slice(0, 10);
+            var currentTime = date.getHours() + ':' + date.getMinutes();
+            document.getElementById('CustomerInquiryDate').value = currentDate;
+            document.getElementById('InquiryDate').value = currentDate;
+            document.getElementById('QuotationDueDate').value = currentDate;
+    });
+
+    
+</script>

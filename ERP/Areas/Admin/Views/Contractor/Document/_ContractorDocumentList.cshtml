@@ -1,0 +1,173 @@
+﻿@using Business.Entities.Contractor
+@using DocumentFormat.OpenXml.Office2010.Excel;
+@model PagedDataTable<LeadDocument>
+<link href="~/admin/assets/vendors/simple-datatables/style.css" rel="stylesheet" />
+<div id="ContractorDocumentTable">
+    <div class="row">
+        <div class="col-lg-6">
+            <h6 class="cards-title">
+                Document List
+            </h6>
+        </div>
+        <div class="col-lg-12 text-align-right">
+            <a onclick="fnContractorDocument(0)"
+               class="btn btn-primary px-5"
+               href="javascript:void(0)"
+               data-id="0"
+               data-bs-toggle="offcanvas"
+               data-bs-target="#canvasContractorDocument"
+               aria-controls="canvasContractorDocument">
+                Add Document
+            </a>
+        </div>
+    </div>
+    @if (TempData["message"] != null)
+    {
+        var test = TempData["message"];
+        <div class="alert alert-success">
+            <strong>@TempData["message"]</strong>
+        </div>
+    }
+    <div class="row">
+        <table class="table table-striped" id="tblBankAccounts">
+            <thead>
+                <tr>
+                    <td>Sr No</td>
+                    <td>Document Name</td>
+                    <td>Description</td>
+                    <td>IsActive</td>
+                    <td>Edit</td>
+                    <td>Open</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.SrNo</td>
+                            <td>@item.DocumentName</td>
+                            <td>@item.DocumentDescription</td>
+                            <td>
+                                <input type="checkbox" class="form-check-input" asp-for="@item.IsActive" onchange="fnContractorDocumentActiveInactive(@item.ContractorDocumentID)" id="docActiveInactive">
+                                @*<a class='btn editaddress' onchange="fnContractorDocumentActiveInactive(@item.ContractorDocumentID)"
+                        href="javascript:void(0)"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#canvasContractorDocument"
+                        aria-controls="canvasContractorDocument"
+                        data-id="@item.ContractorDocumentID"
+                        Contractorid="@item.ContractorID"><i class='bx bx-checkbox' id="docActiveInactive"></i></a>*@
+                            </td>
+
+                            <td>
+                                <a class='btn editaddress IndexPagebtnEidtPadding' onclick="fnContractorDocument(@item.ContractorDocumentID)"
+                                   href="javascript:void(0)"
+                                   data-bs-toggle="offcanvas"
+                                   data-bs-target="#canvasContractorDocument"
+                                   aria-controls="canvasContractorDocument"
+                                   data-id="@item.ContractorDocumentID"
+                                   Contractorid="@item.ContractorID">
+                                    <i class='bx bx-edit'></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class='btn editaddress IndexPagebtnEidtPadding' asp-area="Admin" asp-controller="Contractor" asp-action="OpenImage" asp-route-fileName="@item.DocumentName" download>
+                                    <iconify-icon icon="emojione-monotone:open-file-folder"></iconify-icon>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasContractorDocument" style="visibility: visible; width : 75% !important">*@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasContractorDocument">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasHeaderNameDocument"></h5>
+        <button type="button" class="btn-close te  xt-reset" data-bs-dismiss="offcanvas" aria-l abel="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-3 pb-5">
+        <div id="dvInfoDocument">
+        </div>
+    </div>
+</div>
+
+<script src="~/admin/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script type="text/javascript">
+    //var urlDeleteCompanyFromUser = 'Url.Action("DeleteBankAccount", "Contractor")';
+    var urlAddUpdateDocument = '@Url.Action("AddUpdateContractorDocument", "Contractor")';
+    var urlisActiveInActive = '@Url.Action("ActiveInActiveContractorDocument","Contractor")';
+
+    function fnContractorDocument(ContractorDocumentId) {
+        var _id = ContractorDocumentId;//$(this).data('id');
+        var _ContractorId = $("#ContractorID").val();
+        if (_id > 0) {
+            document.getElementById("canvasHeaderNameDocument").innerHTML = "Update Contractor document details";
+        }
+        else {
+            document.getElementById("canvasHeaderNameDocument").innerHTML = "Add Contractor document details";
+        }
+        var _parameters = { ContractorDocumentId: _id, ContractorId: _ContractorId };
+        $.ajax({
+            url: urlAddUpdateDocument,
+            type: "GET",
+            data: _parameters,
+            success: function (data, textStatus, jqXHR) {
+                $("#canvasContractorDocument").show();//('hide');
+                $('#dvInfoDocument').html(data);
+            }
+        });
+    }
+
+    function fnContractorDocumentActiveInactive(ContractorDocumentId) {
+        var _empDocId = ContractorDocumentId;//$(this).data('id');
+        var ContractorId = $("#ContractorID").val();
+        var _checkBox = $("#docActiveInactive").is(':checked');
+        var _docParameters = { ContractorDocumentId: _empDocId, ContractorId: ContractorId, isActive: _checkBox };
+        $.ajax({
+            url: urlisActiveInActive,
+            type: 'POST',
+            data: _docParameters,
+            success: function (data) {
+                if (data.status) {
+                    var test = Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message,
+                    });
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+                $("#ContractorDocumentTable").load(window.location.href + " #ContractorDocumentTable");
+            },
+            error: function (error) {
+                laddaStop(ls);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: '@MessageHelper.Error'
+                });
+            }
+        }).always(function () {
+            hideloader();
+        });
+    }
+</script>

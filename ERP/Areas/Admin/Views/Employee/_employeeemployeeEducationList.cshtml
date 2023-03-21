@@ -1,0 +1,111 @@
+﻿@using Business.Entities.Employee
+@model PagedDataTable<EmployeeEducation>
+<link href="~/admin/assets/vendors/simple-datatables/style.css" rel="stylesheet" />
+<div id="EmployeeEducationTable">
+    <div class="row">
+        <div class="col-lg-6">
+            <h6 class="cards-title">
+                Education List
+            </h6>
+        </div>
+        <div class="col-lg-12 text-align-right">
+            <a onclick="fnEmployeeEducation(0)"
+               class="btn btn-primary px-5"
+               href="javascript:void(0)"
+               data-id="0"
+               data-bs-toggle="offcanvas"
+               data-bs-target="#canvasEmployeeEducation"
+               aria-controls="canvasEmployeeEducation">
+                Add Education
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped" id="tblEmployeeEducations">
+            <thead>
+                <tr>
+                    <td>SrNo</td>
+                    <td>School/University</td>
+                    <td>Degree</td>
+                    <td>Grade</td>
+                    <td>Start Year</td>
+                    <td>End Year</td>
+                    @*<td>Duration</td>*@
+                    <td>Is Current Eduction</td>
+                    <td>Update</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.SrNo</td>
+                            <td>@item.SchoolOrUniversity</td>
+                            <td>@item.Degree</td>
+                            <td>@item.Grade</td>
+                            <td>@item.StartDate.ToDate()</td>
+                            <td>@item.EndDate.ToDate()</td>
+                            @*<td><input type="checkbox" class="form-check-input" asp-for="@item.IsCurrentEducation" /></td>*@
+                            @if (@item.IsCurrentEducation)
+                            {
+                                <td>Pursuing</td>
+                            }
+                            else
+                            {
+                                <td>Completed</td>
+                            }
+                            <td>
+                                <a class='btn editeducation' onclick="fnEmployeeEducation(@item.EmployeeEducationID)"
+                           href="javascript:void(0)"
+                           data-bs-toggle="offcanvas"
+                           data-bs-target="#canvasEmployeeEducation"
+                           aria-controls="canvasEmployeeEducation"
+                           data-id="@item.EmployeeEducationID"
+                           employeeid="@item.EmployeeID"><i class='bx bx-edit'></i></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasEmployeeEducation" style="visibility: visible; width : 75% !important">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasHeaderEducation"></h5>
+        <button type="button" class="btn-close te  xt-reset" data-bs-dismiss="offcanvas" aria-l abel="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-3 pb-5" >
+        <div id="dvInfoEducation">
+        </div>
+    </div>
+</div>
+
+<script src="~/admin/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script type="text/javascript">
+    //var urlDeleteCompanyFromUser = 'Url.Action("DeleteEmployeeEducation", "Employee")';
+    var urlAddUpdateEmployeeEducation = '@Url.Action("AddUpdateEmployeeEducation", "Employee")';
+    function fnEmployeeEducation(employeeEducationId) {
+        var _id = employeeEducationId;//$(this).data('id');
+        var _employeeId = $("#EmployeeID").val();
+        if (_id > 0) {
+            document.getElementById("canvasHeaderEducation").innerHTML = "Update employee education";
+        }
+        else {
+            document.getElementById("canvasHeaderEducation").innerHTML = "Add employee education";
+        }
+        var _parameters = { employeeEducationId: _id, employeeId: _employeeId };
+        $.ajax({
+            url: urlAddUpdateEmployeeEducation,
+            type: "GET",
+            data: _parameters,
+            success: function (data, textStatus, jqXHR) {
+                $("#canvasEmployeeEducation").show();//('hide');
+                $('#dvInfoEducation').html(data);
+            }
+        });
+    }
+</script>

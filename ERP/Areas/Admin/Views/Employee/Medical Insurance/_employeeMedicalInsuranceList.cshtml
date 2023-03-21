@@ -1,0 +1,104 @@
+﻿@using Business.Entities.Employee.EmployeeMedicalInsurance;
+@model PagedDataTable<EmployeeMedicalInsurance>
+<link href="~/admin/assets/vendors/simple-datatables/style.css" rel="stylesheet" />
+<div id="EmployeeMedicalInsuranceTable">
+    <div class="row">
+        <div class="col-lg-6">
+            <h6 class="cards-title">
+                Medical Insurance
+            </h6>
+        </div>
+        <div class="col-lg-12 text-align-right">
+            <a onclick="fnEmployeeMedicalInsurance(0)"
+               class="btn btn-primary px-5"
+               href="javascript:void(0)"
+               data-id="0"
+               data-bs-toggle="offcanvas"
+               data-bs-target="#canvasEmployeeMedicalInsurance"
+               aria-controls="canvasEmployeeMedicalInsurance">
+                Add Medical Insurance
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped" id="tblEmployeeMedicalInsurance">
+            <thead>
+                <tr>
+                    <td>SrNo</td>
+                    <td>Ins. Company</td>
+                    <td>Policy Name</td>
+                    <td>Policy Number</td>
+                    <td>Start Date</td>
+                    <td>Expiry Date</td>
+                    <td>Amount</td>
+                    <td>Agent</td>
+                    <td>Update</td>               
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.SrNo</td>
+                            <td>@item.InsuranceCompany</td>
+                            <td>@item.PolicyName</td>
+                            <td>@item.PolicyNumber</td>
+                            <td>@item.PolicyStartDate.ToDate()</td>
+                            <td>@item.PolicyExpiryDate.ToDate()</td>
+                            <td>@item.PolicyPremiumAmt</td>
+                            <td>@item.AgentName</td>
+                            <td>
+                                <a class='btn editaddress' onclick="fnEmployeeMedicalInsurance(@item.EmployeeMedicalInsuranceID)"
+                           href="javascript:void(0)"
+                           data-bs-toggle="offcanvas"
+                           data-bs-target="#canvasEmployeeMedicalInsurance"
+                           aria-controls="canvasEmployeeMedicalInsurance"
+                           data-id="@item.EmployeeMedicalInsuranceID"
+                           employeeid="@item.EmployeeID"><i class='bx bx-edit'></i></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasEmployeeMedicalInsurance">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasHeaderMedicalInsurance"></h5>
+        <button type="button" class="btn-close te  xt-reset" data-bs-dismiss="offcanvas" aria-l abel="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-3 pb-5">
+        <div id="dvInfoMedicalInsurance">
+        </div>
+    </div>
+</div>
+
+<script src="~/admin/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script type="text/javascript">
+    //var urlDeleteCompanyFromUser = 'Url.Action("DeleteEmployeeExperience", "Employee")';
+    var urlAddUpdateEmployeeMedicalInsurance = '@Url.Action("AddUpdateEmployeeMedicalInsurance", "Employee")';
+    function fnEmployeeMedicalInsurance(employeeMedicalInsuranceId) {
+        var _id = employeeMedicalInsuranceId;//$(this).data('id');
+        var _employeeId = $("#EmployeeID").val();
+        if (_id > 0) {
+            document.getElementById("canvasHeaderMedicalInsurance").innerHTML = "Update medical insurance";
+        }
+        else {
+            document.getElementById("canvasHeaderMedicalInsurance").innerHTML = "Add medical insurance";
+        }
+        var _parameters = { employeeMedicalInsuranceId: _id, employeeId: _employeeId };
+        $.ajax({
+            url: urlAddUpdateEmployeeMedicalInsurance,
+            type: "GET",
+            data: _parameters,
+            success: function (data, textStatus, jqXHR) {
+                $("#canvasEmployeeMedicalInsurance").show();//('hide');
+                $('#dvInfoMedicalInsurance').html(data);
+            }
+        });
+    }
+</script>

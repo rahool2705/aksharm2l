@@ -1,0 +1,116 @@
+﻿@model Business.Entities.SalaryPaidHr.SalaryPaidHr
+<form method="post" id="formAddUpdateEmployeeSalaryPaidHr" class="row g-3 needs-validation" asp-area="Admin" asp-controller="Employee">
+    <input type="hidden" asp-for="EmployeeID" />
+    <input type="hidden" asp-for="SalaryPaidHrID" />
+
+    <div class=" col-sm-12 col-md-12 col-lg-12">
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Actual Hours:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" asp-for="ActualHours" id="ActualHours" name="ActualHours" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Adjustment Hour:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" asp-for="AdjustmentHour" id="AdjustmentHour" name="AdjustmentHour" placeholder="">
+            </div>
+        </div>
+
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">
+                User:
+                @*<span class="required">*</span>*@
+            </label>
+            <div class="col-sm-4">
+                @*           <select asp-for="UserID" asp-items="ViewBag.UsersByCompanyId" class="form-select">
+                <option value="">Select User</option>
+                </select>*@
+                <select asp-for="UserID" asp-items="ViewBag.UsersByCompanyId" name="UserID" id="UserID" class="form-control">
+                    <option value="">Select User Name</option>
+                </select>
+                @*<span asp-validation-for="UserID" class="text-danger" />*@
+            </div>
+        </div>
+
+        @*        <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">Attandence show with adjustment hours to user:</label>
+        <div class="col-sm-4">
+        <input type="text" class="form-control" asp-for="AdjustmentHour" id="AdjustmentHour" name="AdjustmentHour" placeholder="">
+        </div>
+        </div>
+        <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">Attandence show with actual hours to user:</label>
+        <div class="col-sm-4">
+        <input type="text" class="form-control" asp-for="AdjustmentHour" id="AdjustmentHour" name="AdjustmentHour" placeholder="">
+        </div>
+        </div>*@
+
+    </div>
+
+    <div class="modal-footer-sticky text-center">
+        <button type="button" onclick="fnSaveEmployeeSalaryPaidHr()" class="btn btn-primary btn-info px-5 ladda-button" id="btnSaveEmployeeHRAdministration">Save</button>
+        @*<button type="button" class="btn btn-primary btn-info px-5 ladda-button" data-bs-dismiss="offcanvas" aria-l abel="Close">Cancel</button>*@
+    </div>
+</form>
+
+<script type="text/javascript">
+    function fnSaveEmployeeSalaryPaidHr() {
+        var ls = laddaStart('btnSaveEmployeeHRAdministration');
+        modeldata = $("#formAddUpdateEmployeeSalaryPaidHr").serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/Employee/AddUpdateEmployeeSalaryPaidHr/',
+            data: modeldata,
+            dataType: 'json',
+            beforeSend: function () { },
+            success: function (data) {
+                console.log(data.status);
+                if (data.status) {
+                    //notification
+                    $("#canvasSalaryPaidHr").hide();//('hide');
+                    var test = Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message,
+                    });
+                    setTimeout(
+                        function () {
+                            //window.location.reload();
+                            $("#formAddUpdateEmployeeHRAdministration").load(window.location.href + " #formAddUpdateEmployeeHRAdministration");
+                        }, 3000);
+
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+            },
+            error: function (error) {
+                laddaStop(ls);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: '@MessageHelper.Error'
+                });
+            }
+        }).always(function () {
+            hideloader();
+        });
+    };
+</script>

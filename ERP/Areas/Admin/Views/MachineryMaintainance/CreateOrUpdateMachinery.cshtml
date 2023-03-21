@@ -1,0 +1,143 @@
+﻿@using Business.Entities.Machinery.MachineryMaintainance;
+@model MachineryMaintainance;
+<form class="form-horizontal" role="form" id="formMachinery">
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="row mb-3">
+                <input type="hidden" asp-for="MachineryMaintainanceID" />
+                <label class="col-sm-3 col-form-label">Maintainance Purpose<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <textarea type="text" class="form-control" id="MaintainancePurpose" name="MaintainancePurpose" asp-for="MaintainancePurpose" required=""></textarea>
+                    <span asp-validation-for="MaintainancePurpose" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Machinery Name<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="MachineryText" name="MachineryText" asp-for="MachineryText" required="">
+                    <span asp-validation-for="MachineryText" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Charges<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Charges" name="Charges" asp-for="Charges" required="">
+                    <span asp-validation-for="Charges" class="text-danger"></span>
+                </div>
+            </div>
+            @if (Model != null && Model.MachineryMaintainanceID > 0)
+            {
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Date if<span class="required">*</span></label>
+                    <div class="col-sm-9">
+                        <input type="date" class="form-control" id="Date2" name="Date" asp-for="Date" required="">
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                </div>
+
+            }
+            else
+            {
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Date Else<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <input type="date" value="" class="form-control" id="Date" name="Date" asp-for="Date" required="">
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+            </div>
+            }
+
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Remark<span class="required">*</span></label>
+                <div class="col-sm-9">
+                    <textarea type="text" cols="2" class="form-control" id="Note" name="Note" asp-for="Note" required=""></textarea>
+                    <span asp-validation-for="Note" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label">Machinery Status</label>
+                <div class="col-sm-9">
+                    <input type="checkbox" class="form-check-input" asp-for="IsActive" data-on-text="Yes" data-off-text="No">
+
+                </div>
+            </div>
+
+            <div class="modal-footer-sticky text-center">
+                <button id="btnSave" type="button" onclick="fnSubmit()" class="btn btn-primary btn-info px-5 ladda-button">Save</button>
+                <button type="button" data-bs-dismiss="offcanvas" class="btn btn-primary btn-info px-5 my-2">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+<script type="text/javascript">
+    var urlsave = '@Url.Action("InsertOrUpdateMachineryMaintainance", "MachineryMaintainance")';
+    function fnSubmit() {
+        if ($("#formMachinery").valid()) {
+            var l = laddaStart('btnSave');
+            console.log(l);
+            modeldata = $("#formMachinery").serialize();
+            $.ajax({
+                type: 'POST',
+                url: urlsave,
+                data: modeldata,
+                dataType: 'json',
+                beforeSend: function () { },
+                success: function (data) {
+                    if (data.status) {
+                        //notification
+                        $("#canvas_masterentity2").hide();//('hide');
+                        Lobibox.notify('success', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: data.message
+                        });
+                        //$("#MachineryMaintainance").load(window.location.href + " #MachineryMaintainance");
+                        setTimeout(
+                            function () {
+                                window.location.reload();
+                            }, 3000);
+                    }
+
+                    else {
+                        Lobibox.notify('error', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: data.message
+                        });
+                    }
+                },
+                error: function (error) {
+                    laddaStop(l);
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: "@MessageHelper.Error"
+                    });
+                }
+            }).always(function () {
+                hideLoader();
+            });
+        }
+    };
+
+    var date = new Date();
+    var currentDate = date.toISOString().slice(0, 10);
+    var currentTime = date.getHours() + ':' + date.getMinutes();
+    document.getElementById('Date').value = currentDate;
+
+</script>
