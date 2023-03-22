@@ -1110,11 +1110,11 @@
   "project": {
     "version": "5.2.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridMvc\\GridMvc.csproj",
+      "projectUniqueName": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridMvc\\GridMvc.csproj",
       "projectName": "GridMvcCore",
-      "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridMvc\\GridMvc.csproj",
+      "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridMvc\\GridMvc.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridMvc\\obj\\",
+      "outputPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridMvc\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [
@@ -1133,16 +1133,16 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridCore\\GridCore.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridCore\\GridCore.csproj"
+            "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridCore\\GridCore.csproj": {
+              "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridCore\\GridCore.csproj"
             }
           }
         },
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridCore\\GridCore.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridCore\\GridCore.csproj"
+            "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridCore\\GridCore.csproj": {
+              "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridCore\\GridCore.csproj"
             }
           }
         }

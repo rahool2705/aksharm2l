@@ -9,6 +9,7 @@ namespace Business.Entities.SalaryPaidHr
         public int? ActualHours { get; set; }
         public int? AdjustmentHour { get; set; }
         public int CreatedOrModifiedBy { get; set; }
-        public int UserID { get; set;}
+        public int actualhourUserID { get; set;}
+        public int adjustmenthourUserID { get; set;}
     }
 }

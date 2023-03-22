@@ -10,3 +10,27 @@ C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\Util\Utils\obj\Debug\net5.0\
 C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\Util\Utils\obj\Debug\net5.0\refint\Utils.dll
 C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.pdb
 C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\Util\Utils\obj\Debug\net5.0\ref\Utils.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\Util\Utils\bin\Debug\net5.0\Utils.deps.json
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\Util\Utils\bin\Debug\net5.0\Utils.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\Util\Utils\bin\Debug\net5.0\Utils.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.AssemblyInfoInputs.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.AssemblyInfo.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\refint\Utils.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\ref\Utils.dll
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\Util\Utils\bin\Debug\net5.0\Utils.deps.json
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\Util\Utils\bin\Debug\net5.0\Utils.dll
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\Util\Utils\bin\Debug\net5.0\Utils.pdb
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.csproj.AssemblyReference.cache
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.AssemblyInfoInputs.cache
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.AssemblyInfo.cs
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.csproj.CoreCompileInputs.cache
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.dll
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\refint\Utils.dll
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\Utils.pdb
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\Util\Utils\obj\Debug\net5.0\ref\Utils.dll

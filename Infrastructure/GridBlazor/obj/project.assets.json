@@ -1716,11 +1716,11 @@
   "project": {
     "version": "3.2.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridBlazor\\GridBlazor.csproj",
+      "projectUniqueName": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridBlazor\\GridBlazor.csproj",
       "projectName": "GridBlazor",
-      "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridBlazor\\GridBlazor.csproj",
+      "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridBlazor\\GridBlazor.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridBlazor\\obj\\",
+      "outputPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridBlazor\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [
@@ -1739,16 +1739,16 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridShared\\GridShared.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridShared\\GridShared.csproj"
+            "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridShared\\GridShared.csproj": {
+              "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridShared\\GridShared.csproj"
             }
           }
         },
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridShared\\GridShared.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridShared\\GridShared.csproj"
+            "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridShared\\GridShared.csproj": {
+              "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridShared\\GridShared.csproj"
             }
           }
         }

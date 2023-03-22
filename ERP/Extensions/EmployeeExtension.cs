@@ -5,6 +5,7 @@ using Business.Interface;
 using Business.Interface.IEmployee;
 using Business.Interface.IMaster.IEmployeeCategory;
 using Business.Service.Dynamic;
+using DocumentFormat.OpenXml.Bibliography;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
@@ -270,6 +271,7 @@ namespace ERP.Extensions
             }
         }
 
+
         /*public static SelectList GetAllGetAllEmployeeCategoryMaster()
         {
             try
@@ -388,5 +390,23 @@ namespace ERP.Extensions
         }
 
         #endregion Contractor Name List
+
+        #region HR ReportHR 
+
+        public static SelectList GetAllDepartmentText()
+        {
+            try
+            {
+                var department = _masterService.GetAllDepartments();
+                return new SelectList(department, "DepartmentID", "DepartmentName");
+            }
+            catch
+            {
+                return new SelectList(Enumerable.Empty<SelectListItem>());
+            }
+        }
+
+        
+        #endregion HR ReportHR
     }
 }

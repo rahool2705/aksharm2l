@@ -16,7 +16,7 @@
         @*<div class="row mb-3">
         <label for="" class="col-sm-3 col-form-label ">Company:</label>
         <div class="col-sm-9">
-        <select class="form-select form-select-Employee-HRAdministrator" asp-for="CompanyID" id="CompanyID" name="CompanyID" asp-items="@EmployeeExtension.GetAllCompanyAsync()">
+        <select class="form-select form-selectlist" asp-for="CompanyID" id="CompanyID" name="CompanyID" asp-items="@EmployeeExtension.GetAllCompanyAsync()">
         <option value="">--Select--</option>
         </select>
         </div>
@@ -24,7 +24,7 @@
         <div class="row mb-3">
             <label for="" class="col-sm-3 col-form-label ">Company:</label>
             <div class="col-sm-8">
-                <select class="form-select form-select-Employee-HRAdministrator" asp-for="CompanyID" id="CompanyID" name="CompanyID" asp-items="@EmployeeExtension.GetAllCompanyAsync()">
+                <select class="form-select" asp-for="CompanyID" id="CompanyID" name="CompanyID" asp-items="@EmployeeExtension.GetAllCompanyAsync()">
                     <option value="">--Select--</option>
                 </select>
             </div>
@@ -46,7 +46,7 @@
         <div class="row mb-3">
             <label for="" class="col-sm-3 col-form-label ">Employee Category:</label>
             <div class="col-sm-9">
-                <select class="form-select form-select-Employee-HRAdministrator" asp-for="EmployeeCategoryID" id="EmployeeCategoryID" name="EmployeeCategoryID" asp-items="@EmployeeExtension.GetAllEmployeeCategoryMaster()">
+                <select class="form-select form-selectlist" asp-for="EmployeeCategoryID" id="EmployeeCategoryID" name="EmployeeCategoryID" asp-items="@EmployeeExtension.GetAllEmployeeCategoryMaster()">
                     <option value="">--Select--</option>
                 </select>
             </div>
@@ -74,7 +74,7 @@
         <div class="row mb-3">
             <label for="" class="col-sm-3 col-form-label ">Employement Status:</label>
             <div class="col-sm-9">
-                <select class="form-select form-select-Employee-HRAdministrator" asp-for="EmploymentStatusID" id="EmploymentStatusID" name="EmploymentStatusID" asp-items="@EmployeeExtension.GetAllEmploymentStatus()">
+                <select class="form-select form-selectlist" asp-for="EmploymentStatusID" id="EmploymentStatusID" name="EmploymentStatusID" asp-items="@EmployeeExtension.GetAllEmploymentStatus()">
                     <option value="">--Select--</option>
                 </select>
             </div>
@@ -104,7 +104,7 @@
         <div class="row mb-3">
             <label for="" class="col-sm-3 col-form-label ">Employment Type:</label>
             <div class="col-sm-9">
-                <select class="form-select form-select-Employee-HRAdministrator" asp-for="EmploymentTypeID" id="EmploymentTypeID" name="EmploymentTypeID" asp-items="@EmployeeExtension.GetAllEmploymentType()" onchange="hideSecondDropdown()">
+                <select class="form-select form-selectlist" asp-for="EmploymentTypeID" id="EmploymentTypeID" name="EmploymentTypeID" asp-items="@EmployeeExtension.GetAllEmploymentType()" onchange="hideSecondDropdown()">
                     <option value="">--Select--</option>
                 </select>
             </div>
@@ -115,7 +115,7 @@
         <div class="row mb-3" id="divContractorList">
             <label for="" class="col-sm-3 col-form-label ">Contractor Name:</label>
             <div class="col-sm-9">
-                <select class="form-select form-select-Employee-HRAdministrator" asp-for="ContractorID" id="ContractorID" name="ContractorID" asp-items="@EmployeeExtension.GetAllContractorList()">
+                <select class="form-select form-selectlist" asp-for="ContractorID" id="ContractorID" name="ContractorID" asp-items="@EmployeeExtension.GetAllContractorList()">
                     <option value="">--Select--</option>
                 </select>
             </div>

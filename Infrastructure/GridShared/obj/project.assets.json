@@ -872,11 +872,11 @@
   "project": {
     "version": "5.2.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridShared\\GridShared.csproj",
+      "projectUniqueName": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridShared\\GridShared.csproj",
       "projectName": "GridShared",
-      "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridShared\\GridShared.csproj",
+      "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridShared\\GridShared.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\GridShared\\obj\\",
+      "outputPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\GridShared\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [

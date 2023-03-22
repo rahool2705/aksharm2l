@@ -1338,7 +1338,8 @@ namespace Business.Service
                     ,new SqlParameter("@EmployeeID", salaryPaidHr.EmployeeID)
                     ,new SqlParameter("@ActualHours", salaryPaidHr.ActualHours)
                     ,new SqlParameter("@AdjustmentHour", salaryPaidHr.AdjustmentHour)
-                    ,new SqlParameter("@AttendanceShownWithActualHours", salaryPaidHr.UserID)
+                    ,new SqlParameter("@AttendanceShownWithActualHours", salaryPaidHr.actualhourUserID)
+                    ,new SqlParameter("@AttendanceShownWithAdjustmentHours", salaryPaidHr.adjustmenthourUserID)
                     ,new SqlParameter("@CreatedOrModifiedBy", salaryPaidHr.CreatedOrModifiedBy)
                 };
 

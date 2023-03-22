@@ -8,3 +8,23 @@ C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\GridShared\obj\Debug\netstan
 C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.csproj.CoreCompileInputs.cache
 C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.dll
 C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\GridShared\bin\Debug\netstandard2.1\GridShared.deps.json
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\GridShared\bin\Debug\netstandard2.1\GridShared.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\GridShared\bin\Debug\netstandard2.1\GridShared.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.AssemblyInfoInputs.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.AssemblyInfo.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.pdb
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridShared\bin\Debug\netstandard2.1\GridShared.deps.json
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridShared\bin\Debug\netstandard2.1\GridShared.dll
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridShared\bin\Debug\netstandard2.1\GridShared.pdb
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.csproj.AssemblyReference.cache
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.AssemblyInfoInputs.cache
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.AssemblyInfo.cs
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.csproj.CoreCompileInputs.cache
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.dll
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridShared\obj\Debug\netstandard2.1\GridShared.pdb

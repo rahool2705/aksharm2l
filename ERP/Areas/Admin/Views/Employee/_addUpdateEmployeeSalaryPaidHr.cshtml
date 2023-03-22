@@ -19,23 +19,41 @@
             </div>
         </div>
 
-
-        <div class="row mb-3">
-            <label for="" class="col-sm-3 col-form-label ">
-                User:
+        <div class="row mb-12">
+            <label for="" class="col-sm-12 col-form-label ">
+                Select User for showing employee attendance with actual working hours:
                 @*<span class="required">*</span>*@
             </label>
+        </div>
+        <div class="row mb-12">
             <div class="col-sm-4">
                 @*           <select asp-for="UserID" asp-items="ViewBag.UsersByCompanyId" class="form-select">
                 <option value="">Select User</option>
                 </select>*@
-                <select asp-for="UserID" asp-items="ViewBag.UsersByCompanyId" name="UserID" id="UserID" class="form-control">
+                <select asp-for="actualhourUserID" asp-items="ViewBag.UsersByCompanyId" name="actualhourUserID" id="actualhourUserID" class="form-control">
                     <option value="">Select User Name</option>
                 </select>
                 @*<span asp-validation-for="UserID" class="text-danger" />*@
             </div>
         </div>
 
+        <div class="row mb-12">
+            <label for="" class="col-sm-12 col-form-label ">
+                Select User for showing employee attendance with adjustment hours:
+                @*<span class="required">*</span>*@
+            </label>
+        </div>
+        <div class="row mb-12">
+            <div class="col-sm-4">
+                @*           <select asp-for="UserID" asp-items="ViewBag.UsersByCompanyId" class="form-select">
+                <option value="">Select User</option>
+                </select>*@
+                <select asp-for="adjustmenthourUserID" asp-items="ViewBag.UsersByCompanyId" name="adjustmenthourUserID" id="adjustmenthourUserID" class="form-control">
+                    <option value="">Select User Name</option>
+                </select>
+                @*<span asp-validation-for="UserID" class="text-danger" />*@
+            </div>
+        </div>
         @*        <div class="row mb-3">
         <label for="" class="col-sm-3 col-form-label ">Attandence show with adjustment hours to user:</label>
         <div class="col-sm-4">
