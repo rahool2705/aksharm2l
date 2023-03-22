@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\Business.Service.csproj": {}
+    "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\Business.Service.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj": {
+    "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj",
         "projectName": "Business.Entities",
-        "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,17 +26,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
-                "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj"
+              "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj"
               },
-              "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\Util\\Utils\\Utils.csproj": {
-                "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\Util\\Utils\\Utils.csproj"
+              "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Infrastructure\\Util\\Utils\\Utils.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Infrastructure\\Util\\Utils\\Utils.csproj"
               }
             }
           }
@@ -72,21 +77,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj": {
+    "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj",
         "projectName": "Business.Interface",
-        "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -94,17 +103,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj": {
-                "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj"
+              "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj"
               },
-              "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
-                "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj"
+              "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj"
               }
             }
           }
@@ -140,21 +150,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\Business.Service.csproj": {
+    "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\Business.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\Business.Service.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\Business.Service.csproj",
         "projectName": "Business.Service",
-        "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\Business.Service.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\Business.Service.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -162,20 +176,21 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj": {
-                "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj"
+              "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj"
               },
-              "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj": {
-                "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj"
+              "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj"
               },
-              "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
-                "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj"
+              "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj"
               }
             }
           }
@@ -247,21 +262,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
+    "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj",
         "projectName": "Business.SQL",
-        "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -269,6 +288,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -312,21 +332,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\Util\\Utils\\Utils.csproj": {
+    "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Infrastructure\\Util\\Utils\\Utils.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\Util\\Utils\\Utils.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Infrastructure\\Util\\Utils\\Utils.csproj",
         "projectName": "Utils",
-        "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\Util\\Utils\\Utils.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Infrastructure\\Util\\Utils\\Utils.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\Util\\Utils\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Infrastructure\\Util\\Utils\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -334,6 +358,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -367,7 +392,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

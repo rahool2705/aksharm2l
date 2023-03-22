@@ -57,6 +57,38 @@ namespace ERP.Areas.HR.Controllers
             }
         }
 
+        public IActionResult GetEmployeeDetailSummary(int employeecategoryId, int departmentId, string searchstring)
+
+        {
+            try
+            {
+                
+                DataSet test = _employeeAttendanceSummaryService.GetEmployeeAllDetailSummary(employeecategoryId, departmentId, searchstring).Result;
+
+                /*   var result = test.Result;  
+                   var newColumns = result.Tables[0].Columns;
+                   var newRows = result.Tables[0].Rows;
+                   DataTable dataTable = new DataTable();
+                   foreach (var columns in newColumns)
+                   {
+                       dataTable.Columns.Add(columns.ToString());
+                       foreach (var rows in newRows)
+                       {
+                           dataTable.Rows.Add(rows.ToString());
+                       }
+                   }
+                   var testTable = dataTable;
+                   var resultTable = testTable;    */
+
+                return View(test);
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
+        }
+
         [HttpGet]
         public JsonResult GetEmployees(string empString)
         {

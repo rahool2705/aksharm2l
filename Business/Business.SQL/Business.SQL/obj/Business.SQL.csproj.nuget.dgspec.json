@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {}
+    "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
+    "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj",
         "projectName": "Business.SQL",
-        "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -65,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -2786,3 +2786,5 @@ C:\Projects\ERP Backups\aksharm2l\ERP\obj\Debug\net5.0\refint\ERP.dll
 C:\Projects\ERP Backups\aksharm2l\ERP\obj\Debug\net5.0\ERP.pdb
 C:\Projects\ERP Backups\aksharm2l\ERP\obj\Debug\net5.0\ERP.genruntimeconfig.cache
 C:\Projects\ERP Backups\aksharm2l\ERP\obj\Debug\net5.0\ref\ERP.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\Admin\Views\Employee\GetEmployeePresent2.cshtml.g.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\HR\Views\ReportsHR\GetEmployeeDetailSummary.cshtml.g.cs
