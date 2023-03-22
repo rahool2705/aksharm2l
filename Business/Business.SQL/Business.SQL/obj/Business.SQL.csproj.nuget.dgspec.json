@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {}
+    "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
+    "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj",
+        "projectUniqueName": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj",
         "projectName": "Business.SQL",
-        "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj",
+        "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.SQL\\Business.SQL\\obj\\",
+        "outputPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -15,3 +15,37 @@ C:\Users\Lenovo\Documents\GitHub\ERP\Business\Business.Entities\Business.Entitie
 C:\Users\Lenovo\Documents\GitHub\ERP\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\refint\Business.Entities.dll
 C:\Users\Lenovo\Documents\GitHub\ERP\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.pdb
 C:\Users\Lenovo\Documents\GitHub\ERP\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\ref\Business.Entities.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Business.Entities.deps.json
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Business.Entities.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Business.Entities.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Business.SQL.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Utils.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Utils.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Business.SQL.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.AssemblyInfoInputs.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.AssemblyInfo.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.csproj.CopyComplete
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\refint\Business.Entities.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\ref\Business.Entities.dll
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Business.Entities.deps.json
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Business.Entities.dll
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Business.Entities.pdb
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Business.SQL.dll
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Utils.dll
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Utils.pdb
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\bin\Debug\net5.0\Business.SQL.pdb
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.csproj.AssemblyReference.cache
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.AssemblyInfoInputs.cache
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.AssemblyInfo.cs
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.csproj.CoreCompileInputs.cache
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.csproj.CopyComplete
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.dll
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\refint\Business.Entities.dll
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\Business.Entities.pdb
+C:\Projects\ERP Backups\aksharm2l\Business\Business.Entities\Business.Entities\obj\Debug\net5.0\ref\Business.Entities.dll

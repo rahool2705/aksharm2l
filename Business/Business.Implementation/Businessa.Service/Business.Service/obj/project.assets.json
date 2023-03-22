@@ -8872,11 +8872,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\Business.Service.csproj",
+      "projectUniqueName": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\Business.Service.csproj",
       "projectName": "Business.Service",
-      "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\Business.Service.csproj",
+      "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\Business.Service.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\obj\\",
+      "outputPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Businessa.Service\\Business.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8893,14 +8893,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj"
+            "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj": {
+              "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Entities\\Business.Entities\\Business.Entities.csproj"
             },
-            "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj"
+            "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj": {
+              "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.Implementation\\Business.Interface\\Business.Interface.csproj"
             },
-            "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj"
+            "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj": {
+              "projectPath": "C:\\Projects\\ERP Backups\\aksharm2l\\Business\\Business.SQL\\Business.SQL\\Business.SQL.csproj"
             }
           }
         }

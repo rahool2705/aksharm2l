@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gWuAWxB1nZbQ8+IBIoyD/6Tsgd3379F+7lC5opVNa5DPBUrSZwp0AcFdyDEY1n07RDxZz55jgECsqkjsO5CvYA==",
+  "dgSpecHash": "Yjd9utapSgbVx1tQ2diYwjRj8P+UY8/Frts/qrHAezctVjZI09b/dIzZ1HhFOVoGOgjQPz9cUOV+EC8KlmscWw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ERP\\Infrastructure\\JsonStore\\Kinfo.JsonStore\\Kinfo.JsonStore.csproj",
+  "projectFilePath": "C:\\Projects\\ERP Backups\\aksharm2l\\Infrastructure\\JsonStore\\Kinfo.JsonStore\\Kinfo.JsonStore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\jsonflatfiledatastore\\2.2.2\\jsonflatfiledatastore.2.2.2.nupkg.sha512",

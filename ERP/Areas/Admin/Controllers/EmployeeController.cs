@@ -81,7 +81,7 @@ namespace ERP.Areas.Admin.Controllers
             }
             var server = new GridCoreServer<EmployeeMaster>(pds, query, false, "ordersGrid", columns, PAGESIZE, pds.TotalItemCount)
                 .Sortable()
-                .Searchable(true, false)
+                .Searchable(false, false)
                 .ClearFiltersButton(true)
                 .Selectable(true)
                 .WithGridItemsCount()
@@ -820,6 +820,7 @@ namespace ERP.Areas.Admin.Controllers
                 dataTable.Columns.Add(new DataColumn("InTime", typeof(string)));
                 dataTable.Columns.Add(new DataColumn("OutTime", typeof(string)));
                 dataTable.Columns.Add(new DataColumn("BreakupTime", typeof(string)));
+                dataTable.Columns.Add(new DataColumn("Overtime", typeof(string)));
 
                 foreach (var item in employeePresentLists)
                 {
@@ -831,7 +832,8 @@ namespace ERP.Areas.Admin.Controllers
                             item.PresenceDate = employeePresent.PresenceDateTime,
                             item.InTime.ToShortTimeString(),
                             item.OutTime.ToShortTimeString(),
-                            item.BreakHour
+                            item.BreakHour,
+                            item.Overtime
                     });
                 }
                 var employeeTimeSheetMasterID = _employeeService.AddUpdateEmployeePresent(employeePresent, dataTable).Result;

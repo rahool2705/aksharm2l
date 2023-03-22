@@ -10,3 +10,27 @@ C:\Users\Lenovo\Documents\GitHub\ERP\Business\Business.SQL\Business.SQL\obj\Debu
 C:\Users\Lenovo\Documents\GitHub\ERP\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\refint\Business.SQL.dll
 C:\Users\Lenovo\Documents\GitHub\ERP\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.pdb
 C:\Users\Lenovo\Documents\GitHub\ERP\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\ref\Business.SQL.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.SQL\Business.SQL\bin\Debug\net5.0\Business.SQL.deps.json
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.SQL\Business.SQL\bin\Debug\net5.0\Business.SQL.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.SQL\Business.SQL\bin\Debug\net5.0\Business.SQL.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.AssemblyInfoInputs.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.AssemblyInfo.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\refint\Business.SQL.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\ref\Business.SQL.dll
+C:\Projects\ERP Backups\aksharm2l\Business\Business.SQL\Business.SQL\bin\Debug\net5.0\Business.SQL.deps.json
+C:\Projects\ERP Backups\aksharm2l\Business\Business.SQL\Business.SQL\bin\Debug\net5.0\Business.SQL.dll
+C:\Projects\ERP Backups\aksharm2l\Business\Business.SQL\Business.SQL\bin\Debug\net5.0\Business.SQL.pdb
+C:\Projects\ERP Backups\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.csproj.AssemblyReference.cache
+C:\Projects\ERP Backups\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\ERP Backups\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.AssemblyInfoInputs.cache
+C:\Projects\ERP Backups\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.AssemblyInfo.cs
+C:\Projects\ERP Backups\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.csproj.CoreCompileInputs.cache
+C:\Projects\ERP Backups\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.dll
+C:\Projects\ERP Backups\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\refint\Business.SQL.dll
+C:\Projects\ERP Backups\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\Business.SQL.pdb
+C:\Projects\ERP Backups\aksharm2l\Business\Business.SQL\Business.SQL\obj\Debug\net5.0\ref\Business.SQL.dll

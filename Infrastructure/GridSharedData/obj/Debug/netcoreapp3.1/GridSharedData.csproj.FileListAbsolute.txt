@@ -11,3 +11,16 @@ C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\GridSharedData\obj\Debug\net
 C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\GridSharedData\obj\Debug\netcoreapp3.1\GridSharedData.csproj.CopyComplete
 C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\GridSharedData\obj\Debug\netcoreapp3.1\GridSharedData.dll
 C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\GridSharedData\obj\Debug\netcoreapp3.1\GridSharedData.pdb
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridSharedData\bin\Debug\netcoreapp3.1\GridSharedData.deps.json
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridSharedData\bin\Debug\netcoreapp3.1\GridSharedData.dll
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridSharedData\bin\Debug\netcoreapp3.1\GridSharedData.pdb
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridSharedData\bin\Debug\netcoreapp3.1\GridShared.dll
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridSharedData\bin\Debug\netcoreapp3.1\GridShared.pdb
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridSharedData\obj\Debug\netcoreapp3.1\GridSharedData.csproj.AssemblyReference.cache
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridSharedData\obj\Debug\netcoreapp3.1\GridSharedData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridSharedData\obj\Debug\netcoreapp3.1\GridSharedData.AssemblyInfoInputs.cache
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridSharedData\obj\Debug\netcoreapp3.1\GridSharedData.AssemblyInfo.cs
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridSharedData\obj\Debug\netcoreapp3.1\GridSharedData.csproj.CoreCompileInputs.cache
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridSharedData\obj\Debug\netcoreapp3.1\GridSharedData.csproj.CopyComplete
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridSharedData\obj\Debug\netcoreapp3.1\GridSharedData.dll
+C:\Projects\ERP Backups\aksharm2l\Infrastructure\GridSharedData\obj\Debug\netcoreapp3.1\GridSharedData.pdb

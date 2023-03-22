@@ -40,44 +40,29 @@
                                 <form id="formEmployeePresent">
                                     @*<form id="formEmployeeSortPresent">*@
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="row mb-3">
-                                                <label class="col-sm-4 col-form-label">Date</label>
-                                                <div class="col-sm-8">
-                                                    <input type="date" class="form-control" id="todayDate" name="PresenceDateTime" asp-for="PresenceDateTime" value="PresenceDateTime" onchange="findByDeptID()">
 
-                                                </div>
-                                            </div>
+                                        <label class="col-sm-3 col-form-label">Date</label>
+                                        <div class="col-sm-3">
+                                            <input type="date" class="form-control" id="todayDate" name="PresenceDateTime" asp-for="PresenceDateTime" value="PresenceDateTime">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row mb-3">
-
-                                                <label class="col-sm-4 col-form-label">Company Name<span class="required">*</span></label>
-                                                <div class="col-sm-8">
-                                                    <select asp-for="CompanyID" asp-items="@EmployeeExtension.GetAllCompanyAsync()" class="form-control" id="compId">
-                                                        <option value="">Select Company</option>
-                                                    </select>
-                                                    <span asp-validation-for="CompanyID" class="text-danger"></span>
-                                                </div>
-                                            </div>
+                                        <label class="col-sm-3 col-form-label">Company Name<span class="required">*</span></label>
+                                        <div class="col-sm-3">
+                                            <select asp-for="CompanyID" asp-items="@EmployeeExtension.GetAllCompanyAsync()" class="form-control" id="compId">
+                                                <option value="">Select Company</option>
+                                            </select>
+                                            <span asp-validation-for="CompanyID" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="row mb-3">
-
-                                                <label class="col-sm-4 col-form-label">Department</label>
-                                                <div class="col-sm-8">
-                                                    @* <select asp-for="DepartmentID" asp-items="ViewBag.DepartmentText" class="form-control">
-                                                    <option value="">Select Department...</option>
-                                                    </select>
-                                                    <span asp-validation-for="DepartmentID" class="text-danger"></span>*@
-                                                    <select asp-for="DepartmentID" asp-items="ViewBag.DepartmentIdName" class="form-control" onchange="findByDeptID()" id="departmentDroptDown">
-                                                        <option value="">Select Department</option>
-                                                    </select>
-
-                                                </div>
-                                            </div>
+                                        <label class="col-sm-3 col-form-label">Department</label>
+                                        <div class="col-sm-3">
+                                            @* <select asp-for="DepartmentID" asp-items="ViewBag.DepartmentText" class="form-control">
+                                            <option value="">Select Department...</option>
+                                            </select>
+                                            <span asp-validation-for="DepartmentID" class="text-danger"></span>*@
+                                            <select asp-for="DepartmentID" asp-items="ViewBag.DepartmentIdName" class="form-control" id="departmentDroptDown">
+                                                <option value="">All Department</option>
+                                            </select>
                                         </div>
                                         @*<div class="row mb-3">
                                         <div class="col-sm-8">*@
@@ -91,21 +76,18 @@
                                         <option value="">Enter employee name</option>
                                         </datalist>
                                         </div>
-
                                         </div>
                                         </div>*@
-                                        <div class="col-md-6">
-                                            <div class="row mb-3">
-
-                                                <label class="col-sm-4 col-form-label">Employee Name</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="EmployeeName" placeholder="Search by Employee Name.">
-                                                    @*                                                        <datalist id="employeeList" onselect="">
-                                                    <option value="">Enter employee name</option>
-                                                    </datalist>*@
-                                                </div>
-                                            </div>
+                                        <label class="col-sm-3 col-form-label">Employee Name</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="EmployeeName" placeholder="Search by Employee Name.">
+                                            @*                                                        <datalist id="employeeList" onselect="">
+                                            <option value="">Enter employee name</option>
+                                            </datalist>*@
                                         </div>
+                                    </div>
+                                    <div class="text-end mb-3">
+                                        <button id="btnSearchEmployeePresent" type="button" onclick="findByDeptID()" class="btn btn-primary btn-info px-5 ladda-button">Search</button>
                                     </div>
                                     @*</form>*@
 
@@ -115,12 +97,12 @@
                                             <thead class="border border-dark">
                                                 <tr>
                                                     <th class="col-md-1">Sr No</th>
-                                                    <th class="col-md-3">Employee</th>
+                                                    <th class="col-md-4">Employee</th>
                                                     <th class="col-md-2">Department</th>
-                                                    <th class="col-md-2">In-Time</th>
-                                                    <th class="col-md-2">Out-Time</th>
-                                                    <th class="col-md-2">Break In(hrs)<span class="required">*</span></th>
-                                                    <th class="col-md-0"></th>
+                                                    <th class="col-md-1">In-Time</th>
+                                                    <th class="col-md-1">Out-Time</th>
+                                                    <th class="col-md-1">BreakTime</th>
+                                                    <th class="col-md-1">Overtime</th>
                                                 </tr>
                                             </thead>
                                             @if (Model != null && Model.getEmployeePresentList.Count() > 0)
@@ -139,14 +121,17 @@
                                                                 <input type="text" class="form-control" id="DepartmentName" asp-for="@item.DepartmentName" name="Department" readonly />
                                                             </td>
                                                             <td>
-                                                                <input type="time" class="form-control" id="InTime" asp-for="@item.InTime" name="InTime" value="10:15" />
+                                                                <input type="time" class="form-control" id="InTime" asp-for="@item.InTime" name="InTime" />
                                                             </td>
                                                             <td>
                                                                 <input type="time" class="form-control" id="OutTime" asp-for="@item.OutTime" name="OutTime" />
                                                             </td>
                                                             <td>
-                                                                <input type="text" class="form-control" id="BreakHour" asp-for="@item.BreakHour" name="BreakHour" aria-describedby="basic-addon1" />
-                                                                <span asp-validation-for="@item.BreakHour" class="input-group-addon glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                                <input type="text" class="form-control" id="BreakHour" asp-for="@item.BreakHour" name="BreakHour" />
+                                                                <span asp-validation-for="@item.BreakHour"></span>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control" id="Overtime" asp-for="@item.Overtime" name="Overtime" />
                                                             </td>
                                                             <td>
                                                                 <input type="text" class="form-control" id="EmployeeID" asp-for="@item.EmployeeID" name="EmployeeID" hidden />
@@ -164,21 +149,15 @@
                                             {
                                                 <tbody>
                                                     <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td>There is no employee.</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        There is no employee.
                                                     </tr>
                                                 </tbody>
                                             }
                                         </table>
                                     </div>
 
-                                    <div class="text-center">
-                                        <button id="btnSaveEmployeePresent" type="button" onclick="fnSubmitEmployeePresent()" class="btn btn-primary btn-info px-5 ladda-button">Submit</button>
+                                    <div class="text-end">
+                                        <button id="btnSaveEmployeePresent" type="button" onclick="fnSubmitEmployeePresent()" class="btn btn-outline-primary btn-info px-5">Submit</button>
                                         <a asp-area="Admin" asp-controller="OurProduct" asp-action="Index" class="btn btn-primary btn-info px-5 my-2">Back</a>
                                         @*<input type="reset" data-bs-dismiss="offcanvas" class="btn btn-primary btn-info px-5 my-2" value="Clear">*@
                                     </div>
@@ -213,7 +192,7 @@
         var empdata = [];
         $("#tbldata tr:not(:first)").each(function () {
             var tdlist = $(this).find("td");
-            var item = { SrNo: tdlist[0].innerHTML, EmployeeName: tdlist[1].children.EmployeeName.value, DepartmentName: tdlist[2].children.DepartmentName.value, InTime: tdlist[3].children.InTime.value, OutTime: tdlist[4].children.OutTime.value, BreakHour: tdlist[5].children.BreakHour.value, EmployeeID: tdlist[6].children[0].value, EmployeeTimeSheetDetailID: tdlist[6].children[2].value, EmployeeTimeSheetMasterID: tdlist[6].children[1].value }
+            var item = { SrNo: tdlist[0].innerHTML, EmployeeName: tdlist[1].children.EmployeeName.value, DepartmentName: tdlist[2].children.DepartmentName.value, InTime: tdlist[3].children.InTime.value, OutTime: tdlist[4].children.OutTime.value, BreakHour: tdlist[5].children.BreakHour.value, OverTime: tdlist[6].children.Overtime.value, EmployeeID: tdlist[7].children[0].value, EmployeeTimeSheetDetailID: tdlist[7].children[2].value, EmployeeTimeSheetMasterID: tdlist[7].children[1].value }
             empdata.push(item);
         });
 
@@ -241,8 +220,13 @@
                                 icon: 'bx bx-check-circle',
                                 continueDelayOnInactiveTab: false,
                                 position: 'bottom right',
-                                msg: data.message,
+                                msg: '@MessageHelper.Updated',
                             });
+                            setTimeout(
+                                function () {
+                                    window.location.reload();
+                                    //$("#formEmployeePresent").load(window.location.href + " #formEmployeePresent");
+                                }, 3000);
                             //window.location.reload().delay(20000);
                             //window.location.href = "/Admin/OurProduct/Index";
                         }
@@ -273,66 +257,19 @@
         });
     };
 
-    //function fnEmployeeSortPresent() {
-    //    //debugger;
-    //    if ($("#formEmployeeSortPresent").valid()) {
-    //        var l = laddaStart('btnSave');
-    //        console.log(l);
-    //        modeldata = $("#formEmployeeSortPresent").serialize();
-    //        $.ajax({
-    //            type: 'POST',
-    //            url: urlEmpSortPresent,
-    //            data: modeldata,
-    //            dataType: 'json',
-    //            beforeSend: function () { },
-    //            success: function (data) {
-    //                //window.location.reload().delay(3000);
-    //                if (data.status) {
-    //                    $("#canvas_Department").hide();//('hide');
-    //                    Lobibox.notify('success', {
-    //                        pauseDelayOnHover: true,
-    //                        size: 'mini',
-    //                        icon: 'bx bx-check-circle',
-    //                        continueDelayOnInactiveTab: false,
-    //                        position: 'bottom right',
-    //                        msg: data.message
-    //                    });
-    //                }
-    //                else {
-    //                    Lobibox.notify('error', {
-    //                        pauseDelayOnHover: true,
-    //                        size: 'mini',
-    //                        icon: 'bx bx-check-circle',
-    //                        continueDelayOnInactiveTab: false,
-    //                        position: 'bottom right',
-    //                        msg: data.message
-    //                    });
-    //                }
-    //            },
-    //            error: function (error) {
-    //                laddaStop(l);
-    //                Lobibox.notify('error', {
-    //                    pauseDelayOnHover: true,
-    //                    size: 'mini',
-    //                    icon: 'bx bx-check-circle',
-    //                    continueDelayOnInactiveTab: false,
-    //                    position: 'bottom right',
-    //                    msg: "@MessageHelper.Error"
-    //                });
-    //            }
-    //        }).always(function () {
-    //            hideLoader();
-    //        });
-    //    }
-    //};
-
     function findByDeptID() {
 
         var getDeptValue = document.getElementById('departmentDroptDown');
         var deptId = getDeptValue.options[getDeptValue.selectedIndex].value;
+
         var date = document.getElementById('todayDate').value;
+
         var companyId = document.getElementById('compId').value;
-        var parameter = { companyId: companyId, departmentId: deptId, presentDate: date }
+
+        var employeeName = document.getElementById('EmployeeName').value;
+
+        var parameter = { companyId: companyId, departmentId: deptId, presentDate: date, serachString: employeeName }
+
         $.ajax({
             type: 'GET',
             url: urlGetEmployeePresent,
@@ -342,7 +279,7 @@
             success: function (data) {
                 if (data != null) {
                     //document.getElementById('tbldata').value = data.employeepresent;
-                    //@Model = data.employeepresent;
+                    //Model = data.employeepresent;
                     //$('#formEmployeePresent').load(urlGetEmployeePresent, data, ' #formEmployeePresent');
                     //window.location.reload();
 
@@ -350,9 +287,13 @@
                     var listData = data.getEmployeePresentList;
                     $.each(listData, function (i, item) {
 
-                        rows = '<tr><td>' + item.srNo + '</td><td><input type="text" class="form-control" id="EmployeeName" asp-for="' + item.employeeName + '" value="' + item.employeeName + '" name="Employee" readonly></td><td><input type= "text" class="form-control" asp-for= "' + item.departmentName + '" value = "' + item.departmentName + '" id="DepartmentName" name="Department" readonly ></td><td><input type="time" class="form-control" id = "InTime" asp-for= ' + item.inTime + ' value = ' + item.inTime + ' name = "InTime"></td><td><input type= "time" class="form-control" id = "OutTime" asp-for= ' + item.outTime + ' value = ' + item.outTime + ' name = "OutTime"></td><td><input type= "text" class="form-control" id = "BreakHour" asp-for= ' + item.breakHour + ' value = ' + item.breakHour + '  name = "BreakHour" /> <span asp- validation -for= ' + item.breakHour + '></span></td><td><input type= "text" class= "form-control" id = "EmployeeID" asp-for= ' + item.employeeID + ' value = ' + item.employeeID + ' name = "EmployeeID" hidden > <input type="text" class="form-control" id ="EmployeeTimeSheetMasterID" asp-for= ' + item.employeeTimeSheetMasterID + ' value = ' + item.employeeTimeSheetMasterID + ' name = "EmployeeTimeSheetMasterID" hidden > <input type="text" class="form-control" id ="EmployeeTimeSheetDetailID" asp-for= ' + item.employeeTimeSheetDetailID + ' value = ' + item.employeeTimeSheetDetailID + ' name = "EmployeeTimeSheetDetailID" hidden></td></tr>';
+                        var intime = item.inTime.substring(11);
+                        var outtime = item.outTime.substring(11);
 
-                        $('tbody').append(rows);// Duplicate record appending on table.
+                        rows = '<tr><td>' + item.srNo + '</td><td><input type="text" class="form-control" id="EmployeeName" asp-for="' + item.employeeName + '" value="' + item.employeeName + '" name="Employee" readonly></td><td><input type= "text" class="form-control" asp-for= "' + item.departmentName + '" value = "' + item.departmentName + '" id="DepartmentName" name="Department" readonly ></td><td><input type="time" class="form-control" id = "InTime" asp-for= ' + intime + ' value = ' + intime + ' name = "InTime"></td><td><input type= "time" class="form-control" id = "OutTime" asp-for= ' + outtime + ' value = ' + outtime + ' name = "OutTime"></td><td><input type= "time" class="form-control" id = "BreakHour" asp-for= ' + item.breakHour + ' value = ' + item.breakHour + ' name = "BreakHour" /><span asp-validation-for= ' + item.breakHour + '></span></td><td><input type= "time" class="form-control" id = "Overtime" asp-for= ' + item.overtime + ' value = ' + item.overtime + ' name = "Overtime" /></td><td><input type= "text" class= "form-control" id = "EmployeeID" asp-for= ' + item.employeeID + ' value = ' + item.employeeID + ' name = "EmployeeID" hidden > <input type="text" class="form-control" id ="EmployeeTimeSheetMasterID" asp-for= ' + item.employeeTimeSheetMasterID + ' value = ' + item.employeeTimeSheetMasterID + ' name = "EmployeeTimeSheetMasterID" hidden ><input type="text" class="form-control" id ="EmployeeTimeSheetDetailID" asp-for= ' + item.employeeTimeSheetDetailID + ' value = ' + item.employeeTimeSheetDetailID + ' name = "EmployeeTimeSheetDetailID" hidden></td></tr>';
+
+                        $('tbody').append(rows);
+
                     });
                 }
                 else {
@@ -382,10 +323,84 @@
         });
     };
 
-
     document.getElementById('todayDate').valueAsDate = new Date();
 
+                                                            //function fnEmployeeSortPresent() {
+                                                            //    //debugger;
+                                                            //    if ($("#formEmployeeSortPresent").valid()) {
+                                                            //        var l = laddaStart('btnSave');
+                                                            //        console.log(l);
+                                                            //        modeldata = $("#formEmployeeSortPresent").serialize();
+                                                            //        $.ajax({
+                                                            //            type: 'POST',
+                                                            //            url: urlEmpSortPresent,
+                                                            //            data: modeldata,
+                                                            //            dataType: 'json',
+                                                            //            beforeSend: function () { },
+                                                            //            success: function (data) {
+                                                            //                //window.location.reload().delay(3000);
+                                                            //                if (data.status) {
+                                                            //                    $("#canvas_Department").hide();//('hide');
+                                                            //                    Lobibox.notify('success', {
+                                                            //                        pauseDelayOnHover: true,
+                                                            //                        size: 'mini',
+                                                            //                        icon: 'bx bx-check-circle',
+                                                            //                        continueDelayOnInactiveTab: false,
+                                                            //                        position: 'bottom right',
+                                                            //                        msg: data.message
+                                                            //                    });
+                                                            //                }
+                                                            //                else {
+                                                            //                    Lobibox.notify('error', {
+                                                            //                        pauseDelayOnHover: true,
+                                                            //                        size: 'mini',
+                                                            //                        icon: 'bx bx-check-circle',
+                                                            //                        continueDelayOnInactiveTab: false,
+                                                            //                        position: 'bottom right',
+                                                            //                        msg: data.message
+                                                            //                    });
+                                                            //                }
+                                                            //            },
+                                                            //            error: function (error) {
+                                                            //                laddaStop(l);
+                                                            //                Lobibox.notify('error', {
+                                                            //                    pauseDelayOnHover: true,
+                                                            //                    size: 'mini',
+                                                            //                    icon: 'bx bx-check-circle',
+                                                            //                    continueDelayOnInactiveTab: false,
+                                                            //                    position: 'bottom right',
+                                                            //                    msg: "MessageHelper.Error"
+                                                            //                });
+                                                            //            }
+                                                            //        }).always(function () {
+                                                            //            hideLoader();
+                                                            //        });
+                                                            //    }
+                                                            //};
+
+                                                            //function goforData() {
+                                                            //    var getDeptValue = document.getElementById('departmentDroptDown');
+                                                            //    var deptId = getDeptValue.options[getDeptValue.selectedIndex].value;
+
+                                                            //    var date = document.getElementById('todayDate').value;
+
+                                                            //    var companyId = document.getElementById('compId').value;
+
+                                                            //    var employeeName = document.getElementById('EmployeeName').value;
+
+                                                            //    var parameter = { companyId: companyId, departmentId: deptId, presentDate: date, serachString: employeeName }
+
+                                                            //    var _id = document.getElementById('EmployeeCategoryID').value;
+                                                            //    var urlWithId = urlGetEmployeePresent + '?companyId=' + _id + '&companyId=' + companyId + '&departmentId=' + deptId + '&presentDate='date+'&serachString=' + employeeName;
+                                                            //    debugger;
+                                                            //    //var urlWithId = urlGetEmployeePresent + parameter;
+                                                            //    //debugger;
+                                                            //    window.location.href = urlWithId;
+                                                            //};
+
 </script>
+
+<!--
 @*<script src="http//cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
 <script src="~/js/bootstrap3-typeahead.min.js"></script>
 <script type="text/javascript">
@@ -455,4 +470,4 @@
             minLength: 1
         });
     });
-</script>*@
+</script>*@-->

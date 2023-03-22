@@ -9,9 +9,9 @@ namespace Business.Entities.Employee
         public int CompanyID { get; set; }
         public int EmployeeCategoryID { get; set; }
         public int EmployeeCategorytext { get; set; }
-        public DateTime JoiningDate { get; set; }
+        public DateTime? JoiningDate { get; set; }
         public int EmploymentStatusID { get; set; }
-        public DateTime ConfirmationDate { get; set; }
+        public DateTime? ConfirmationDate { get; set; }
         public int EmploymentTypeID { get; set; }
         public string EmploymentTypeText { get; set; }
         public string YearlyCTC { get; set; }
