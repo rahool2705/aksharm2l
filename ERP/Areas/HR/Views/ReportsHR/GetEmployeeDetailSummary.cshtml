@@ -1,0 +1,104 @@
+﻿@using Business.Entities.HRReports;
+@using System.Data;
+@*@model EmployeeDetailSearch*@
+@model DataSet;
+
+@{
+    ViewData["Title"] = "Employee Detail Summary";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+@{
+    List<string> strTimeforRow = new List<string>();
+}
+<div class="container" id="employeeDetailSummary">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+            <div class="card border-0 shadow rounded-3">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="ps-3 col-md-6">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0 p-0">
+                                    <li class="breadcrumb-item active" aria-current="page">Employee Summary</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="row pt-1">
+                        <div class="col-md-12">
+                            <div class="row">
+                                @*<form id="formEmployeeDetail">*@
+                                <div class="row">
+                                    <label class="col-sm-3 col-form-label">Employee Category</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" id="EmployeeCategoryID" name="EmployeeCategoryID" asp-items="@EmployeeExtension.GetAllEmployeeCategoryMaster()">
+                                            <option value="">Select Category</option>
+                                        </select>
+                                    </div>
+
+                                    <label class="col-sm-3 col-form-label">Search Keyword</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="EmployeeName" placeholder="Search by Employee detail.">
+                                    </div>
+                                </div>
+                                   
+                                    <div class="row">
+                                        <label class="col-sm-3 col-form-label">Department</label>
+                                        <div class="col-sm-3">
+                                            <select class="form-control" id="DepartmentID" name="DepartmentID" asp-items="@EmployeeExtension.GetAllDepartmentText()">
+                                                <option value="">Select Department</option>
+                                            </select>
+                                        </div>
+
+                                    <div class="text-end mb-3">
+                                        <button id="btnSearchEmployeeDetail" type="button" class="btn btn-outline-primary btn-info px-5">Search</button>
+                                    </div>
+                                    </div>
+                                    
+                                @*</form>*@
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="EmployeeSummaryTable">
+                        <div class="row" style="overflow:auto; height:350px; width:100%;">
+                            <table class="table table-striped" style="font-size:small;">
+                                <!--style="display:block; overflow: auto; white-space: nowrap;"-->
+                                <thead style="position: sticky; top: 0; background-color:darkslategrey; color:papayawhip; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: x-small;">
+                                    <tr>
+                                        @foreach (DataColumn dataColumn in Model.Tables[0].Columns)
+                                        {
+                                            strTimeforRow.Add(dataColumn.ToString());
+                                            <th>@dataColumn.ToString()</th>
+                                        }
+                                    </tr>
+                                </thead>
+                                @foreach (DataRow row in Model.Tables[0].Rows)
+                                {
+                                    <tr>
+                                        @foreach (string timeRow in strTimeforRow)
+                                        {
+                                            @if (!string.IsNullOrEmpty(row[timeRow].ToString()))
+                                            {
+                                                <td>@row[timeRow]</td>
+                                            }
+                                            else
+                                            {
+                                                <td>-</td>
+                                            }
+                                        }
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 

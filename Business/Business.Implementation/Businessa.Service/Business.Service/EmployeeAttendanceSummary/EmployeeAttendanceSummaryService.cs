@@ -59,5 +59,46 @@ namespace Business.Service.EmployeeAttendanceSummary
                     table.Dispose();
             }
         }
+
+        public async Task<DataSet> GetEmployeeAllDetailSummary(int employeecategoryId = 0, int departmentId = 0, string searchstring = null)
+        {
+            DataTable table = new DataTable();
+            //int totalItemCount = 0;
+            //PagedDataTable<Entities.EmployeeAttendanceSummary.EmployeeAttendanceSummary> lst = null;
+            try
+            {
+                SqlParameter[] param = {
+                        new SqlParameter("@EmployeeCategoryId",employeecategoryId )
+                        ,new SqlParameter("@DepartmentID", departmentId)
+                        ,new SqlParameter("@SearchString", searchstring)
+
+                        };
+                DataSet ds = await SqlHelper.ExecuteDatasetAsync(connection, CommandType.StoredProcedure, "Usp_Report_EmployeeDetailSummary", param);
+                //{
+                //    if (ds.Tables.Count > 0)
+                //    {
+                //        table = ds.Tables[0];
+                //        if (table.Rows.Count > 0)
+                //        {
+                //            if (table.ContainColumn("TotalCount"))
+                //                totalItemCount = Convert.ToInt32(table.Rows[0]["TotalCount"]);
+                //            else
+                //                totalItemCount = table.Rows.Count;
+                //        }
+                //    }
+                //lst = table.ToPagedDataTableList<Entities.EmployeeAttendanceSummary.EmployeeAttendanceSummary>(1, 1000, totalItemCount);
+                return ds;
+                //}
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (table != null)
+                    table.Dispose();
+            }
+        }
     }
 }
