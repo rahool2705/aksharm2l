@@ -44,20 +44,20 @@
                                         <input type="text" class="form-control" id="EmployeeName" placeholder="Search by Employee detail.">
                                     </div>
                                 </div>
-                                   
-                                    <div class="row">
-                                        <label class="col-sm-3 col-form-label">Department</label>
-                                        <div class="col-sm-3">
-                                            <select class="form-control" id="DepartmentID" name="DepartmentID" asp-items="@EmployeeExtension.GetAllDepartmentText()">
-                                                <option value="">Select Department</option>
-                                            </select>
-                                        </div>
+
+                                <div class="row">
+                                    <label class="col-sm-3 col-form-label">Department</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" id="DepartmentID" name="DepartmentID" asp-items="@EmployeeExtension.GetAllDepartmentText()">
+                                            <option value="">Select Department</option>
+                                        </select>
+                                    </div>
 
                                     <div class="text-end mb-3">
-                                        <button id="btnSearchEmployeeDetail" type="button" class="btn btn-outline-primary btn-info px-5">Search</button>
+                                        <button id="btnSearchEmployeeDetail" type="button" onclick="fnSearchEmployeeDetail()" class="btn btn-outline-primary btn-info px-5">Search</button>
                                     </div>
-                                    </div>
-                                    
+                                </div>
+
                                 @*</form>*@
                             </div>
 
@@ -65,40 +65,66 @@
                     </div>
 
                     <div id="EmployeeSummaryTable">
-                        <div class="row" style="overflow:auto; height:350px; width:100%;">
-                            <table class="table table-striped" style="font-size:small;">
-                                <!--style="display:block; overflow: auto; white-space: nowrap;"-->
-                                <thead style="position: sticky; top: 0; background-color:darkslategrey; color:papayawhip; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: x-small;">
-                                    <tr>
-                                        @foreach (DataColumn dataColumn in Model.Tables[0].Columns)
-                                        {
-                                            strTimeforRow.Add(dataColumn.ToString());
-                                            <th>@dataColumn.ToString()</th>
-                                        }
-                                    </tr>
-                                </thead>
-                                @foreach (DataRow row in Model.Tables[0].Rows)
-                                {
-                                    <tr>
-                                        @foreach (string timeRow in strTimeforRow)
-                                        {
-                                            @if (!string.IsNullOrEmpty(row[timeRow].ToString()))
+                        @if (Model.Tables[0].Rows.Count > 0)
+                        {
+                            <div class="row" style="overflow:auto; height:auto; width:100%;">
+                                <table class="table table-striped" style="font-size:small;">
+                                    <!--style="display:block; overflow: auto; white-space: nowrap;"-->
+                                    <thead style="position: sticky; top: 0; background-color:darkslategrey; color:papayawhip; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: x-small;">
+                                        <tr>
+                                            @foreach (DataColumn dataColumn in Model.Tables[0].Columns)
                                             {
-                                                <td>@row[timeRow]</td>
+                                                strTimeforRow.Add(dataColumn.ToString());
+                                                <th>@dataColumn.ToString()</th>
                                             }
-                                            else
+                                        </tr>
+                                    </thead>
+                                    @foreach (DataRow row in Model.Tables[0].Rows)
+                                    {
+                                        <tr>
+                                            @foreach (string timeRow in strTimeforRow)
                                             {
-                                                <td>-</td>
+                                                @if (!string.IsNullOrEmpty(row[timeRow].ToString()))
+                                                {
+                                                    <td>@row[timeRow]</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>-</td>
+                                                }
                                             }
-                                        }
-                                    </tr>
-                                }
-                            </table>
-                        </div>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-center">
+                                <h1><iconify-icon icon="mdi:text-box-remove-outline" style="color: #37569d;" width="100"></iconify-icon></h1>
+                                <h3 style="color: red;">No Data Found</h3>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
- 
+@await Html.PartialAsync("_ValidationScriptsPartial")
+<script type="text/javascript">
+    function fnSearchEmployeeDetail() {
+
+        var employeeCategoryId = $('#EmployeeCategoryID').val();
+
+        var departmentId = $('#DepartmentID').val();
+
+        var employeeId = $('#EmployeeName').val();
+
+        var empurl = '@Url.Action("GetEmployeeDetailSummary","ReportsHR")';
+
+        var empDetailUrl = empurl + '?employeeCategoryId=' + employeeCategoryId + '&departmentId=' + departmentId + '&searchstring=' + employeeId;
+
+        window.location.href = empDetailUrl;
+    };
+</script>

@@ -45,7 +45,7 @@
 
         <div class="row mb-3">
             <label for="" class="col-sm-3 col-form-label ">Employee Category:</label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
                 <select class="form-select form-selectlist" asp-for="EmployeeCategoryID" id="EmployeeCategoryID" name="EmployeeCategoryID" asp-items="@EmployeeExtension.GetAllEmployeeCategoryMaster()">
                     <option value="">--Select--</option>
                 </select>
@@ -56,7 +56,7 @@
         {
             <div class="row mb-3">
                 <label for="" class="col-sm-3 col-form-label ">Joining Date:</label>
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                     <input type="date" class="form-control" asp-for="JoiningDate" id="JoiningDate" name="JoiningDate" placeholder="">
                 </div>
             </div>
@@ -65,7 +65,7 @@
         {
             <div class="row mb-3">
                 <label for="" class="col-sm-3 col-form-label ">Joining Date:</label>
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                     <input type="date" value="" class="form-control" asp-for="JoiningDate" id="JoiningDate" name="JoiningDate" placeholder="">
                 </div>
             </div>
@@ -73,7 +73,7 @@
 
         <div class="row mb-3">
             <label for="" class="col-sm-3 col-form-label ">Employement Status:</label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
                 <select class="form-select form-selectlist" asp-for="EmploymentStatusID" id="EmploymentStatusID" name="EmploymentStatusID" asp-items="@EmployeeExtension.GetAllEmploymentStatus()">
                     <option value="">--Select--</option>
                 </select>
@@ -84,7 +84,7 @@
         {
             <div class="row mb-3">
                 <label for="" class="col-sm-3 col-form-label ">Confirmation Date:</label>
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                     <input type="date" class="form-control" asp-for="ConfirmationDate" id="ConfirmationDate" name="ConfirmationDate" placeholder="">
                 </div>
             </div>
@@ -94,7 +94,7 @@
         {
             <div class="row mb-3">
                 <label for="" class="col-sm-3 col-form-label ">Confirmation Date:</label>
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                     <input type="date" value="" class="form-control" asp-for="ConfirmationDate" id="ConfirmationDate" name="ConfirmationDate" placeholder="">
                 </div>
             </div>
@@ -103,7 +103,7 @@
 
         <div class="row mb-3">
             <label for="" class="col-sm-3 col-form-label ">Employment Type:</label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
                 <select class="form-select form-selectlist" asp-for="EmploymentTypeID" id="EmploymentTypeID" name="EmploymentTypeID" asp-items="@EmployeeExtension.GetAllEmploymentType()" onchange="hideSecondDropdown()">
                     <option value="">--Select--</option>
                 </select>
@@ -114,7 +114,7 @@
         {*@
         <div class="row mb-3" id="divContractorList">
             <label for="" class="col-sm-3 col-form-label ">Contractor Name:</label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
                 <select class="form-select form-selectlist" asp-for="ContractorID" id="ContractorID" name="ContractorID" asp-items="@EmployeeExtension.GetAllContractorList()">
                     <option value="">--Select--</option>
                 </select>
@@ -124,18 +124,21 @@
 
         <div class="row mb-3">
             <label for="" class="col-sm-3 col-form-label ">Yearly CTC:</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" asp-for="YearlyCTC" id="YearlyCTC" name="YearlyCTC" placeholder="">
+            <div class="col-sm-8">
+                <input type="text" class="form-control" asp-for="YearlyCTC" id="YearlyCTC" name="YearlyCTC" placeholder="" onchange="fnCalculateCTC()" required>
+                <span asp-validation-for="YearlyCTC"></span>
             </div>
         </div>
 
         <div class="row mb-3">
             <label for="" class="col-sm-3 col-form-label ">Monthly CTC:</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" asp-for="MonthlyCTC" id="MonthlyCTC" name="MonthlyCTC" placeholder="">
+            <div class="col-sm-8">
+                <input type="text" class="form-control" asp-for="MonthlyCTC" id="MonthlyCTC" name="MonthlyCTC" placeholder="" onchange="fnCalculateCTC()" required>
+                <span asp-validation-for="MonthlyCTC"></span>
             </div>
         </div>
 
+        <!--
         @*<div class="row mb-3">
         <div class="col-sm-9">
         <a class='btn btn-primary btn-info px-5 ladda-button'>Gate Pass</a>
@@ -145,19 +148,18 @@
         <div class="col-sm-9">
         <a class='btn btn-primary btn-info px-5 ladda-button'>Canteen Detail</a>
         </div>
-        </div>*@
+        </div>*@-->
 
     </div>
 
+    <!--
     @* <div class="col-sm-12 col-md-6 col-lg-6">
-
     <div class="row mb-3">
     <label for="" class="col-sm-3 col-form-label ">Website:</label>
     <div class="col-sm-9">
     <input type="text" class="form-control" asp-for="Website" id="Website" name="Website" placeholder="">
     </div>
     </div>
-
     <div class="row mb-3">
     <div class="col-sm-9">
     <a class='btn btn-primary btn-info px-5 ladda-button'>Employee Time Sheet</a>
@@ -168,19 +170,16 @@
     <a class='btn btn-primary btn-info px-5 ladda-button'>Employee Leave</a>
     </div>
     </div>
-
     <div class="row mb-3">
     <div class="col-sm-9">
     <a class='btn btn-primary btn-info px-5 ladda-button' asp-area="Admin" asp-controller="Employee" asp-action="EmployeeSalaryBreakUp">Employee Salary</a>
     </div>
     </div>
-
     <div class="row mb-3">
     <div class="col-sm-9">
     <a class='btn btn-primary btn-info px-5 ladda-button'>Employee Task</a>
     </div>
     </div>
-
     <div class="row mb-3">
     <div class="col-sm-9">
     <a class='btn btn-primary btn-info px-5 ladda-button'>Experiences</a>
@@ -191,8 +190,8 @@
     <a class='btn btn-primary btn-info px-5 ladda-button'>Education</a>
     </div>
     </div>
-
     </div>*@
+    -->
 
     <div class="text-center">
         <button type="submit" onclick="fnSaveEmployeeHRAdministration()" class="btn btn-primary btn-info px-5 ladda-button" id="btnSaveEmployeeHRAdministration">Save</button>
@@ -218,35 +217,48 @@
 <script type="text/javascript">
 
     function fnSaveEmployeeHRAdministration() {
-        var ls = laddaStart('btnSaveEmployeeHRAdministration');
-        modeldata = $("#formAddUpdateEmployeeHRAdministration").serialize();
-        $.ajax({
-            type: 'POST',
-            url: '/Admin/Employee/AddUpdateEmployeeHRAdministration/',
-            data: modeldata,
-            dataType: 'json',
-            beforeSend: function () { },
-            success: function (data) {
-                console.log(data.status);
-                if (data.status) {
-                    //notification
-                    //$("#canvasEmployeeHRAdministration").hide();//('hide');
-                    var test = Lobibox.notify('success', {
-                        pauseDelayOnHover: true,
-                        size: 'mini',
-                        icon: 'bx bx-check-circle',
-                        continueDelayOnInactiveTab: false,
-                        position: 'bottom right',
-                        msg: data.message,
-                    });
-                    setTimeout(
-                        function () {
-                            //window.location.reload();
-                            $("#formAddUpdateEmployeeHRAdministration").load(window.location.href + " #formAddUpdateEmployeeHRAdministration");
-                        }, 3000);
+     //   $('formAddUpdateEmployeeHRAdministration').valid(){
+            var ls = laddaStart('btnSaveEmployeeHRAdministration');
+            modeldata = $("#formAddUpdateEmployeeHRAdministration").serialize();
+            $.ajax({
+                type: 'POST',
+                url: '/Admin/Employee/AddUpdateEmployeeHRAdministration/',
+                data: modeldata,
+                dataType: 'json',
+                beforeSend: function () { },
+                success: function (data) {
+                    console.log(data.status);
+                    if (data.status) {
+                        //notification
+                        //$("#canvasEmployeeHRAdministration").hide();//('hide');
+                        var test = Lobibox.notify('success', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: data.message,
+                        });
+                        setTimeout(
+                            function () {
+                                //window.location.reload();
+                                $("#formAddUpdateEmployeeHRAdministration").load(window.location.href + " #formAddUpdateEmployeeHRAdministration");
+                            }, 3000);
 
-                }
-                else {
+                    }
+                    else {
+                        Lobibox.notify('error', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: '@MessageHelper.Error'
+                        });
+                    }
+                },
+                error: function (error) {
+                    laddaStop(ls);
                     Lobibox.notify('error', {
                         pauseDelayOnHover: true,
                         size: 'mini',
@@ -256,22 +268,10 @@
                         msg: '@MessageHelper.Error'
                     });
                 }
-            },
-            error: function (error) {
-                laddaStop(ls);
-                Lobibox.notify('error', {
-                    pauseDelayOnHover: true,
-                    size: 'mini',
-                    icon: 'bx bx-check-circle',
-                    continueDelayOnInactiveTab: false,
-                    position: 'bottom right',
-                    msg: '@MessageHelper.Error'
-                });
-            }
-        }).always(function () {
-            hideloader();
-        });
-
+            }).always(function () {
+                hideloader();
+            });
+       // };
     };
 
     $(document).ready(function () {

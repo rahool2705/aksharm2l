@@ -7,56 +7,14 @@
 }
 @{
     List<string> strTimeforRow = new List<string>();
+    DateTime date = ViewBag.MonthYear;
+    //string monthyear = string.Concat(date.Year + "-" + date.Month);
+    string monthyear = date.ToString("yyyy-MM");
+    int empCatId = ViewBag.EmployeeCategoryID;
+    int deptId = ViewBag.DepartmentID;
+
 }
-<head>
-    <link href="~/admin/assets/vendors/typehead/jquery.typeahead.min.css" rel="stylesheet" />
-    <script src="~/admin/assets/vendors/typehead/jquery.typeahead.min.js"></script>
 
-    @*   <script>
-    $(function () {
-    'use strict';
-    var map = {};
-    $(".bs-autocomplete").typeahead({
-    minLength: 3,
-    source: function (request, response) {
-    $.ajax({
-    url: '@Url.Action("GetEmployees","ReportsHR")',
-    data: { 'empString': request },
-    type: "GET",
-    contentType: "json",
-    success: function (employeeresult) {
-    var items = [];
-    map = {};
-    $.each(employeeresult, function (i, item) {
-    var id = item.val;
-    var name = item.label;
-    map[name] = {
-    id: id,
-    name: name
-    };
-    items.push(name);
-    });
-    response(items);
-    alert(response(items));
-    },
-    error: function (response) {
-    alert(response.responseText);
-    },
-    failure: function (response) {
-    }
-    });
-    },
-    updater: function (item) {
-
-    //If simultaneously want to update value somewhere else $("#update").val(map[item].id); return item;
-    $("#employeeText").val(map[item].val);
-    //console.log('updater', map[item].zcode);
-    return item;
-    }
-    });
-    });
-    </script>*@
-</head>
 <div class="container" id="employeePresent">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
@@ -77,13 +35,13 @@
                     <div class="row mb-1">
                         <label class="col-3 col-form-label">Employee Category</label>
                         <div class="col-3">
-                            <select class="form-control" id="EmployeeCategoryID" name="EmployeeCategoryID" asp-items="@EmployeeExtension.GetAllEmployeeCategoryMaster()">
+                            <select class="form-control" id="EmployeeCategoryID" name="EmployeeCategoryID" asp-items="@EmployeeExtension.GetAllEmployeeCategoryMaster()" asp-for="@empCatId">
                                 <option value="">Select Category</option>
                             </select>
                         </div>
                         <label class="col-3 col-form-label">Select Month & Year</label>
                         <div class="col-3">
-                            <input type="month" class="form-control" id="month">
+                            <input type="month" class="form-control" id="month" value="@monthyear">
                         </div>
                     </div>
 
@@ -91,58 +49,78 @@
                         <label class="col-sm-3 col-form-label">Search Keyword</label>
                         <div class="col-sm-3" id="idForDropdown">
                             <input type="hidden" id="EmployeeID" class="form-control" />
-                            <input type="text" class="form-control bs-autocomplete" id="employeeText" name="EmployeeName" placeholder="Enter Searching text.">
+                            <input type="text" class="form-control bs-autocomplete" id="employeeText" name="EmployeeName" placeholder="Enter Searching text." value="@ViewBag.SearchString">
+
                             <!--    Important code block.
                             <div class="container text-center">
                                 <input class="form-control" id="EmployeeID" oninput="fnFindEmployee()" list="employeeList" />
                                 <datalist id="employeeList"></datalist>
                             </div>
                             -->
-                            @* <input type="text" class="form-control" id="EmployeeID" name="EmployeeID" value="Search Employee Here">*@
+
                         </div>
                         <label class="col-3 col-form-label">Department</label>
                         <div class="col-3">
-                            <select class="form-control" id="DepartmentID" name="DepartmentID" asp-items="@EmployeeExtension.GetAllDepartmentText()">
+                            <select class="form-control" id="DepartmentID" name="DepartmentID" asp-items="@EmployeeExtension.GetAllDepartmentText()" asp-for="@deptId">
                                 <option value="">Select Department</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="text-end mb-3">
-                        <button id="btnSearchEmployeePresent" type="button" onclick="fnSearch()" class="btn btn-outline-primary px-5 btn-sm">Search</button>
+                        <input type="button" value="Export to excel" class="btn btn-outline-primary px-5 btn-sm" onclick="fnSearch(true)" />
+
+                        <button id="btnSearchEmployeePresent" type="button" onclick="fnSearch(false)" class="btn btn-outline-primary px-5 btn-sm">Search</button>
                     </div>
 
                     <div id="EmployeeAddessTable">
-                        <div class="row" style="overflow:auto; height:350px; width:100%;">
-                            <table class="table table-striped" style="font-size:small;">
-                                <!--style="display:block; overflow: auto; white-space: nowrap;"-->
-                                <thead style="position: sticky; top: 0; background-color:darkslategrey; color:papayawhip; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: x-small;">
-                                    <tr>
-                                        @foreach (DataColumn dataColumn in Model.Tables[0].Columns)
-                                        {
-                                            strTimeforRow.Add(dataColumn.ToString());
-                                            <th>@dataColumn.ToString()</th>
-                                        }
-                                    </tr>
-                                </thead>
-                                @foreach (DataRow row in Model.Tables[0].Rows)
-                                {
-                                    <tr>
-                                        @foreach (string timeRow in strTimeforRow)
-                                        {
-                                            @if (!string.IsNullOrEmpty(row[timeRow].ToString()))
+                        @if (Model.Tables[0].Columns.Count > 2)
+                        {
+                            <div class="row" style="overflow:auto; height:350px; width:100%;">
+                                <table class="table table-striped" style="font-size:small;">
+                                    <!--style="display:block; overflow: auto; white-space: nowrap;"-->
+                                    <thead style="position: sticky; top: 0; background-color:darkslategrey; color:papayawhip; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: x-small;">
+                                        <tr>
+                                            @foreach (DataColumn dataColumn in Model.Tables[0].Columns)
                                             {
-                                                <td>@row[timeRow]</td>
-                                            }
-                                            else
-                                            {
-                                                <td>-</td>
-                                            }
+                                                @*                            if (string.Equals(dataColumn.ToString(), "{Column1}"))
+                                        {
+                                        <th>No records found</th>
                                         }
-                                    </tr>
-                                }
-                            </table>
-                        </div>
+                                        else
+                                        {*@
+                                                strTimeforRow.Add(dataColumn.ToString());
+                                                <th>@dataColumn.ToString()</th>
+                                                @*}*@
+                                            }
+                                        </tr>
+                                    </thead>
+                                    @foreach (DataRow row in Model.Tables[0].Rows)
+                                    {
+                                        <tr>
+                                            @foreach (string timeRow in strTimeforRow)
+                                            {
+                                                @if (!string.IsNullOrEmpty(row[timeRow].ToString()))
+                                                {
+                                                    <td>@row[timeRow]</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>-</td>
+                                                }
+                                            }
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-center">
+                                <h1><iconify-icon icon="mdi:text-box-remove-outline" style="color: #37569d;" width="100"></iconify-icon></h1>
+                                <h3 style="color: red;">No Data Found</h3>
+                            </div>
+                        }
                     </div>
 
                 </div>
@@ -154,50 +132,31 @@
 
 @await Html.PartialAsync("_ValidationScriptsPartial")
 <script type="text/javascript">
-    function fnSearch() {
-        alert('fnSearch');
-
-        //var datalistItem = $("#employeeList").val();
-        //var datalistItem = document.getElementById('employeeList').childNodes[0];
-        //const input = document.getElementById("EmployeeID");
-        //const datalist = document.getElementById("employeeList");
-        //const options = datalist.options;
-        //debugger;
-        //input.addEventListener("change", function () {
-        //    const value = input.value;
-        //    debugger;
-        //    for (let i = 0; i < options.length; i++) {
-        //        debugger;
-        //        if (options[i].value === value) {
-        //            console.log("Selected option value:", options[i].value);
-        //            break;
-        //        }
-        //    }
-        //});
-        //var selectedEmployee = datalistItem.childNodes[0].nodeValue.toString();
-        //var selectedEmployee = datalistItem.option[datalistItem.nodeValue].value;
-        //debugger;
-        //alert('you select :' + selectedEmployee);
+    function fnSearch(obj) {
 
         var employeeCategoryId = $('#EmployeeCategoryID').val();
-        var monthDate = $('#month').val();
+
+        var departmentId = $('#DepartmentID').val();
+
         var employeeId = $('#employeeText').val();
-        alert('id is  ' + employeeId);
+
+        var monthDate = $('#month').val();
         //const dateString = "2023-03-16";
         const year = monthDate.slice(0, 4); // "2023"
         const month = monthDate.slice(5, 7);
-        //alert('employeeCategoryId' + employeeCategoryId);
-        //alert('monthDate' + monthDate);
-        //alert('employeeId' + employeeId);
+
+        var isdownload = obj;
+
         var url = '@Url.Action("GetEmployeeAttendanceSummary","ReportsHR")';
-        //employeeCategoryId = 0, int employeeId = 0, int month = 3, int year
-        var newurl = url + '?employeeCategoryId=' + employeeCategoryId + '&employeeId=' + employeeId + '&month=' + month + '&year=' + year;
+
+        var newurl = url + '?employeeCategoryId=' + employeeCategoryId + '&employeeId=' + employeeId + '&month=' + month + '&year=' + year + '&departmentId=' + departmentId + '&searchString=' + employeeId + '&isDownload=' + isdownload;
+
         window.location.href = newurl;
     };
 </script>
 
 
-<!--
+<!--    Important Code Block
 @*@section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
