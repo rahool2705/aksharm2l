@@ -18,7 +18,7 @@ namespace Business.Service.EmployeeAttendanceSummary
             connection = _config.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<DataSet> GetEmployeeAllAttendanceSummary(int employeeCategoryId = 0, int employeeId = 0, int month = 0, int year = 0)
+        public async Task<DataSet> GetEmployeeAllAttendanceSummary(int employeeCategoryId = 0, int employeeId = 0, int month = 0, int year = 0, int departmentId = 0, string searchString = "")
         {
             DataTable table = new DataTable();
             //int totalItemCount = 0;
@@ -30,7 +30,8 @@ namespace Business.Service.EmployeeAttendanceSummary
                         ,new SqlParameter("@EmployeeID", employeeId)
                         ,new SqlParameter("@Month", month)
                         ,new SqlParameter("@Year", year)
-
+                        ,new SqlParameter("@SearchString", searchString)
+                        ,new SqlParameter("@DepartmentID", departmentId)
                         };
                 DataSet ds = await SqlHelper.ExecuteDatasetAsync(connection, CommandType.StoredProcedure, "Usp_Report_EmployeeAttendanceSummary", param);
                 //{
