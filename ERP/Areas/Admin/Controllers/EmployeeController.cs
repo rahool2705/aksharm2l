@@ -736,24 +736,25 @@ namespace ERP.Areas.Admin.Controllers
         #region Employee Present
 
         [HttpGet]
-        public ActionResult GetEmployeePresent(int companyId, int departmentId, DateTime? presentDate)
+        public ActionResult GetEmployeePresent(int companyId, int departmentId, DateTime? presentDate, string serachString)
         {
             try
             {
 
                 if (presentDate == null)
                     presentDate = DateTime.Now.Date;
-                string serachString = string.Empty;
+                //string serachString = string.Empty;
                 EmployeePresent employeepresent = new EmployeePresent();
                 List<EmployeePresentList> employeePresentList2 = new List<EmployeePresentList>();
 
                 var listDepartment = _masterService.GetAllDepartments();
                 ViewData["DepartmentIdName"] = new SelectList(listDepartment, "DepartmentID", "DepartmentName");
 
+                int UID = USERID;
                 /*  var DepartmentList = _masterService.GetAllDepartments();
                   ViewData["DepartmentText"] = new SelectList(DepartmentList, "DepartmentID", "DepartmentText");*/
 
-                var employeeeList = _masterService.GetAllEmployeesTimeSheet(companyId, departmentId, presentDate, serachString);
+                var employeeeList = _masterService.GetAllEmployeesTimeSheet(companyId, departmentId, presentDate, serachString, UID);
 
                 foreach (var employeeList in employeeeList)
                 {
@@ -770,6 +771,7 @@ namespace ERP.Areas.Admin.Controllers
                     employeePresentList1.InTime = employeeList.InTime;
                     employeePresentList1.OutTime = employeeList.OutTime;
                     employeePresentList1.BreakHour = employeeList.BreakHour;
+                    employeePresentList1.Overtime = employeeList.Overtime;
                     employeePresentList2.Add(employeePresentList1);
                 }
                 employeepresent.CompanyID = COMPANYID;
@@ -856,7 +858,7 @@ namespace ERP.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult SearchEmployeeDropdown(string prefix)
         {
-            var employeeResult = _masterService.GetAllEmployeesTimeSheet(0, 0, null, prefix);
+            var employeeResult = _masterService.GetAllEmployeesTimeSheet(0, 0, null, prefix,0);
 
             return Json(new { status = true, employeeResult });
         }
@@ -910,7 +912,7 @@ namespace ERP.Areas.Admin.Controllers
                 SalaryPaidHr employeeSalaryPaidHr = new SalaryPaidHr();
                 employeeSalaryPaidHr = await _employeeService.GetSalaryPaidHr(employeeId);
 
-                if (employeeSalaryPaidHr == null)
+                if (employeeSalaryPaidHr.EmployeeID == 0)
                     employeeSalaryPaidHr.EmployeeID = employeeId;
 
                 return PartialView("_addUpdateEmployeeSalaryPaidHr", employeeSalaryPaidHr);

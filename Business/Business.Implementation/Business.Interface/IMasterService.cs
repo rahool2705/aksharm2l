@@ -111,7 +111,7 @@ namespace Business.Interface
         PagedDataTable<EmploymentType> GetAllEmploymentTypeMaster();
         PagedDataTable<EmployeeCategory> GetAllEmployeeCategoryMaster();
         PagedDataTable<EmployeeMaster> GetEmployeesByName(string employeeName);
-        PagedDataTable<EmployeePresentList> GetAllEmployeesTimeSheet(int Companyid, int Departmentid, DateTime? PresenceDate, string serachString);
+        PagedDataTable<EmployeePresentList> GetAllEmployeesTimeSheet(int Companyid, int Departmentid, DateTime? PresenceDate, string serachString, int UID);
         Task<PagedDataTable<StateMasterMetadata>> GetAllStateAsync(string search);
         /*07-02-2023*/
 

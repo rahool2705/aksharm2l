@@ -9,6 +9,8 @@
 }
 @{
     List<string> strTimeforRow = new List<string>();
+    int empCatId = ViewBag.EmployeeCategoryID;
+    int deptId = ViewBag.DepartmentID;
 }
 <div class="container" id="employeeDetailSummary">
     <div class="row">
@@ -34,27 +36,27 @@
                                 <div class="row">
                                     <label class="col-sm-3 col-form-label">Employee Category</label>
                                     <div class="col-sm-3">
-                                        <select class="form-control" id="EmployeeCategoryID" name="EmployeeCategoryID" asp-items="@EmployeeExtension.GetAllEmployeeCategoryMaster()">
+                                        <select class="form-control" id="EmployeeCategoryID" name="EmployeeCategoryID" asp-items="@EmployeeExtension.GetAllEmployeeCategoryMaster()" asp-for="@empCatId">
                                             <option value="">Select Category</option>
                                         </select>
                                     </div>
 
                                     <label class="col-sm-3 col-form-label">Search Keyword</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" id="EmployeeName" placeholder="Search by Employee detail.">
+                                        <input type="text" class="form-control" id="EmployeeName" placeholder="Search by Employee detail." value="@ViewBag.SearchString">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <label class="col-sm-3 col-form-label">Department</label>
                                     <div class="col-sm-3">
-                                        <select class="form-control" id="DepartmentID" name="DepartmentID" asp-items="@EmployeeExtension.GetAllDepartmentText()">
+                                        <select class="form-control" asp-for="@deptId" id="DepartmentID" name="DepartmentID" asp-items="@EmployeeExtension.GetAllDepartmentText()">
                                             <option value="">Select Department</option>
                                         </select>
                                     </div>
 
                                     <div class="text-end mb-3">
-                                        <button id="btnSearchEmployeeDetail" type="button" onclick="fnSearchEmployeeDetail()" class="btn btn-outline-primary btn-info px-5">Search</button>
+                                        <button id="btnSearchEmployeeDetail" type="button" onclick="fnSearchEmployeeDetail()" class="btn btn-outline-primary px-5 btn-sm">Search</button>
                                     </div>
                                 </div>
 

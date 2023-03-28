@@ -1761,7 +1761,7 @@ namespace Business.Service
         /* Added by Dravesh Lokhande on 07-02-2023 -- End */
 
         /* Added by Rahul Mistry On 24-Jan-2023 --  START */
-        public PagedDataTable<EmployeePresentList> GetAllEmployeesTimeSheet(int Companyid, int Departmentid, DateTime? PresenceDate, string serachString)
+        public PagedDataTable<EmployeePresentList> GetAllEmployeesTimeSheet(int Companyid, int Departmentid, DateTime? PresenceDate, string serachString, int UID)
         {
             DataTable table = new DataTable();
             int totalItemCount = 0;
@@ -1777,6 +1777,7 @@ namespace Business.Service
                         ,new SqlParameter("@PresenceDate",PresenceDate)
                         ,new SqlParameter("@OrderBy","")
                         ,new SqlParameter("@SortBy","")
+                        ,new SqlParameter("@UserID",UID)
                         };
                 using (DataSet ds = SqlHelper.ExecuteDataset(connection, CommandType.StoredProcedure, "Usp_GetAll_EmployeeMasterForTimeSheet", param))
                 {

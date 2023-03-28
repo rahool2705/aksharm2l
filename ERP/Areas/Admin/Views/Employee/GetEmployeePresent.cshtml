@@ -127,11 +127,11 @@
                                                                 <input type="time" class="form-control" id="OutTime" asp-for="@item.OutTime" name="OutTime" />
                                                             </td>
                                                             <td>
-                                                                <input type="text" class="form-control" id="BreakHour" asp-for="@item.BreakHour" name="BreakHour" />
+                                                                <input type="time" class="form-control" id="BreakHour" asp-for="@item.BreakHour" name="BreakHour" />
                                                                 <span asp-validation-for="@item.BreakHour"></span>
                                                             </td>
                                                             <td>
-                                                                <input type="text" class="form-control" id="Overtime" asp-for="@item.Overtime" name="Overtime" />
+                                                                <input type="time" class="form-control" id="Overtime" asp-for="@item.Overtime" name="Overtime" />
                                                             </td>
                                                             <td>
                                                                 <input type="text" class="form-control" id="EmployeeID" asp-for="@item.EmployeeID" name="EmployeeID" hidden />
@@ -289,7 +289,6 @@
 
                         var intime = item.inTime.substring(11);
                         var outtime = item.outTime.substring(11);
-
                         rows = '<tr><td>' + item.srNo + '</td><td><input type="text" class="form-control" id="EmployeeName" asp-for="' + item.employeeName + '" value="' + item.employeeName + '" name="Employee" readonly></td><td><input type= "text" class="form-control" asp-for= "' + item.departmentName + '" value = "' + item.departmentName + '" id="DepartmentName" name="Department" readonly ></td><td><input type="time" class="form-control" id = "InTime" asp-for= ' + intime + ' value = ' + intime + ' name = "InTime"></td><td><input type= "time" class="form-control" id = "OutTime" asp-for= ' + outtime + ' value = ' + outtime + ' name = "OutTime"></td><td><input type= "time" class="form-control" id = "BreakHour" asp-for= ' + item.breakHour + ' value = ' + item.breakHour + ' name = "BreakHour" /><span asp-validation-for= ' + item.breakHour + '></span></td><td><input type= "time" class="form-control" id = "Overtime" asp-for= ' + item.overtime + ' value = ' + item.overtime + ' name = "Overtime" /></td><td><input type= "text" class= "form-control" id = "EmployeeID" asp-for= ' + item.employeeID + ' value = ' + item.employeeID + ' name = "EmployeeID" hidden > <input type="text" class="form-control" id ="EmployeeTimeSheetMasterID" asp-for= ' + item.employeeTimeSheetMasterID + ' value = ' + item.employeeTimeSheetMasterID + ' name = "EmployeeTimeSheetMasterID" hidden ><input type="text" class="form-control" id ="EmployeeTimeSheetDetailID" asp-for= ' + item.employeeTimeSheetDetailID + ' value = ' + item.employeeTimeSheetDetailID + ' name = "EmployeeTimeSheetDetailID" hidden></td></tr>';
 
                         $('tbody').append(rows);
