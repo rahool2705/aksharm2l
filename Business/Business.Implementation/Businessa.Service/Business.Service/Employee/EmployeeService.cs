@@ -871,7 +871,7 @@ namespace Business.Service
 
                 var obj = await SqlHelper.ExecuteScalarAsync(connection, CommandType.StoredProcedure, "Usp_IU_EmployeeHRAdministration", param);
 
-                return obj != null ? Convert.ToInt32(obj) : 0;
+                 return obj != null ? Convert.ToInt32(obj) : 0;
             }
             catch
             {
@@ -1302,7 +1302,7 @@ namespace Business.Service
         #region Employee Salary Paid Hours
         public async Task<SalaryPaidHr> GetSalaryPaidHr(int employeeId)
         {
-            SalaryPaidHr result = null;
+            SalaryPaidHr result = new SalaryPaidHr();
             try
             {
                 SqlParameter[] param = {

@@ -75,13 +75,12 @@ namespace ERP.Areas.Admin.Controllers
                     .Filterable(true);
 
                 c.Add()
-                    .Encoded(false)
-                    .Sanitized(false)
-                    .SetWidth(60).Sortable(false)
-                    //.Css("hidden-xs") //hide on phones
-                    .RenderValueAs(o => $"<a class='btn' href='Users/Edit/{o.UserID}' ><i class='bx bx-edit'></i></a> <a class='btn' href='Users/ManageRole/{o.UserID}' ><i class='bx bx-lock'></i></a>");
-
-
+                  .Encoded(false)
+                  .Sanitized(false)
+                  .SetWidth(60).Sortable(false)
+                  //.Css("hidden-xs") //hide on phones
+                  //.RenderValueAs(o => $"<a class='btn' href='Users/Edit/{o.UserID}' ><i class='bx bx-edit'></i></a> <a class='btn'href='Users/ManageRole/{o.UserID}' ><i class='bx bx-lock'></i></a>");
+                  .RenderValueAs(o => $"<a class='btn' href='Users/Edit/{o.UserID}' ><i class='bx bx-edit'></i></a>");
             };
             PagedDataTable<UserMasterMetadata> pds = _usersService.GetAllUser(COMPANYID, gridpage.ToInt(), PAGESIZE, orderby, sortby == "0" ? "ASC" : "DESC", search);
             var server = new GridCoreServer<UserMasterMetadata>(pds, query, false, "Users",
@@ -119,7 +118,7 @@ namespace ERP.Areas.Admin.Controllers
 
                 if (id > 0)
                 {
-                  // model = _iMarketingCompanyFinancialYear.GetFinancialYearAsync(id).Result;
+                    // model = _iMarketingCompanyFinancialYear.GetFinancialYearAsync(id).Result;
                     return PartialView("Create", model);
                 }
                 else
@@ -310,7 +309,7 @@ namespace ERP.Areas.Admin.Controllers
                     else
                     {
                         await _userManager.RemoveFromRoleAsync(user, rol.Name);
-                    }                   
+                    }
                 }
                 return RedirectToAction("Index");
             }

@@ -89,7 +89,7 @@
                 console.log(data.status);
                 if (data.status) {
                     //notification
-                    $("#canvasSalaryPaidHr").hide();//('hide');
+                    //$("#canvasSalaryPaidHr").hide();//('hide');
                     var test = Lobibox.notify('success', {
                         pauseDelayOnHover: true,
                         size: 'mini',
@@ -98,11 +98,13 @@
                         position: 'bottom right',
                         msg: data.message,
                     });
-                    setTimeout(
-                        function () {
-                            //window.location.reload();
-                            $("#formAddUpdateEmployeeHRAdministration").load(window.location.href + " #formAddUpdateEmployeeHRAdministration");
-                        }, 3000);
+                    document.getElementById("btnSaveEmployeeHRAdministration").removeAttribute("disabled");
+                    $("#canvasSalaryPaidHr").hide();
+                    //setTimeout(
+                    //    function () {
+                    //        window.location.reload();
+                    //        //$("#canvasSalaryPaidHr").load(window.location.href + " #canvasSalaryPaidHr");
+                    //    }, 3000);
 
                 }
                 else {

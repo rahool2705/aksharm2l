@@ -17,25 +17,6 @@ C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\JsonStore\Kinfo.JsonStore\ob
 C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\refint\Kinfo.JsonStore.dll
 C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.pdb
 C:\Users\Lenovo\Documents\GitHub\ERP\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\ref\Kinfo.JsonStore.dll
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Kinfo.JsonStore.deps.json
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Kinfo.JsonStore.dll
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Kinfo.JsonStore.pdb
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Business.Entities.dll
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Business.SQL.dll
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Utils.dll
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Business.Entities.pdb
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Business.SQL.pdb
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Utils.pdb
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.csproj.AssemblyReference.cache
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.AssemblyInfoInputs.cache
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.AssemblyInfo.cs
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.csproj.CoreCompileInputs.cache
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.csproj.CopyComplete
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.dll
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\refint\Kinfo.JsonStore.dll
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.pdb
-C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\ref\Kinfo.JsonStore.dll
 C:\Projects\ERP Backups\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Kinfo.JsonStore.deps.json
 C:\Projects\ERP Backups\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Kinfo.JsonStore.dll
 C:\Projects\ERP Backups\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Kinfo.JsonStore.pdb
@@ -55,3 +36,22 @@ C:\Projects\ERP Backups\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\D
 C:\Projects\ERP Backups\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\refint\Kinfo.JsonStore.dll
 C:\Projects\ERP Backups\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.pdb
 C:\Projects\ERP Backups\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\ref\Kinfo.JsonStore.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Kinfo.JsonStore.deps.json
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Kinfo.JsonStore.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Kinfo.JsonStore.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Business.Entities.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Business.SQL.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Utils.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Business.Entities.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Business.SQL.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\bin\Debug\net5.0\Utils.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.AssemblyInfoInputs.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.AssemblyInfo.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.csproj.CopyComplete
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\refint\Kinfo.JsonStore.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\Kinfo.JsonStore.pdb
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\Infrastructure\JsonStore\Kinfo.JsonStore\obj\Debug\net5.0\ref\Kinfo.JsonStore.dll

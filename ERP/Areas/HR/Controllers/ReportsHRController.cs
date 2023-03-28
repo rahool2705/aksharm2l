@@ -2,6 +2,7 @@
 using Business.Interface;
 using Business.Interface.IEmployeeAttendanceSummary;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Bibliography;
 using ERP.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,7 @@ namespace ERP.Areas.HR.Controllers
         {
             try
             {
+                int userId = USERID;
                 month = month <= 0 ? DateTime.Now.Month : month;
                 year = year <= 0 ? DateTime.Now.Year : year;
 
@@ -39,7 +41,7 @@ namespace ERP.Areas.HR.Controllers
                 ViewData["DepartmentID"] = departmentId;
                 ViewData["SearchString"] = searchString;
 
-                DataSet dataSet = _employeeAttendanceSummaryService.GetEmployeeAllAttendanceSummary(employeeCategoryId, employeeId, month, year, departmentId, searchString).Result;
+                DataSet dataSet = _employeeAttendanceSummaryService.GetEmployeeAllAttendanceSummary(employeeCategoryId, userId, month, year, departmentId, searchString).Result;
 
                 if (isDownload && dataSet != null)
                     return ExportToExcel(dataSet);
@@ -61,7 +63,9 @@ namespace ERP.Areas.HR.Controllers
         {
             try
             {
-
+                ViewData["EmployeeCategoryID"] = employeeCategoryId;
+                ViewData["DepartmentID"] = departmentId;
+                ViewData["SearchString"] = searchstring;
                 DataSet dataSet = _employeeAttendanceSummaryService.GetEmployeeAllDetailSummary(employeeCategoryId, departmentId, searchstring).Result;
 
                 if (dataSet.Tables.Count > 0)
