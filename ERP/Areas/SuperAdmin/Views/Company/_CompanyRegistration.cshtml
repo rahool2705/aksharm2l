@@ -1,0 +1,192 @@
+﻿@model Business.Entities.Company.CompanyRegistration
+<form method="post" id="formAddUpdateCompanyRegistration" class="row g-3 needs-validation" asp-area="Admin" asp-controller="Company" asp-action="AddUpdateCompanyRegistration">
+    <input type="hidden" asp-for="CompanyID" />
+    <input type="hidden" asp-for="CompanyRegistrationID" />
+    @{
+        if (Model != null && Model.CompanyID > 0)
+        {
+            int companyId = Model.CompanyID;
+            var model = Model;
+        }
+    }
+    <div class=" col-sm-12 col-md-6 col-lg-6">
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Pan No.:</label>
+            <div class="col-sm-9">
+                <input type="text" required="" class="form-control" asp-for="PANNo" id="PANNo" name="PANNo" placeholder="">
+                @*<span asp-validation-for="PANNo" class="text-danger"></span>*@
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">Labour Company No.:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="LabourContratorNo" id="LabourContratorNo" name="LabourContratorNo" placeholder="">
+            </div>
+        </div>
+
+
+        @*<div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">Factory License No.:</label>
+        <div class="col-sm-9">
+        <input type="text" required="" class="form-control" asp-for="FactoryLicenseNo" id="FactoryLicenseNo" name="FactoryLicenseNo" placeholder="">
+        </div>
+        </div>
+
+        <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">Factory Reg No.:</label>
+        <div class="col-sm-9">
+        <input type="text" required="" class="form-control" asp-for="FactoryRegNo" id="FactoryRegNo" name="FactoryRegNo" placeholder="">
+        </div>
+        </div>
+
+        <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">ARN No.:</label>
+        <div class="col-sm-9">
+        <input type="text" required="" class="form-control" asp-for="ARNNo" id="ARNNo" name="ARNNo" placeholder="">
+        </div>
+        </div>
+
+        <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">ECC No.:</label>
+        <div class="col-sm-9">
+        <input type="text" required="" class="form-control" asp-for="ECCNo" id="ECCNo" name="ECCNo" placeholder="">
+        </div>
+        </div>*@
+
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">GSTIN No.:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="GSTINNo" id="GSTINNo" name="GSTINNo" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="" class="col-sm-3 col-form-label ">GSTIN Type:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="GSTINType" id="GSTINType" name="GSTINType" placeholder="">
+            </div>
+        </div>
+
+        @*<div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">MSME No:</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" asp-for="MSMENo" id="MSMENo" name="MSMENo" placeholder="">
+        </div>
+        </div>
+
+        <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">SSI No:</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" asp-for="SSINo" id="SSINo" name="SSINo" placeholder="">
+        </div>
+        </div>
+
+        <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">TAN No:</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" asp-for="TANNo" id="TANNo" name="TANNo" placeholder="">
+        </div>
+        </div>
+
+        <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">Export No:</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" asp-for="ExportNo" id="ExportNo" name="ExportNo" placeholder="">
+        </div>
+        </div>
+
+        <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">TaxRange:</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" asp-for="TaxRange" id="TaxRange" name="TaxRange" placeholder="">
+        </div>
+        </div>
+
+        <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">Tax Division:</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" asp-for="TaxDivisio" id="TaxDivisio" name="TaxDivisio" placeholder="">
+        </div>
+        </div>
+
+        <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label ">Tax Commisionerate:</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" asp-for="TaxCommisionerate" id="TaxCommisionerate" name="TaxCommisionerate" placeholder="">
+        </div>
+        </div>*@
+
+    </div>
+
+    <div class="text-center">
+        <button type="submit" onclick="fnSaveCompanyRegistration()" class="btn btn-outline-primary px-5 btn-sm ladda-button" id="btnSaveCompanyRegistration">Save</button>
+        <button type="button" class="btn btn-outline-primary px-5 btn-sm" data-bs-dismiss="offcanvas" aria-l abel="Close">Cancel</button>
+    </div>
+</form>
+
+<link href="~/admin/assets/vendors/typehead/jquery.typeahead.min.css" rel="stylesheet" />
+<script src="~/admin/assets/vendors/typehead/jquery.typeahead.min.js"></script>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+<script type="text/javascript">
+    function fnSaveCompanyRegistration() {
+        
+        var ls = laddaStart('btnSaveCompanyRegistration');
+        modeldata = $("#formAddUpdateCompanyRegistration").serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/SuperAdmin/Company/AddUpdateCompanyRegistration/',
+            data: modeldata,
+            dataType: 'json',
+            beforeSend: function () { },
+            success: function (data) {
+                console.log(data.status);
+                if (data.status) {
+                    
+                    //notification
+                    //$("#canvasCompanyRegistration").hide();//('hide');
+                    var test = Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message,
+                    });
+                    //$("#myTab").load(window.location.href + " #myTab");
+                }
+                else {
+                    alert("Error");
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+            },
+            error: function (error) {
+                alert("Errors");
+                laddaStop(ls);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: '@MessageHelper.Error'
+                });
+            }
+        }).always(function () {
+            hideloader();
+        });
+
+    };
+</script>

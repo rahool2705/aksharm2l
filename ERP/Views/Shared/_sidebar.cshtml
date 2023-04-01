@@ -36,7 +36,7 @@
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
-                            <i class="bx bx-right-arrow-alt"></i>
+                            <iconify-icon icon="clarity:thin-client-line" class="parent-icon"></iconify-icon>
                         </div>
                         <div class="menu-title">Company</div>
                     </a>
@@ -44,14 +44,14 @@
                         @*<li>
                         <a asp-area="Admin" asp-controller="CompanySetting" asp-action="Edit"><iconify-icon icon="mdi:company" class="parent-icon"></iconify-icon> &nbsp; Register Company</a>
                         </li>*@
-                        <li>
+                   @*     <li>
                             <a asp-area="SuperAdmin" asp-controller="Company" asp-action="Register"><iconify-icon icon="mdi:company" class="parent-icon"></iconify-icon> &nbsp; Register Company</a>
-                        </li>
+                        </li>*@
                         @*<li>
                         <a asp-controller="Company" asp-action="Register" asp-area="SuperAdmin"><iconify-icon icon="mdi:company" class="parent-icon"></iconify-icon> &nbsp;Register Company</a>
                         </li>*@
                         <li>
-                            <a asp-area="SuperAdmin" asp-controller="Company" asp-action="Index"><iconify-icon icon="fluent-mdl2:company-directory" class="parent-icon"></iconify-icon> &nbsp; Company List</a>
+                            <a asp-area="SuperAdmin" asp-controller="Company" asp-action="Index"><iconify-icon icon="fluent-mdl2:company-directory" class="parent-icon"></iconify-icon> &nbsp;Company  Profile</a>
                         </li>
                     </ul>
                 </li>
@@ -59,7 +59,8 @@
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
-                            <i class="bx bx-right-arrow-alt"></i>
+                            @*<i class="bx bx-right-arrow-alt"></i>*@
+                            <iconify-icon icon="mdi:clipboard-user-outline" class="parent-icon"></iconify-icon>
                         </div>
                         <div class="menu-title">User</div>
                     </a>
@@ -74,7 +75,7 @@
                             @*<a class="nav-link " asp-controller="UserRoles" asp-action="Index" asp-area="SuperAdmin">
                             <iconify-icon icon="mdi:user-edit" class="parent-icon"></iconify-icon> &nbsp; Manage Users
                             </a>*@
-                            <a class="nav-link" asp-area="Admin" asp-controller="Users" asp-action="Index">
+                            <a asp-area="Admin" asp-controller="Users" asp-action="Index">
                                 <iconify-icon icon="mdi:user-edit" class="parent-icon"></iconify-icon> &nbsp; Manage Users
                             </a>
                         </li>
@@ -84,7 +85,8 @@
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
-                            <i class="bx bx-right-arrow-alt"></i>
+                            @*<i class="bx bx-right-arrow-alt"></i>*@
+                            <iconify-icon icon="flat-color-icons:data-configuration" class="parent-icon"></iconify-icon>
                         </div>
                         <div class="menu-title">Configuration</div>
                     </a>
@@ -98,13 +100,13 @@
                         <li>
                             <a asp-area="" asp-controller="" asp-action=""><iconify-icon icon="material-symbols:contact-mail-outline" class="parent-icon"></iconify-icon> &nbsp; Email Config</a>
                         </li>
-                        <li>
+                        <li >
                             <a asp-area="" asp-controller="" asp-action=""><iconify-icon icon="material-symbols:sms-outline" class="parent-icon"></iconify-icon> &nbsp; SMS Config</a>
                         </li>
-                        <li>
+                        <li  >
                             <a asp-area="" asp-controller="" asp-action=""><iconify-icon icon="carbon:notification" class="parent-icon"></iconify-icon> &nbsp; Notification Config</a>
                         </li>
-                        <li>
+                        <li  >
                             <a asp-area="" asp-controller="" asp-action=""><iconify-icon icon="line-md:cloud-print-outline-loop" class="parent-icon"></iconify-icon> &nbsp; Cloud Notification Config</a>
                         </li>
                     </ul>
@@ -113,7 +115,8 @@
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
-                            <i class="bx bx-right-arrow-alt"></i>
+                            @*<i class="bx bx-right-arrow-alt"></i>*@
+                            <iconify-icon icon="material-symbols:switch-access-rounded" class="parent-icon"></iconify-icon>
                         </div>
                         <div class="menu-title">Accesibility</div>
                     </a>
@@ -233,36 +236,13 @@
                             <a asp-area="Admin" asp-controller="MachineryMaintainance" asp-action="Index"><iconify-icon icon="game-icons:factory-arm" class="parent-icon"></iconify-icon> &nbsp; Machinery</a>
                         </li>
 
-
+                        <li>
+                            <a asp-area="SuperAdmin" asp-controller="PositiveNote" asp-action="Index"><iconify-icon icon="mdi:note-check-outline" class="parent-icon"></iconify-icon> &nbsp; Feedback Note</a>
+                        </li>
                     </ul>
                 </li>
 
-                <!--Visitor Tab Start-->
-                <li>
-                    <a href="javascript:;" class="has-arrow">
-                        <div class="parent-icon">
-                            <i class="bx bx-right-arrow-alt"></i>
-                        </div>
-                        <div class="menu-title">Visitor</div>
-                    </a>
-                    <ul>
-                        <!--Visitor requests list-->
-                        <li>
-                            @*<secure-content asp-area="Admin" asp-controller="VisitorRequests" asp-action="Index">*@
-                            <a asp-area="Admin" asp-controller="VisitorRequests" asp-action="Index"><i class="bx bx-right-arrow-alt"></i>Visitor requests list</a>
-                            @*</secure-content>*@
-                        </li>
-                        <!--Visitor requests list-->
-                        <!--Direct visitor entry-->
-                        <li>
-                            @*<secure-content asp-area="Admin" asp-controller="VisitorRequests" asp-action="Create">*@
-                            <a asp-area="Admin" asp-controller="VisitorRequests" asp-action="Create"><i class="bx bx-right-arrow-alt"></i>Direct visitor entry</a>
-                            @*</secure-content>*@
-                        </li>
-                        <!--Direct visitor entry-->
-                    </ul>
-                </li>
-                <!--Visitor Tab End-->
+               
 
                 <li>
                     <a href="javascript:;" class="has-arrow">
@@ -337,7 +317,7 @@
                             </a>
                         </li>
                         <li>
-                            <a asp-area="Admin" asp-controller="Employee" asp-action="GetEmployeePresent"> <iconify-icon icon="clarity:employee-solid" class="parent-icon"></iconify-icon> &nbsp; Emp-Overtime</a>
+                            <a asp-area="Admin" asp-controller="Employee" asp-action="GetEmployeePresent"> <iconify-icon icon="ic:baseline-more-time" class="parent-icon"></iconify-icon> &nbsp; Emp-Overtime</a>
                         </li>
                         <li>
                             <a asp-area="HR" asp-controller="CanteenCharges" asp-action="Index">
@@ -409,7 +389,32 @@
                         <!--Our Product End-->
                     </ul>
                 </li>
-
+                <!--Visitor Tab Start-->
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </div>
+                        <div class="menu-title">Visitor</div>
+                    </a>
+                    <ul>
+                        <!--Visitor requests list-->
+                        <li>
+                            @*<secure-content asp-area="Admin" asp-controller="VisitorRequests" asp-action="Index">*@
+                            <a asp-area="Admin" asp-controller="VisitorRequests" asp-action="Index"><iconify-icon icon="material-symbols:nest-doorbell-visitor-outline" class="parent-icon"></iconify-icon>&nbsp;Visitor requests list</a>
+                            @*</secure-content>*@
+                        </li>
+                        <!--Visitor requests list-->
+                        <!--Direct visitor entry-->
+                        <li>
+                            @*<secure-content asp-area="Admin" asp-controller="VisitorRequests" asp-action="Create">*@
+                            <a asp-area="Admin" asp-controller="VisitorRequests" asp-action="Create"><iconify-icon icon="game-icons:entry-door" class="parent-icon"></iconify-icon>&nbsp;Direct visitor entry</a>
+                            @*</secure-content>*@
+                        </li>
+                        <!--Direct visitor entry-->
+                    </ul>
+                </li>
+                <!--Visitor Tab End-->
             </ul>
         </li>
 
@@ -432,12 +437,13 @@
                     </a>
                     <ul>
                         <li>
-                            <a asp-area="HR" asp-controller="ReportsHR" asp-action="GetEmployeeAttendanceSummary"> <iconify-icon icon="pepicons-pop:cv" class="parent-icon"></iconify-icon>Attendance Summary</a>
+                            <a asp-area="HR" asp-controller="ReportsHR" asp-action="GetEmployeeAttendanceSummary">
+                                <iconify-icon icon="ic:twotone-co-present" class="parent-icon"></iconify-icon>
+                                &nbsp;Attendance Summary
+                            </a>
                         </li>
-                    </ul>
-                    <ul>
                         <li>
-                            <a asp-area="HR" asp-controller="ReportsHR" asp-action="GetEmployeeDetailSummary"> <iconify-icon icon="pepicons-pop:cv" class="parent-icon"></iconify-icon>Employees List</a>
+                            <a asp-area="HR" asp-controller="ReportsHR" asp-action="GetEmployeeDetailSummary"> <iconify-icon icon="pepicons-pop:cv" class="parent-icon"></iconify-icon>&nbsp;Employees List</a>
                         </li>
                     </ul>
                 </li>

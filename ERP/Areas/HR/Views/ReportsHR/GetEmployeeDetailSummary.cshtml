@@ -18,13 +18,18 @@
             <div class="card border-0 shadow rounded-3">
                 <div class="card-body">
 
-                    <div class="row">
-                        <div class="ps-3 col-md-6">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb mb-0 p-0">
-                                    <li class="breadcrumb-item active" aria-current="page">Employee Summary</li>
-                                </ol>
-                            </nav>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="page-breadcrumb align-items-center">
+                            <div class="p-2">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0 p-0">
+                                        <li class="breadcrumb-item">
+                                            <a asp-area="HR" asp-controller="ReportsHR" asp-action="GetEmployeeDetailSummary"><i class="bx bx-home-alt"></i></a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">Employee List</li>
+                                    </ol>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                     <hr />
@@ -56,7 +61,10 @@
                                     </div>
 
                                     <div class="text-end mb-3">
-                                        <button id="btnSearchEmployeeDetail" type="button" onclick="fnSearchEmployeeDetail()" class="btn btn-outline-primary px-5 btn-sm">Search</button>
+
+                                        <button id="btnExportEmployeeDetail" type="button" onclick="fnSearchEmployeeDetail(true)" class="btn btn-outline-primary px-5 btn-sm">Export to Excel</button>
+
+                                        <button id="btnSearchEmployeeDetail" type="button" onclick="fnSearchEmployeeDetail(false)" class="btn btn-outline-primary px-5 btn-sm">Search</button>
                                     </div>
                                 </div>
 
@@ -70,9 +78,9 @@
                         @if (Model.Tables[0].Rows.Count > 0)
                         {
                             <div class="row" style="overflow:auto; height:auto; width:100%;">
-                                <table class="table table-striped" style="font-size:small;">
+                                <table class="table table-striped w-auto" style="white-space: nowrap; font-size:inherit !important;">
                                     <!--style="display:block; overflow: auto; white-space: nowrap;"-->
-                                    <thead style="position: sticky; top: 0; background-color:darkslategrey; color:papayawhip; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: x-small;">
+                                    <thead style="position: sticky; top: 0; background-color:#e9ecf8; color:black; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                                         <tr>
                                             @foreach (DataColumn dataColumn in Model.Tables[0].Columns)
                                             {
@@ -115,7 +123,7 @@
 </div>
 @await Html.PartialAsync("_ValidationScriptsPartial")
 <script type="text/javascript">
-    function fnSearchEmployeeDetail() {
+    function fnSearchEmployeeDetail(obj) {
 
         var employeeCategoryId = $('#EmployeeCategoryID').val();
 
@@ -125,7 +133,9 @@
 
         var empurl = '@Url.Action("GetEmployeeDetailSummary","ReportsHR")';
 
-        var empDetailUrl = empurl + '?employeeCategoryId=' + employeeCategoryId + '&departmentId=' + departmentId + '&searchstring=' + employeeId;
+        var isdownload = obj;
+
+        var empDetailUrl = empurl + '?employeeCategoryId=' + employeeCategoryId + '&departmentId=' + departmentId + '&searchstring=' + employeeId + '&isDownload=' + isdownload;
 
         window.location.href = empDetailUrl;
     };

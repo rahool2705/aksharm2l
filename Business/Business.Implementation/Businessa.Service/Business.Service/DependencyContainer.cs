@@ -53,6 +53,8 @@ using Business.Interface.IEmployeeAttendanceSummary;
 using Business.Interface.ILoanAdvanceService;
 using Business.Interface.IWagesConfig;
 using Business.Service.EmployeeAttendanceSummary;
+using Business.Interface.IPositiveNoteService;
+using Business.Service.SPositiveNote;
 
 namespace Business.Service
 {
@@ -116,7 +118,7 @@ namespace Business.Service
             services.AddTransient<ICanteenChargesService, CanteenChargesService>();
             services.AddTransient<ILoanAdvanceService, LoanAdvanceService.LoanAdvanceService>();
             services.AddTransient<IEmployeeAttendanceSummaryService, EmployeeAttendanceSummaryService>();
-
+            services.AddTransient<IPositiveNoteService, PositiveNoteService>();
 
             services.AddTransient<ITestDataTable, TestDataTableService>(); // this is for testing of Jquery DataTables by Rahul Mistry.
 

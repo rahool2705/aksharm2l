@@ -1,10 +1,12 @@
 ﻿using Business.Entities;
+using Business.Entities.Company;
 using Business.Interface;
 using Business.Interface.Dynamic;
 using Business.SQL;
 using ERP.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 using System.Linq;
 namespace ERP.Extensions
 {
@@ -23,7 +25,7 @@ namespace ERP.Extensions
         {
             try
             {
-                PagedDataTable<CompanyContactTxnMetadata> pds= compnayService.GetAllCompanyContactAsync(companyID).Result;
+                PagedDataTable<CompanyContactTxnMetadata> pds = compnayService.GetAllCompanyContactAsync(companyID).Result;
                 return pds;
             }
             catch
@@ -47,8 +49,25 @@ namespace ERP.Extensions
             }
         }
         #endregion
+
         #region "Bank list"
-        public static PagedDataTable<CompanyBankingMetadata> ListOfCompnayBank(int companyID)
+
+        #region "SuperAdmin Bank List"
+        public static PagedDataTable<CompanyBankDetails> ListOfCompnayBank(int CompanyID)
+        {
+            try
+            {
+                PagedDataTable<CompanyBankDetails> pds = compnayService.GetAllCompanyBankingAsync(CompanyID).Result;
+                return pds;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        #endregion "SuperAdmin Bank List"
+
+        /*public static PagedDataTable<CompanyBankingMetadata> ListOfCompnayBank(int companyID)
         {
             try
             {
@@ -59,9 +78,26 @@ namespace ERP.Extensions
             {
                 return null;
             }
-        }
+        }*/
         #endregion
+
         #region "Document list"
+
+        #region "SuperAdmin Document"
+        public static List<CompanyDocument> GetCompanyAllDocuments(int CompanyId)
+        {
+            try
+            {
+                List<CompanyDocument> pds = compnayService.GetCompanyAllDocuments(1, 10, "", "CompanyID", "1", CompanyId).Result;
+                return pds;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        #endregion "SuperAdmin Document"
+
         public static PagedDataTable<CompanyDocumentMetadata> ListOfCompnayDocuments(int companyID)
         {
             try
@@ -75,6 +111,33 @@ namespace ERP.Extensions
             }
         }
         #endregion
+
+        #region "Registration"
+
+        public static CompanyRegistration GetCompanyRegistration(int companyID, int companyRegistrationID)
+        {
+            try
+            {
+                CompanyRegistration companyRegistration = new CompanyRegistration();
+                var companyregistration = compnayService.GetCompanyRegistration(companyID, companyRegistrationID).Result;
+                if (companyregistration == null)
+                    companyRegistration.CompanyID = companyID;
+                else
+                    companyRegistration = companyregistration;
+                return companyRegistration;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        #endregion "Registration"
+
+        #region "ContactDetail"
+
+        #endregion "Contact Detail"
+
 
         public static SelectList EntityType(int CompanyID)
         {
@@ -112,6 +175,6 @@ namespace ERP.Extensions
                 return new SelectList(Enumerable.Empty<SelectListItem>());
             }
         }
-       
+
     }
 }

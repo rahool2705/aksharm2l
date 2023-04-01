@@ -1,0 +1,146 @@
+﻿@model Business.Entities.Company.CompanyDocument
+@{
+    string path = "";
+    if (Model.DocumentPath.Length >= 2)
+    {
+        path = "~" + Model.DocumentPath.Replace("\\","/");
+    }
+}
+<div class="row">
+    <div class="card-content">
+        <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+            <form id="formCompanyDocument" asp-controller="Company" asp-action="AddUpdateCompanyDocument" asp-area="SuperAdmin" method="post" enctype="multipart/form-data">
+                <!--asp-action="AddUpdateCompanyDocument"-->
+                <input type="hidden" asp-for="CompanyID" id="CompanyID" />
+                <input type="hidden" asp-for="CompanyDocumentsID" id="CompanyDocumentsID" />
+                <div class=" col-sm-12 col-md-12 col-lg-12">
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label ">Document Type:<span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <select asp-for="DocumentTypeID" asp-items="@CustomerExtension.GetAllDocumentType()" class="form-control" required="">
+                                <option value="">--Select--</option>
+                            </select>
+                            <span asp-validation-for="DocumentTypeID" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Document Name:<span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="DocumentName" id="DocumentName" name="DocumentName" placeholder="" required="">
+                            <span asp-validation-for="DocumentName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Document Description:</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" rows="2" cols="50" asp-for="DocumentDesc" placeholder=""></textarea>
+                            @*<span asp-validation-for="DocumentDescription" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="DocumentFile" class="col-sm-3 col-form-label ">Upload document:<span class="required">*</span></label>
+                        @if (Model != null && !string.IsNullOrEmpty(Model.DocumentPath))
+                        {                            
+                            <div class="col-sm-9">
+                                <input asp-for="DocumentFile" type="file" class="form-control" name="DocumentFile" id="DocumentFile" href="@path" onchange="loadFile(event)" required="" accept=".jpg, .jpeg, .png" />
+                                <span asp-validation-for="DocumentFile" class="text-danger"></span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-9">
+                                <input asp-for="DocumentFile" type="file" class="form-control" name="DocumentFile" id="DocumentFile" onchange="loadFile(event)" required="" accept=".jpg, .jpeg, .png" />
+                                <span asp-validation-for="DocumentFile" class="text-danger"></span>
+                            </div>
+                        }
+                    </div>
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">IsActive:</label>
+                        <div class="col-sm-9">
+                            <input type="checkbox" class="form-check-input" asp-for="IsActive">
+                            @*<span asp-validation-for="DocumentFile" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer-sticky text-center">
+                    <button type="submit" onclick="fnSaveCompanyDocumentSave" class="btn btn-outline-primary px-5 btn-sm ladda-button" id="btnSaveDocument">Save</button>
+                    <button type="button" class="btn btn-outline-primary px-5 btn-sm ladda-button" data-bs-dismiss="offcanvas" aria-l abel="Close">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<link href="~/admin/assets/vendors/typehead/jquery.typeahead.min.css" rel="stylesheet" />
+<script src="~/admin/assets/vendors/typehead/jquery.typeahead.min.js"></script>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+<script type="text/javascript">
+
+    //$(document).ready(function () {
+
+    //});
+
+
+    //$("#btnSaveDocument").on("click", function fnSaveCompanyDocumentSave() {
+    //    $("#formCompanyDocument").valid()
+    //    {
+    //        alert('Upload Document');
+    //        var ls = laddaStart('btnSaveDocument');
+    //        modeldata = $("#formAddUpdateCompanyContactPerson").serialize();
+    //        debugger;
+    //        $.ajax({
+    //            type: 'POST',
+    //            url: '/Admin/Company/AddUpdateCompanyDocument/',
+    //            data: modeldata,
+    //            dataType: 'json',
+    //            beforeSend: function () { },
+    //            success: function (data) {
+    //                console.log(data.status);
+    //                if (data.status) {
+    //                    //notification
+    //                    $("#canvasCompanyContactDetail").hide();//('hide');
+    //                    var test = Lobibox.notify('success', {
+    //                        pauseDelayOnHover: true,
+    //                        size: 'mini',
+    //                        icon: 'bx bx-check-circle',
+    //                        continueDelayOnInactiveTab: false,
+    //                        position: 'bottom right',
+    //                        msg: data.message,
+    //                    });
+    //                    setTimeout(
+    //                        function () {
+    //                            //window.location.reload();
+    //                            $("#tblCompanyCPTable").load(window.location.href + " #tblCompanyCPTable");
+    //                        }, 3000);
+
+    //                }
+    //                else {
+    //                    Lobibox.notify('error', {
+    //                        pauseDelayOnHover: true,
+    //                        size: 'mini',
+    //                        icon: 'bx bx-check-circle',
+    //                        continueDelayOnInactiveTab: false,
+    //                        position: 'bottom right',
+    //                        msg: '@MessageHelper.Error'
+    //                    });
+    //                }
+    //            },
+    //            error: function (error) {
+    //                laddaStop(ls);
+    //                Lobibox.notify('error', {
+    //                    pauseDelayOnHover: true,
+    //                    size: 'mini',
+    //                    icon: 'bx bx-check-circle',
+    //                    continueDelayOnInactiveTab: false,
+    //                    position: 'bottom right',
+    //                    msg: '@MessageHelper.Error'
+    //                });
+    //            }
+    //        }).always(function () {
+    //            hideloader();
+    //        });
+    //    }
+    //});
+</script>

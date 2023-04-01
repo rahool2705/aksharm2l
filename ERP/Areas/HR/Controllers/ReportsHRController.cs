@@ -6,6 +6,7 @@ using DocumentFormat.OpenXml.Bibliography;
 using ERP.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing.Constraints;
 using System;
 using System.Data;
 using System.IO;
@@ -43,13 +44,23 @@ namespace ERP.Areas.HR.Controllers
 
                 DataSet dataSet = _employeeAttendanceSummaryService.GetEmployeeAllAttendanceSummary(employeeCategoryId, userId, month, year, departmentId, searchString).Result;
 
-                if (isDownload && dataSet != null)
-                    return ExportToExcel(dataSet);
+
 
                 if (dataSet.Tables.Count > 0)
-                    return View(dataSet);
-
-                else return View("GetEmployeeAttendanceSummary");
+                {
+                    if (isDownload)
+                    {
+                        return ExportToExcel(dataSet, "EmployeesAttendanceList");
+                    }
+                    else
+                    {
+                        return View(dataSet);
+                    }
+                }
+                else
+                {
+                    return View("GetEmployeeAttendanceSummary");
+                }
             }
             catch (Exception ex)
             {
@@ -58,7 +69,7 @@ namespace ERP.Areas.HR.Controllers
             }
         }
 
-        public IActionResult GetEmployeeDetailSummary(int employeeCategoryId, int departmentId, string searchstring)
+        public IActionResult GetEmployeeDetailSummary(int employeeCategoryId, int departmentId, string searchstring, bool isDownload)
 
         {
             try
@@ -69,9 +80,20 @@ namespace ERP.Areas.HR.Controllers
                 DataSet dataSet = _employeeAttendanceSummaryService.GetEmployeeAllDetailSummary(employeeCategoryId, departmentId, searchstring).Result;
 
                 if (dataSet.Tables.Count > 0)
-                    return View(dataSet);
-
-                else return View("GetEmployeeDetailSummary");
+                {
+                    if (isDownload)
+                    {
+                        return ExportToExcel(dataSet, "EmployeesList");
+                    }
+                    else
+                    {
+                        return View(dataSet);
+                    }
+                }
+                else
+                {
+                    return View("GetEmployeeDetailSummary");
+                }
             }
             catch (Exception ex)
             {
@@ -117,20 +139,17 @@ namespace ERP.Areas.HR.Controllers
         //}
 
         #region Export to excel 
-        public IActionResult ExportToExcel(DataSet dataSet)
+        public IActionResult ExportToExcel(DataSet dataSet, string filename)
         {
             using (XLWorkbook wb = new XLWorkbook())
             {
-                int month = DateTime.Now.Month;
-                int year = DateTime.Now.Year;
-                //DataSet dt = _employeeAttendanceSummaryService.GetEmployeeAllAttendanceSummary(0, 0, month, year).Result;
                 wb.Worksheets.Add(dataSet);
                 using (MemoryStream stream = new MemoryStream())
                 {
 
                     wb.SaveAs(stream);
 
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Employee-Attendance" + DateTime.Now + ".xlsx");
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", filename + DateTime.Now + ".xlsx");
                 }
             }
 

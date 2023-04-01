@@ -10,6 +10,8 @@ namespace Business.Entities
         public int CompanyRegistrationID { get; set; }
         public int CompanyLogoID { get; set; }
         public int CompanyID { get; set; }
+        [NotMapped]
+        public string EncryptedId { get; set; }
         public string CompanyCode { get; set; }
         [Required(ErrorMessage = "Please enter company name")]
         public string CompanyName { get; set; }

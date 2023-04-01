@@ -1,0 +1,169 @@
+﻿@using Business.Entities.Company
+@using DocumentFormat.OpenXml.Office2010.Excel;
+@model PagedDataTable<CompanyDocument>
+<link href="~/admin/assets/vendors/simple-datatables/style.css" rel="stylesheet" />
+<div id="CompanyDocumentTable">
+    <div class="row">
+         
+        <div class="col-lg-12 text-align-right">
+            <a onclick="fnCompanyDocument(0)"
+               class="btn btn-outline-primary px-5 btn-sm"
+               href="javascript:void(0)"
+               data-id="0"
+               data-bs-toggle="offcanvas"
+               data-bs-target="#canvasCompanyDocument"
+               aria-controls="canvasCompanyDocument">
+                Add Document
+            </a>
+        </div>
+    
+    @if (TempData["message"] != null)
+    {
+        var test = TempData["message"];
+        <div class="alert alert-success">
+            <strong>@TempData["message"]</strong>
+        </div>
+    }
+    
+        <table class="table table-striped" id="tblBankAccounts">
+            <thead style="position: sticky; top: 0; background-color:#e9ecf8; color:black; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: x-small;">
+                <tr>
+                    <td>Sr No</td>
+                    <td>Document Name</td>
+                    <td>Description</td>
+                    <td>IsActive</td>
+                    <td>Edit</td>
+                    <td>Open</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.SrNo</td>
+                            <td>@item.DocumentName</td>
+                            <td>@item.DocumentDesc</td>
+                            <td>
+                                <input type="checkbox" class="form-check-input" asp-for="@item.IsActive" onchange="fnCompanyDocumentActiveInactive(@item.CompanyDocumentsID)" id="docActiveInactive">
+                                @*<a class='btn editaddress' onchange="fnCompanyDocumentActiveInactive(@item.CompanyDocumentID)"
+                        href="javascript:void(0)"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#canvasCompanyDocument"
+                        aria-controls="canvasCompanyDocument"
+                        data-id="@item.CompanyDocumentID"
+                        Companyid="@item.CompanyID"><i class='bx bx-checkbox' id="docActiveInactive"></i></a>*@
+                            </td>
+
+                            <td>
+                                <a class='btn editaddress IndexPagebtnEidtPadding' onclick="fnCompanyDocument(@item.CompanyDocumentsID)"
+                                   href="javascript:void(0)"
+                                   data-bs-toggle="offcanvas"
+                                   data-bs-target="#canvasCompanyDocument"
+                                   aria-controls="canvasCompanyDocument"
+                                   data-id="@item.CompanyDocumentsID"
+                                   Companyid="@item.CompanyID">
+                                    <i class='bx bx-edit'></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class='btn editaddress IndexPagebtnEidtPadding' asp-area="SuperAdmin" asp-controller="Company" asp-action="OpenImage" asp-route-fileName="@item.DocumentName" download>
+                                    <iconify-icon icon="emojione-monotone:open-file-folder"></iconify-icon>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasCompanyDocument" style="visibility: visible; width : 75% !important">*@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasCompanyDocument">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasHeaderNameDocument"></h5>
+        <button type="button" class="btn-close te  xt-reset" data-bs-dismiss="offcanvas" aria-l abel="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-3 pb-5">
+        <div id="dvInfoDocument">
+        </div>
+    </div>
+</div>
+
+<script src="~/admin/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script type="text/javascript">
+    //var urlDeleteCompanyFromUser = 'Url.Action("DeleteBankAccount", "Company")';
+    var urlAddUpdateDocument = '@Url.Action("AddUpdateCompanyDocument", "Company")';
+    var urlisActiveInActive = '@Url.Action("ActiveInActiveCompanyDocument","Company")';
+
+    function fnCompanyDocument(CompanyDocumentId) {
+        var _id = CompanyDocumentId;//$(this).data('id');
+        var _CompanyId = $("#CompanyID").val();
+        if (_id > 0) {
+            document.getElementById("canvasHeaderNameDocument").innerHTML = "Update Company document details";
+        }
+        else {
+            document.getElementById("canvasHeaderNameDocument").innerHTML = "Add Company document details";
+        }
+        var _parameters = { CompanyDocumentId: _id, CompanyId: _CompanyId };
+        $.ajax({
+            url: urlAddUpdateDocument,
+            type: "GET",
+            data: _parameters,
+            success: function (data, textStatus, jqXHR) {
+                $("#canvasCompanyDocument").show();//('hide');
+                $('#dvInfoDocument').html(data);
+            }
+        });
+    }
+
+    function fnCompanyDocumentActiveInactive(CompanyDocumentId) {
+        var _empDocId = CompanyDocumentId;//$(this).data('id');
+        var CompanyId = $("#CompanyID").val();
+        var _checkBox = $("#docActiveInactive").is(':checked');
+        var _docParameters = { CompanyDocumentId: _empDocId, CompanyId: CompanyId, isActive: _checkBox };
+        $.ajax({
+            url: urlisActiveInActive,
+            type: 'POST',
+            data: _docParameters,
+            success: function (data) {
+                if (data.status) {
+                    var test = Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: data.message,
+                    });
+                }
+                else {
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+                $("#CompanyDocumentTable").load(window.location.href + " #CompanyDocumentTable");
+            },
+            error: function (error) {
+                laddaStop(ls);
+                Lobibox.notify('error', {
+                    pauseDelayOnHover: true,
+                    size: 'mini',
+                    icon: 'bx bx-check-circle',
+                    continueDelayOnInactiveTab: false,
+                    position: 'bottom right',
+                    msg: '@MessageHelper.Error'
+                });
+            }
+        }).always(function () {
+            hideloader();
+        });
+    }
+</script>

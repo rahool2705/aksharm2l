@@ -149,8 +149,8 @@ namespace GridCore.Pagination
                 _pageSize = _queryPageSize;
             PageCount = (int) (Math.Ceiling(ItemsCount/(double) PageSize));
 
-            if (CurrentPage > PageCount)
-                CurrentPage = PageCount;
+            //if (CurrentPage > PageCount)
+            //    CurrentPage = PageCount;
 
             StartDisplayedPage = (CurrentPage - MaxDisplayedPages/2) < 1 ? 1 : CurrentPage - MaxDisplayedPages/2;
             EndDisplayedPage = (CurrentPage + MaxDisplayedPages/2) > PageCount

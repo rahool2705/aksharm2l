@@ -525,7 +525,7 @@ html.dark-theme .breadcrumb {
 	background-color: #1e1e1e;
 }
 html.dark-theme .breadcrumb-item.active {
-	color: #8b969f;
+	color: #8b969f; 
 }
 html.dark-theme .breadcrumb-title {
 	border-right: 1.5px solid rgb(255 255 255 / 18%);

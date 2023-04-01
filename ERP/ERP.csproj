@@ -109,6 +109,8 @@
     <None Include="Areas\Marketing\Views\Shared\_sidebar.cshtml" />
     <None Include="Areas\SuperAdmin\Views\PartyType\CreateOrUpdatePartyType.cshtml" />
     <None Include="Areas\SuperAdmin\Views\PartyType\Index.cshtml" />
+    <None Include="Areas\SuperAdmin\Views\PositiveNote\AddOrUpdatePositiveNote.cshtml" />
+    <None Include="Areas\SuperAdmin\Views\PositiveNote\Index.cshtml" />
     <None Include="Views\WebCam\CaptureImage.cshtml" />
   </ItemGroup>
 

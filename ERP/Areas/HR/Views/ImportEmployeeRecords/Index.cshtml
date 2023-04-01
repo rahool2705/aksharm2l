@@ -1,0 +1,143 @@
+﻿@using System.Data;
+@using System.Collections.Generic;
+@using Newtonsoft.Json;
+@model DataTable;
+@{
+    ViewData["Title"] = "Import Employees";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    List<string> strTimeforRow = new List<string>();
+    DataTable dataTable = new DataTable();
+    if (Model != null)
+    {
+        dataTable = Model;
+    }
+}
+<head>
+    <script>
+        var data = @Html.Raw(JsonConvert.SerializeObject(Model));
+        var jsonData = JSON.stringify(data);
+        var params = { dataTable: jsonData };
+        function submitDataTable(){
+            $.ajax({
+                type: 'POST',
+                url: '/HR/ImportEmployeeRecords/ImportEmployeeData/',
+                data: params,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.status) {
+                        //notification
+                        //$("#canvasEmployeeHRAdministration").hide();//('hide');
+                        var test = Lobibox.notify('success', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: data.message,
+                        });
+                        //setTimeout(
+                        //    function () {
+                        //        //window.location.reload();
+                        //        $("#formAddUpdateEmployeeHRAdministration").load(window.location.href + " #formAddUpdateEmployeeHRAdministration");
+                        //        //$("#administration-tab").load(window.location.href + " #administration-tab");
+                        //        //$("#myTab").load(window.location.href + " #myTab");
+                        //    }, 3000);
+                    }
+
+                    else {
+                        Lobibox.notify('error', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: '@MessageHelper.Error'
+                        });
+                    }
+                },
+                error: function (error) {
+                    laddaStop(ls);
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+            }).always(function () {
+                hideloader();
+            });
+        };
+    </script>
+</head>
+<div class="container" id="importEmployee">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+            <div class="card border-0 shadow rounded-3">
+                <div class="card-body">
+
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="page-breadcrumb align-items-center">
+                            <div class="p-2">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0 p-0">
+                                        <li class="breadcrumb-item">
+                                            <a asp-area="HR" asp-controller="ImportEmployeeRecords" asp-action="Index"><i class="bx bx-home-alt"></i></a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">Bulk Import for Employees list </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    @using (Html.BeginForm("GetExcelData", "ImportEmployeeRecords", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="my-3">
+                            <div class="mb-1">
+                                <small class="required">Please select file with .xlsx extension!</small>
+                            </div>
+                            <div>
+                                <label>Upload File:</label>
+                                <input type="file" id="file" name="file" accept=".xlsx" class="" />
+                                <input class="mx-2" type="submit" value="Upload File" />
+                                <input type="button" value="Import Data" onclick="submitDataTable()" />
+                            </div>
+                        </div>
+                    }
+
+                    <div id="ImportedExcelTable">
+
+                        @if (Model != null)
+                        {
+                            <div class="row" style="overflow:auto; height:350px; width:100%;">
+                                <table class="table table-striped" style="font-size:small;" id="importedEmployeeTable">
+                                    <!--style="display:block; overflow: auto; white-space: nowrap;"-->
+                                    <thead style="position: sticky; top: 0; background-color:darkslategrey; color:papayawhip; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: x-small;">
+                                        <tr>
+                                            @for (int i = 0; i < Model.Columns.Count; i++)
+                                            {
+                                                <th>@Model.Columns[i].ColumnName</th>
+                                            }
+                                        </tr>
+                                    </thead>
+                                    @for (int i = 0; i < Model.Rows.Count; i++)
+                                    {
+                                        <tr>
+                                            @for (int j = 0; j < Model.Columns.Count; j++)
+                                            {
+                                                <td>@Model.Rows[i][j]</td>
+                                            }
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
