@@ -1,0 +1,169 @@
+﻿@model Business.Entities.Company.CompanyBankDetails
+<div class="row">
+    <div class="card-content">
+        <div class="tab-pane fade active show" id="details" role="tabpanel" aria-labelledby="details-tab">
+            <form id="formCompanyBankAccount" asp-action="AddUpdateCompanyBankAccount" asp-controller="Company" asp-area="Admin" method="post" class="row g-3">
+                <input type="hidden" asp-for="CompanyID" />
+                <input type="hidden" asp-for="CompanyBankingID" />
+                <div class=" col-sm-12 col-md-6 col-lg-6">
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Bank Name:<span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <input type="text" required="" class="form-control" id="BankName" asp-for="BankName" name="BankName" placeholder="">
+                            <span asp-validation-for="BankName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Account Name:<span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <input type="text" required="" class="form-control" asp-for="AccountName" id="AccountName" name="AccountName" placeholder="">
+                            <span asp-validation-for="AccountName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">IFSC Code:<span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <input type="text" required="" class="form-control" asp-for="IFCICode" id="IFCICode" name="IFCICode" placeholder="">
+                            <span asp-validation-for="IFCICode" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Is Default Bank Account:</label>
+                        <div class="col-sm-9">
+                            <input type="checkbox" class="form-check-input" asp-for="IsDefaultBankAccount">
+                            @*<span asp-validation-for="PersonalEmail" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Account no:<span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <input type="text" required="" class="form-control" asp-for="AccountNO" id="AccountNO" name="AccountNO" placeholder="">
+                            <span asp-validation-for="AccountNO" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Branch Location:<span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <input type="text" required="" class="form-control" asp-for="BranchLocation" id="BranchLocation" name="BranchLocation" placeholder="">
+                            <span asp-validation-for="BranchLocation" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-6">
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">City:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="City" id="City" name="City" placeholder="">
+                            @*<span asp-validation-for="PersonalEmail" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Is Active:</label>
+                        <div class="col-sm-9">
+                            <input type="checkbox" class="form-check-input" asp-for="IsActive">
+                            @*<span asp-validation-for="OfficeEmail" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Bank Code:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="BankCode" id="BankCode" name="BankCode" placeholder="">
+                            @*<span asp-validation-for="OfficeEmail" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">BIC Swift Code:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="BIC_SWIFTCode" id="BIC_SWIFTCode" name="BIC_SWIFTCode" placeholder="">
+                            @*<span asp-validation-for="OfficeEmail" class="text-danger"></span>*@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-3 col-form-label ">Country:<span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <select asp-for="CountryID" asp-items="@SuperCompanyDropdownBinder.Countries()" class="form-control">
+                                <option value="">Select Country</option>
+                            </select>
+                            @*<span asp-validation-for="CountryID" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer-sticky text-center">
+                    <button type="button" onclick="fnSubmitCompanyBankAccountDetail()" class="btn btn-outline-primary px-5 btn-sm ladda-button" id="btnSave">Save</button>
+                    <button type="button" class="btn btn-outline-primary px-5 btn-sm ladda-button" data-bs-dismiss="offcanvas" aria-l abel="Close">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<link href="~/admin/assets/vendors/typehead/jquery.typeahead.min.css" rel="stylesheet" />
+<script src="~/admin/assets/vendors/typehead/jquery.typeahead.min.js"></script>
+@await Html.PartialAsync("_ValidationScriptsPartial")
+<script type="text/javascript">
+    function fnSubmitCompanyBankAccountDetail() {
+       // alert($("#formCompanyBankAccount").valid());
+        if ($("#formCompanyBankAccount").valid()) {
+            var ls = laddaStart('btnSave');
+            modeldata = $("#formCompanyBankAccount").serialize();
+            $.ajax({
+                type: 'POST',
+                url: '/SuperAdmin/Company/AddUpdateCompanyBankAccount/',
+                data: modeldata,
+                dataType: 'json',
+                beforeSend: function () { },
+                success: function (data) {
+                    console.log(data.status);
+                    if (data.status) {
+                        //notification
+                        $("#canvasCompanyBankAccount").hide();//('hide');
+                        var test = Lobibox.notify('success', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: data.message,
+                        });
+                        $("#tblCompanyBankAccounts").load(window.location.href + " #tblCompanyBankAccounts");
+                    }
+                    else {
+                        Lobibox.notify('error', {
+                            pauseDelayOnHover: true,
+                            size: 'mini',
+                            icon: 'bx bx-check-circle',
+                            continueDelayOnInactiveTab: false,
+                            position: 'bottom right',
+                            msg: '@MessageHelper.Error'
+                        });
+                    }
+                },
+                error: function (error) {
+                    laddaStop(ls);
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        icon: 'bx bx-check-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'bottom right',
+                        msg: '@MessageHelper.Error'
+                    });
+                }
+            }).always(function () {
+                hideloader();
+            });
+        }
+    };
+</script>

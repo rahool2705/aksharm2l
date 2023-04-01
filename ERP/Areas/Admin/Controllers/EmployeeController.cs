@@ -6,10 +6,10 @@ using Business.Interface;
 using Business.Interface.IEmployee;
 using Business.Interface.ISalaryFormula;
 using Business.SQL;
-using Dapper;
 using ERP.Controllers;
 using ERP.Extensions;
 using ERP.Helpers;
+using GridCore.Pagination;
 using GridCore.Server;
 using GridShared;
 using Microsoft.AspNetCore.Authorization;
@@ -24,7 +24,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ERP.Areas.Admin.Controllers
@@ -79,16 +78,17 @@ namespace ERP.Areas.Admin.Controllers
             {
                 item.EncryptedId = protector.Protect(item.EmployeeID.ToString());
             }
-            var server = new GridCoreServer<EmployeeMaster>(pds, query, false, "ordersGrid", columns, PAGESIZE, pds.TotalItemCount)
+            var server = new GridCoreServer<EmployeeMaster>(pds, query, false, "employeelistGrid", columns, PAGESIZE, pds.TotalItemCount)
                 .Sortable()
+                .Filterable(false)
                 .Searchable(false, false)
-                .ClearFiltersButton(true)
                 .Selectable(true)
                 .WithGridItemsCount()
-                .ChangeSkip(false)
                 .EmptyText("No record found")                
-                .ClearFiltersButton(false);
+                .ClearFiltersButton(false)
+                .WithPaging(PAGESIZE, pds.TotalItemCount, PAGESIZE, "grid-page");
                 
+            
             return View(server.Grid);
         }
 
@@ -910,10 +910,12 @@ namespace ERP.Areas.Admin.Controllers
                 ViewData["UsersByCompanyId"] = new SelectList(listAllUsersByCompanyId, "UserID", "FullName");
 
                 SalaryPaidHr employeeSalaryPaidHr = new SalaryPaidHr();
-                employeeSalaryPaidHr = await _employeeService.GetSalaryPaidHr(employeeId);
+                var employeesalarypaidHr = await _employeeService.GetSalaryPaidHr(employeeId);
 
-                if (employeeSalaryPaidHr.EmployeeID == 0)
+                if (employeesalarypaidHr == null)
                     employeeSalaryPaidHr.EmployeeID = employeeId;
+                else
+                    employeeSalaryPaidHr = employeesalarypaidHr;
 
                 return PartialView("_addUpdateEmployeeSalaryPaidHr", employeeSalaryPaidHr);
             }

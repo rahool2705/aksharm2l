@@ -11,7 +11,10 @@ $.fn.extend({
         var aObj = [];
         $(this).each(function () {
             if (!$(this).data("gridmvc")) {
-                var options = { lang: $(this).attr("data-lang"), selectable: $(this).attr("data-selectable") === "true", extsortable: $(this).attr("data-extsortable") === "true", multiplefilters: $(this).attr("data-multiplefilters") === "true", currentPage: $(this).find(".grid-pager").first().attr("data-currentpage"), dir: $(this).attr("dir") };
+                var options = {
+                    lang: $(this).attr("data-lang"), selectable: $(this).attr("data-selectable") === "true", extsortable: $(this).attr("data-extsortable") === "true", multiplefilters: $(this).attr("data-multiplefilters") === "true",
+                    currentPage: $(this).find(".grid-pager").first().attr("data-currentpage"), dir: $(this).attr("dir")
+                };
                 var grid = new GridMvc(this, options);
                 var name = $(this).attr("data-gridname");
                 if (name.length > 0)

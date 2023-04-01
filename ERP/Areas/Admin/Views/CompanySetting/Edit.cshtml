@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutMaster.cshtml";
     PagedDataTable<CompanyContactTxnMetadata> pdsContact = CompanyDropdownBinder.ListOfCompnayContact(Model.CompanyID);
     PagedDataTable<CompanyAddressTxnMetadata> pdsAddress = CompanyDropdownBinder.ListOfCompnayAddress(Model.CompanyID);
-    PagedDataTable<CompanyBankingMetadata> pdsBank = CompanyDropdownBinder.ListOfCompnayBank(Model.CompanyID);
+    //PagedDataTable<CompanyBankingMetadata> pdsBank = CompanyDropdownBinder.ListOfCompnayBank(Model.CompanyID);
     PagedDataTable<CompanyDocumentMetadata> pdsDoc = CompanyDropdownBinder.ListOfCompnayDocuments(Model.CompanyID);
 }
 
@@ -238,11 +238,11 @@
                         @await Html.PartialAsync("_listOfAddress", pdsAddress)
                     </div>
                 </div>
-                <div class="tab-pane fade mt-3 " id="bank" role="tabpanel" aria-labelledby="bank-tab">
+  @*              <div class="tab-pane fade mt-3 " id="bank" role="tabpanel" aria-labelledby="bank-tab">
                     <div id="BankTable">
                         @await Html.PartialAsync("_listOfbank", pdsBank)
                     </div>
-                </div>
+                </div>*@
                 <div class="tab-pane fade mt-3 " id="doc" role="tabpanel" aria-labelledby="doc-tab">
                     <div id="DocumentTable">
                         @await Html.PartialAsync("_listOfDocument", pdsDoc)

@@ -1,24 +1,45 @@
 ﻿/* Grid */
 .grid-mvc:focus { outline:none; }
 /*.grid-table-wrap { overflow:auto; }*/
-.grid-table-head { overflow:hidden; }
+.grid-table-head {
+    overflow: hidden;
+    background: #e9ecf8;
+    font-size: 12px;
+}
 .grid-table-body { overflow:auto; }
 .grid-error { color:red; }
-table.grid-table { margin: 0; }
-    table.grid-table .grid-wrap { padding: 0; position: relative; }
+table.grid-table {
+    margin: 0;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 1px;
+}
+    table.grid-table .grid-wrap {
+        padding: 0;
+        position: relative;
+        background: #e9ecf8;
+    }
     table.grid-table .grid-empty-text { color: #666; }
 
     /* Grid headers */
-    table.grid-table .grid-header { position: relative; vertical-align: top; }
+    table.grid-table .grid-header {
+        position: relative;
+        vertical-align: top;
+        background: #e9ecf8;
+    }
         table.grid-table .grid-header .sorted-asc .grid-sort-arrow::after { content: " \2191"; }
         table.grid-table .grid-header .sorted-desc .grid-sort-arrow::after { content: " \2193"; }
         table.grid-table .grid-header > .grid-header-group { display:flex; }
             table.grid-table .grid-header > .grid-header-group > .grid-header-title { /*width: 100%; margin-right: 15px; font-size:12px;*/
+                font-size: 12px;
                 white-space: nowrap;
             }
         div[dir="rtl"] table.grid-table .grid-header > .grid-header-group > .grid-header-title { margin-left: 15px; margin-right: 0;}
         table.grid-table .grid-header > .grid-header-group > .grid-header-title > button { font-weight: bold; color: #007bff; background-color: white; border: none }
-        table.grid-table .grid-header > .grid-header-group > .grid-header-title > button:hover { color: #0056b3; text-decoration: underline }
+            table.grid-table .grid-header > .grid-header-group > .grid-header-title > button:hover {
+                color: #0056b3;
+                text-decoration: underline
+            }
         table.grid-table .grid-header > .grid-header-group > .grid-header-title > button:focus { outline: 0; }
 .grid-header-title > a {
     white-space: pre-wrap;

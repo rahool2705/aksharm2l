@@ -55,10 +55,9 @@ namespace ERP.Areas.Admin.Controllers
                 c.Add(o => o.Forename)
                     .Titled("Name")
                     .SortInitialDirection(GridSortDirection.Ascending)
-                    .SetWidth(110)
+                    .SetWidth(250)
                     .Encoded(false)
                     .Sanitized(false)
-                    .SetWidth(60)
                     .Sortable(true)
                     .RenderValueAs(o => $"<a class='btn' href='Users/Edit/{o.UserID}' >{string.Format("{0} {1}", o.Forename, o.Surname)}</a>");
 
@@ -82,19 +81,14 @@ namespace ERP.Areas.Admin.Controllers
                   //.RenderValueAs(o => $"<a class='btn' href='Users/Edit/{o.UserID}' ><i class='bx bx-edit'></i></a> <a class='btn'href='Users/ManageRole/{o.UserID}' ><i class='bx bx-lock'></i></a>");
                   .RenderValueAs(o => $"<a class='btn' href='Users/Edit/{o.UserID}' ><i class='bx bx-edit'></i></a>");
             };
-            PagedDataTable<UserMasterMetadata> pds = _usersService.GetAllUser(COMPANYID, gridpage.ToInt(), PAGESIZE, orderby, sortby == "0" ? "ASC" : "DESC", search);
+            PagedDataTable<UserMasterMetadata> pds = (PagedDataTable<UserMasterMetadata>) _usersService.GetAllUser(COMPANYID, gridpage.ToInt(), PAGESIZE, orderby, sortby == "0" ? "ASC" : "DESC", search);
             var server = new GridCoreServer<UserMasterMetadata>(pds, query, false, "Users",
                 columns, PAGESIZE, pds.TotalItemCount)
                 .Sortable()
-                .Filterable()
-                //.WithMultipleFilters()
-                .Searchable(true)
-                //.ClearFiltersButton(true)
-                .SetStriped(true)
-                .ChangePageSize(true)
+                .Filterable(false)
+                .Searchable(false,false)
                 .WithGridItemsCount()
-                .WithPaging(PAGESIZE, pds.TotalItemCount)
-                .ChangeSkip(false)
+                .WithPaging(PAGESIZE, pds.TotalItemCount,PAGESIZE, "grid-page")
                 .EmptyText("No record found")
                 ;
             return View(server.Grid);

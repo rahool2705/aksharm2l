@@ -1,12 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Business.SQL
 @using GridCore
+@using System.Security.Claims;
 @inject SignInManager<UserMasterMetadata> SignInManager
 @inject UserManager<UserMasterMetadata> UserManager
-
-
 @addTagHelper *, GridMvc
-
 @model ISGrid
 @{
     ViewData["Title"] = "HR Config Master";
@@ -14,11 +12,14 @@
 
     var userlogin = UserManager.GetUserAsync(User).Result;
     var roles = UserManager.GetRolesAsync(userlogin).Result;
+    ClaimsPrincipal user = User;
+    var claimRoleName = user.Claims.FirstOrDefault(x => x.Type == "RoleName");
 }
 
 <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
     <div class="card border-1 shadow rounded-7 p-1">
         <div class="row border-bottom">
+            
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="page-breadcrumb align-items-center">
                     <div class="p-2">
@@ -43,6 +44,12 @@
                    aria-controls="canvasHRConfig">
                     Add HR Config
                 </a>
+                @if (claimRoleName.Value.Equals("HR Super Admin"))
+                {
+                    <a class="btn btn-primary px-5" asp-area="HR" asp-controller="ImportEmployeeRecords" asp-action="Index">
+                        Import Employee Detail
+                    </a>
+                }
             </div>
         </div>
 

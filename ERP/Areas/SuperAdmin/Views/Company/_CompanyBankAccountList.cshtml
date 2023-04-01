@@ -1,0 +1,99 @@
+﻿@using Business.Entities.Company
+@model PagedDataTable<CompanyBankDetails>
+<link href="~/admin/assets/vendors/simple-datatables/style.css" rel="stylesheet" />
+<div id="CompanyBankAccountTable">
+    <div class="row">
+        <div class="col-lg-12 text-align-right">
+            <a onclick="fnCompanyBankAccount(0)"
+               class="btn btn-outline-primary px-5 btn-sm"
+               href="javascript:void(0)"
+               data-id="0"
+               data-bs-toggle="offcanvas"
+               data-bs-target="#canvasCompanyBankAccount"
+               aria-controls="canvasCompanyBankAccount">
+                Add Bank Account
+            </a>
+        </div>
+        <table class="table table-striped" id="tblCompanyBankAccounts">
+            <thead style ="position: sticky; top: 0; background-color:#e9ecf8; color:black; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: x-small;">
+                <tr>
+                    <td>SrNo</td>
+                    <td>Bank Name</td>
+                    <td>Bank Code</td>
+                    <td>Account No</td>
+                    <td>Account Name</td>
+                    <td>IFSC Code</td>
+                    <td>Branch</td>
+                    <td>Country</td>
+                    <td>IsActive</td>
+                    <td>Update</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.SrNo</td>
+                            <td>@item.BankName</td>
+                            <td>@item.BankCode</td>
+                            <td>@item.AccountNO</td>
+                            <td>@item.AccountName</td>
+                            <td>@item.IFCICode</td>
+                            <td>@item.BranchLocation</td>
+                            <td>@item.CountryName</td>
+                            <td>@item.IsActive</td>
+                            <td>
+                                <a class='btn editaddress IndexPagebtnEidtPadding' onclick="fnCompanyBankAccount(@item.CompanyBankingID)"
+                                   href="javascript:void(0)"
+                                   data-bs-toggle="offcanvas"
+                                   data-bs-target="#canvasCompanyBankAccount"
+                                   aria-controls="canvasCompanyBankAccount"
+                                   data-id="@item.CompanyBankingID"
+                                   Companyid="@item.CompanyID"><i class='bx bx-edit'></i></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasCompanyBankAccount" style="visibility: visible; width : 75% !important">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasHeaderNameCompanyBank"></h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-3 pb-5">
+        <div id="dvInfoCompanyBank">
+        </div>
+    </div>
+</div>
+
+<script src="~/admin/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script type="text/javascript">
+    //var urlDeleteCompanyFromUser = 'Url.Action("DeleteBankAccount", "Company")';
+    var urlAddUpdateBankAccount = '@Url.Action("AddUpdateCompanyBankAccount", "Company")';
+    function fnCompanyBankAccount(CompanyBankDetailId) {
+        var _id = CompanyBankDetailId;//$(this).data('id');
+        var _CompanyId = $("#CompanyID").val();
+        if (_id > 0) {
+            document.getElementById("canvasHeaderNameCompanyBank").innerHTML = "Update Company bank details";
+        }
+        else {
+            document.getElementById("canvasHeaderNameCompanyBank").innerHTML = "Add Company bank details";
+        }
+        var _parameters = { CompanyBankDetailId: _id, CompanyId: _CompanyId };
+        $.ajax({
+            url: urlAddUpdateBankAccount,
+            type: "GET",
+            data: _parameters,
+            success: function (data, textStatus, jqXHR) {
+                $("#canvasCompanyBankAccount").show();//('hide');
+                $('#dvInfoCompanyBank').html(data);
+            }
+        });
+    }
+</script>

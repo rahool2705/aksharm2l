@@ -2637,6 +2637,7 @@ C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\HR\V
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\HR\Views\HRConfig\Index.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\HR\Views\HRConfig\Index2.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\HR\Views\HRConfig\_addUpdateHRConfig.cshtml.g.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\HR\Views\ImportEmployeeRecords\Index.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\HR\Views\LeaveMaster\GetAllEmployeeLeaveTxn.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\HR\Views\LeaveMaster\Index.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\HR\Views\LeaveMaster\_addUpdateEmployeeLeaveTxn.cshtml.g.cs
@@ -2684,10 +2685,16 @@ C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\Supe
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\City\_add.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\Edit.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\Index.cshtml.g.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\Index2.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\Register.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\RegisterOG.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\_addAddress.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\_addContact.cshtml.g.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\_AddUpdateCompanyBankAccount.cshtml.g.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\_AddUpdateCompanyDocument.cshtml.g.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\_CompanyBankAccountList.cshtml.g.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\_CompanyDocumentList.cshtml.g.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\_CompanyRegistration.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\_listOfAddress.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Company\_listOfContact.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Country\Index.cshtml.g.cs
@@ -2717,6 +2724,8 @@ C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\Supe
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\Package\IUPackage.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\PartyType\CreateOrUpdatePartyType.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\PartyType\Index.cshtml.g.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\PositiveNote\AddOrUpdatePositiveNote.cshtml.g.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\PositiveNote\Index.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\RequestTypeControlScreen\Index.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\RequestTypeControl\Index.cshtml.g.cs
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\SuperAdmin\Views\RequestTypeControl\_add.cshtml.g.cs

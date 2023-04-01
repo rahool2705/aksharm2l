@@ -21,17 +21,24 @@
             <div class="card border-0 shadow rounded-3">
                 <div class="card-body">
 
-                    <div class="row">
-                        <div class="ps-3 col-md-6">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb mb-0 p-0">
-                                    <li class="breadcrumb-item active" aria-current="page">Employee Attendance</li>
-                                </ol>
-                            </nav>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="page-breadcrumb align-items-center">
+                            <div class="p-2">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0 p-0">
+                                        <li class="breadcrumb-item">
+                                            <a asp-area="HR" asp-controller="ReportsHR" asp-action="GetEmployeeAttendanceSummary"><i class="bx bx-home-alt"></i></a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">Employee Attendance</li>
+                                    </ol>
+                                </nav>
+                            </div>
                         </div>
                     </div>
 
+
                     <hr />
+
                     <div class="row mb-1">
                         <label class="col-3 col-form-label">Employee Category</label>
                         <div class="col-3">
@@ -50,13 +57,7 @@
                         <div class="col-sm-3" id="idForDropdown">
                             <input type="hidden" id="EmployeeID" class="form-control" />
                             <input type="text" class="form-control bs-autocomplete" id="employeeText" name="EmployeeName" placeholder="Enter Searching text." value="@ViewBag.SearchString">
-
-                            <!--    Important code block.
-                            <div class="container text-center">
-                                <input class="form-control" id="EmployeeID" oninput="fnFindEmployee()" list="employeeList" />
-                                <datalist id="employeeList"></datalist>
-                            </div>
-                            -->
+                                                    
 
                         </div>
                         <label class="col-3 col-form-label">Department</label>
@@ -77,21 +78,21 @@
                         @if (Model.Tables[0].Columns.Count > 2)
                         {
                             <div class="row" style="overflow:auto; height:350px; width:100%;">
-                                <table class="table table-striped" style="font-size:small;">
+                                <table class="table table-striped w-auto" style="white-space: nowrap; font-size:inherit !important;">
                                     <!--style="display:block; overflow: auto; white-space: nowrap;"-->
-                                    <thead style="position: sticky; top: 0; background-color:darkslategrey; color:papayawhip; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: x-small;">
+                                    <thead style="position: sticky; top: 0; background-color:#e9ecf8; color:black; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                                         <tr>
                                             @foreach (DataColumn dataColumn in Model.Tables[0].Columns)
                                             {
-                                                @*                            if (string.Equals(dataColumn.ToString(), "{Column1}"))
-                                        {
-                                        <th>No records found</th>
-                                        }
-                                        else
-                                        {*@
+                                                if (@dataColumn.ColumnName.ToString() == "EName")
+                                                {
+                                                    <th >@dataColumn.ToString()</th>
+                                                }
+                                                else
+                                                {
+                                                    <th >@dataColumn.ToString()</th>
+                                                }
                                                 strTimeforRow.Add(dataColumn.ToString());
-                                                <th>@dataColumn.ToString()</th>
-                                                @*}*@
                                             }
                                         </tr>
                                     </thead>
@@ -102,7 +103,14 @@
                                             {
                                                 @if (!string.IsNullOrEmpty(row[timeRow].ToString()))
                                                 {
-                                                    <td>@row[timeRow]</td>
+                                                    if (timeRow == "EName")
+                                                    {
+                                                        <td>@row[timeRow]</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@row[timeRow]</td>
+                                                    }
                                                 }
                                                 else
                                                 {
