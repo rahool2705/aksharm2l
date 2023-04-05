@@ -44,8 +44,8 @@
                         @*<li>
                         <a asp-area="Admin" asp-controller="CompanySetting" asp-action="Edit"><iconify-icon icon="mdi:company" class="parent-icon"></iconify-icon> &nbsp; Register Company</a>
                         </li>*@
-                   @*     <li>
-                            <a asp-area="SuperAdmin" asp-controller="Company" asp-action="Register"><iconify-icon icon="mdi:company" class="parent-icon"></iconify-icon> &nbsp; Register Company</a>
+                        @*     <li>
+                        <a asp-area="SuperAdmin" asp-controller="Company" asp-action="Register"><iconify-icon icon="mdi:company" class="parent-icon"></iconify-icon> &nbsp; Register Company</a>
                         </li>*@
                         @*<li>
                         <a asp-controller="Company" asp-action="Register" asp-area="SuperAdmin"><iconify-icon icon="mdi:company" class="parent-icon"></iconify-icon> &nbsp;Register Company</a>
@@ -100,13 +100,13 @@
                         <li>
                             <a asp-area="" asp-controller="" asp-action=""><iconify-icon icon="material-symbols:contact-mail-outline" class="parent-icon"></iconify-icon> &nbsp; Email Config</a>
                         </li>
-                        <li >
+                        <li>
                             <a asp-area="" asp-controller="" asp-action=""><iconify-icon icon="material-symbols:sms-outline" class="parent-icon"></iconify-icon> &nbsp; SMS Config</a>
                         </li>
-                        <li  >
+                        <li>
                             <a asp-area="" asp-controller="" asp-action=""><iconify-icon icon="carbon:notification" class="parent-icon"></iconify-icon> &nbsp; Notification Config</a>
                         </li>
-                        <li  >
+                        <li>
                             <a asp-area="" asp-controller="" asp-action=""><iconify-icon icon="line-md:cloud-print-outline-loop" class="parent-icon"></iconify-icon> &nbsp; Cloud Notification Config</a>
                         </li>
                     </ul>
@@ -242,7 +242,7 @@
                     </ul>
                 </li>
 
-               
+
 
                 <li>
                     <a href="javascript:;" class="has-arrow">
@@ -336,7 +336,9 @@
                                 <iconify-icon icon="fluent:money-hand-24-regular" class="parent-icon"></iconify-icon> &nbsp; Employee Advance
                             </a>
                         </li>
-
+                        <li>
+                            <a asp-area="HR" asp-controller="ReportsHR" asp-action="GetEmployeeSalarySummary"> <iconify-icon icon="arcticons:folder-rupee" class="parent-icon"></iconify-icon>&nbsp;Salary Process</a>
+                        </li>
                         @*<li>
                         <a asp-area="Admin" asp-controller="RequestType" asp-action="Index"><iconify-icon icon="mdi:calendar-multiple-check" class="parent-icon"></iconify-icon>&nbsp;Employee Present</a>
                         </li>*@

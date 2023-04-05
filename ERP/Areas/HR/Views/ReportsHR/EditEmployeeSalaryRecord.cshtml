@@ -1,0 +1,59 @@
+﻿@using System.Data;
+@using System.Collections.Generic;
+@model DataSet;
+@{
+    ViewData["Title"] = "Employee Salary Edit";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+
+<div class="container" id="employeeSalalrySummary">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+            <div class="card border-0 shadow rounded-3">
+                <div class="card-body">
+
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="page-breadcrumb align-items-center">
+                            <div class="p-2">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0 p-0">
+                                        <li class="breadcrumb-item">
+                                            <a asp-area="HR" asp-controller="ReportsHR" asp-action="GetEmployeeSalarySummary"><i class="bx bx-home-alt"></i></a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">Employee Salary Summary Edit</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row" style="height:auto; width:100%;">
+                        <table class="table table-striped w-auto" style="white-space: nowrap; font-size:inherit !important;">
+                            <thead style="position: sticky; top: 0; background-color:#e9ecf8; color:black; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                                <tr>
+                                    <th>Label</th>
+                                    <th>Name</th>
+                                    <th>Value</th>
+                                    <th>Formula</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@await Html.PartialAsync("_ValidationScriptsPartial")

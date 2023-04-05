@@ -1354,5 +1354,51 @@ namespace Business.Service
         }
 
         #endregion Employee Salary Paid Hours
+
+        #region Employee List For Dropdown
+        public async Task<PagedDataTable<EmployeeMaster>> GetAllEmployeesForDropDown()
+        {
+            DataTable table = new DataTable();
+            int totalItemCount = 0;
+            try
+            {
+                //SqlParameter[] param = {
+                //        new SqlParameter("@PageNo",pageNo)
+                //        ,new SqlParameter("@PageSize",pageSize)
+                //        ,new SqlParameter("@SearchString",searchString)
+                //        ,new SqlParameter("@OrderBy",orderBy)
+                //        ,new SqlParameter("@SortBy",sortBy=="ASC"?0:1)
+                //        };
+
+                using (DataSet ds = await SqlHelper.ExecuteDatasetAsync(connection, CommandType.StoredProcedure, "Usp_GetAll_EmployeeMasterForDropDown"))
+                {
+                    if (ds.Tables.Count > 0)
+                    {
+                        table = ds.Tables[0];
+                        if (table.Rows.Count > 0)
+                        {
+                            if (table.ContainColumn("TotalCount"))
+                                totalItemCount = Convert.ToInt32(table.Rows[0]["TotalCount"]);
+                            else
+                                totalItemCount = table.Rows.Count;
+                        }
+                    }
+                    PagedDataTable<EmployeeMaster> lst = table.ToPagedDataTableList<EmployeeMaster>
+                        (1, 10, totalItemCount, "", "", "");
+                    return lst;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (table != null)
+                    table.Dispose();
+            }
+        }
+
+        #endregion Employee List For Dropdown
     }
 }
