@@ -159,7 +159,7 @@ namespace ERP.Areas.HR.Controllers
                 var leaveTypeList = _leaveMasterService.GetAllLeaveTypeMaster().Result;
                 ViewData["LeaveType"] = new SelectList(leaveTypeList, "LeaveTypeID", "LeaveTypeText");
 
-                var employeeList = _employeeService.GetAllEmployeesAsync().Result;
+                var employeeList = _employeeService.GetAllEmployeesForDropDown().Result;
                 ViewData["EmployeeList"] = new SelectList(employeeList, "EmployeeID", "EmployeeName");
 
                 return PartialView("_addUpdateEmployeeLeaveTxn", employeeLeaveTxn);

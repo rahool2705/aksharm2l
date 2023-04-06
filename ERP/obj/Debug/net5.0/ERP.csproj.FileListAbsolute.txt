@@ -1863,6 +1863,7 @@ C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\bin\Debug\net5.0\GridMvc.Views.pd
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\bin\Debug\net5.0\Select.Html.dep
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\bin\Debug\net5.0\appsettings.json
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\bin\Debug\net5.0\libman.json
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\bin\Debug\net5.0\package-lock.json
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\bin\Debug\net5.0\package.json
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\bin\Debug\net5.0\ERP.StaticWebAssets.xml
@@ -2797,3 +2798,5 @@ C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\refint\ERP.dll
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\ERP.pdb
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\ERP.genruntimeconfig.cache
 C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\ref\ERP.dll
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\HR\Views\ReportsHR\GetEmployeeSalarySummary.cshtml.g.cs
+C:\Users\Lenovo\Documents\GitHub\aksharm2l\ERP\obj\Debug\net5.0\Razor\Areas\HR\Views\ReportsHR\EditEmployeeSalaryRecord.cshtml.g.cs

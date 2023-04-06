@@ -1,4 +1,6 @@
-﻿using Business.Entities.EmployeeAttendanceSummary;
+﻿using AspNetCoreHero.ToastNotification.Helpers;
+using Business.Entities.EmployeeAttendanceSummary;
+using Business.Entities.Master.EmployeeCategory;
 using Business.Interface;
 using Business.Interface.IEmployeeAttendanceSummary;
 using ClosedXML.Excel;
@@ -9,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Constraints;
 using System;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -43,8 +46,6 @@ namespace ERP.Areas.HR.Controllers
                 ViewData["SearchString"] = searchString;
 
                 DataSet dataSet = _employeeAttendanceSummaryService.GetEmployeeAllAttendanceSummary(employeeCategoryId, userId, month, year, departmentId, searchString).Result;
-
-
 
                 if (dataSet.Tables.Count > 0)
                 {
@@ -155,6 +156,82 @@ namespace ERP.Areas.HR.Controllers
 
         }
         #endregion Export to excel
+
+
+        #region Employee Salary Summuary
+
+        [HttpGet]
+        public IActionResult GetEmployeeSalarySummary(int employeeCategoryId, int companyId, int month, int year, int employeeId, bool isDownload, int employmentTypeId, DateTime salaryDate, int isSalProcess)
+        {
+            //int employmentTypeId,DateTime salaryDate
+            try
+            {
+                //string dateString = "Tue Apr 04 2023 16:44:09 GMT+0530 (India Standard Time)";
+                //DateTime dateTime = DateTime.Parse(salaryDate, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+
+                int userId = USERID;
+                month = month <= 0 ? DateTime.Now.Month : month;
+                year = year <= 0 ? DateTime.Now.Year : year;
+
+                ViewData["EmployeeCategoryID"] = employeeCategoryId;
+                ViewData["MonthYear"] = new DateTime(year, month, 1);
+                ViewData["EmployeeID"] = employeeId;
+                ViewData["CompanyID"] = companyId == 0 ? COMPANYID : companyId;
+                ViewData["EmploymentTypeID"] = employmentTypeId;
+
+                if (isSalProcess == 1)
+                {
+                    DataSet dataSet = _employeeAttendanceSummaryService.ProcesSalary(year, month, companyId, employmentTypeId, employeeCategoryId, userId, salaryDate).Result;
+                    var test = dataSet;
+                    return View(dataSet);
+                }
+                else
+                {
+                    DataSet dataSet = _employeeAttendanceSummaryService.GetEmployeeSalarySummary(employeeCategoryId, userId, companyId, month, year, employeeId).Result;
+                    if (dataSet.Tables.Count > 0)
+                    {
+                        if (isDownload)
+                        {
+                            return ExportToExcel(dataSet, "GetEmployeeSalarySummary");
+                        }
+                        else
+                        {
+                            return View(dataSet);
+                        }
+                    }
+                    else
+                    {
+                        return View("GetEmployeeSalarySummary");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        #endregion Employee Salary Summuary
+
+        #region Salary Process
+        [HttpPost]
+        public IActionResult RunSalaryProcess()
+        {
+            return View("GetEmployeeSalarySummary");
+        }
+
+        #endregion Salary Process
+
+        #region Salary Process Edit
+        [HttpGet]
+        public IActionResult Edit(int editId)
+        {
+           // _employeeAttendanceSummaryService.GetEmployeeSalarySummaryEdit(editId);
+            return View("EditEmployeeSalaryRecord");
+        }
+
+        #endregion Salary Process Edit
 
     }
 }

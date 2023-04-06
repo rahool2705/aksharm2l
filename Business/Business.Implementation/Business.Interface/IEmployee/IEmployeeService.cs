@@ -96,6 +96,7 @@ namespace Business.Interface.IEmployee
 
         Task<int> AddUpdateSalaryPaidHr(SalaryPaidHr salaryPaidHr);
         Task<SalaryPaidHr> GetSalaryPaidHr(int employeeId);
+        Task<PagedDataTable<EmployeeMaster>> GetAllEmployeesForDropDown();
 
         #endregion Employee Salary Paid Hours
 
