@@ -12,8 +12,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Marketing\old models\**" />
     <Compile Remove="Marketing\VisitingDetails\**" />
+    <EmbeddedResource Remove="Marketing\old models\**" />
     <EmbeddedResource Remove="Marketing\VisitingDetails\**" />
+    <None Remove="Marketing\old models\**" />
     <None Remove="Marketing\VisitingDetails\**" />
   </ItemGroup>
 

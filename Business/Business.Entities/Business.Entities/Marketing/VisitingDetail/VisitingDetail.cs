@@ -11,8 +11,8 @@ namespace Business.Entities.Marketing.VisitingDetail
         public int MarketingVisitedDetailID { get; set; }
         public string VisitedByPerson { get; set; }
         public string VisitedTo { get; set; }
-        public int VanueTypeID { get; set; }
-        public string VanueTypeText { get; set; }
+        public int VenueTypeID { get; set; }
+        public string VenueTypeText { get; set; }
         public string PlaceOfMeeting { get; set; }
         public int PartyTypeID { get; set; }
         public string PartyTypeText { get; set; }

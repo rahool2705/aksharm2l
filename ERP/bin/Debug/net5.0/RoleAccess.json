@@ -277,6 +277,13 @@
           "roleName": null
         }
       ]
+    },
+    {
+      "id": 3,
+      "roleId": null,
+      "userID": "7",
+      "compnayID": "1",
+      "userClaims": []
     }
   ]
 }

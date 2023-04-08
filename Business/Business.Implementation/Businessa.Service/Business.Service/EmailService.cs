@@ -126,7 +126,7 @@ namespace Business.Service
             builder.HtmlBody = mailRequest.Body;
             email.Body = builder.ToMessageBody();
             using var smtp = new MailKit.Net.Smtp.SmtpClient();
-            smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
+            smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls,default);
             smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
             string success = smtp.Send(email);
             smtp.Disconnect(true);

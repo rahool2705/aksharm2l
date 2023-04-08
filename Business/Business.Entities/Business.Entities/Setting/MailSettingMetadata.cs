@@ -8,10 +8,10 @@ namespace Business.Entities.Setting
 {
     public class MailSettingMetadata
     {
-        public string Mail { get; set; }
-        public string DisplayName { get; set; }
-        public string Password { get; set; }
-        public string Host { get; set; }
-        public int Port { get; set; }
+        public string Mail { get; set; } = "sun260880@gmail.com";
+        public string DisplayName { get; set; } = "Sandip Patel.";
+        public string Password { get; set; } = "xuei xcsg jtjv iczs";
+        public string Host { get; set; } = "smtp.gmail.com";
+        public int Port { get; set; } = 587;
     }
 }

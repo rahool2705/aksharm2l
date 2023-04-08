@@ -1,4 +1,5 @@
-﻿using Business.Entities.Marketing.Feedback;
+﻿using Business.Entities.Designation;
+using Business.Entities.Marketing.Feedback;
 using Business.Interface.Marketing;
 using Business.SQL;
 using Dapper;
@@ -78,6 +79,7 @@ namespace Business.Service.Marketing
                 ,new SqlParameter("@MobileNo", marketingFeedback.MobileNo)
                 ,new SqlParameter("@IsReceivedDocument", marketingFeedback.IsReceivedDocument)
                 ,new SqlParameter("@Note", marketingFeedback.Note)
+                ,new SqlParameter("@PositiveNoteID", marketingFeedback.PositiveNoteID)
                 ,new SqlParameter("@CreatedOrModifiedBy", marketingFeedback.CreatedOrModifiedBy)
                 };
 
@@ -131,6 +133,45 @@ namespace Business.Service.Marketing
             {
                 throw;
             }
+        }
+
+        public PagedDataTable<MarketingFeedback> GetAllFeedbackNote()
+        {
+            DataTable table = new DataTable();
+            int totalItemCount = 0;
+            PagedDataTable<MarketingFeedback> lst = new PagedDataTable<MarketingFeedback>();
+            try
+            {
+                SqlParameter[] param = {
+                    new SqlParameter("@PageNo", 1),
+                    new SqlParameter("@PageSize", "0"),
+                };
+                using (DataSet ds = SqlHelper.ExecuteDataset(connection, CommandType.StoredProcedure, "Usp_GetAll_PositiveNote", param))
+                {
+                    if (ds.Tables.Count > 0)
+                    {
+                        table = ds.Tables[0];
+                        if (table.Rows.Count > 0)
+                        {
+                            if (table.ContainColumn("TotalCount"))
+                                totalItemCount = Convert.ToInt32(table.Rows[0]["TotalCount"]);
+                            else
+                                totalItemCount = table.Rows.Count;
+                        }
+                    }
+                    lst = table.ToPagedDataTableList<MarketingFeedback>();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (table != null)
+                    table.Dispose();
+            }
+            return lst;
         }
     }
 }

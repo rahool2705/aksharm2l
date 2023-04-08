@@ -888,7 +888,7 @@ namespace Business.Service
             PagedDataTable<VanueTypeMaster> lst = new PagedDataTable<VanueTypeMaster>();
             try
             {
-                using (DataSet ds = SqlHelper.ExecuteDataset(connection, CommandType.StoredProcedure, "Usp_GetAll_VanueTypeMaster"))
+                using (DataSet ds = SqlHelper.ExecuteDataset(connection, CommandType.StoredProcedure, "Usp_GetAll_VenueTypeMaster"))
 
                 {
                     if (ds.Tables.Count > 0)
@@ -904,7 +904,7 @@ namespace Business.Service
                     }
 
                     lst = table.ToPagedDataTableList<VanueTypeMaster>
-                       (1, 20, totalItemCount, null, "VanueTypeText", "ASC");
+                       (1, 20, totalItemCount, null, "VenueTypeText", "ASC");
 
                     lst = table.ToPagedDataTableList<VanueTypeMaster>();
 

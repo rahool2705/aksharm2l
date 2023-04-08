@@ -85,7 +85,7 @@ namespace ERP
 
             services.AddDistributedMemoryCache();
 
-            //services.AddMemoryCache();
+            services.AddMemoryCache();
 
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             services.AddTransient<IEmailService, EmailService>();
@@ -93,8 +93,8 @@ namespace ERP
             services.AddScoped<IViewRenderService, ViewRenderService>();
 
 
+            services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
 
-            
 
             services.AddMvc();
             services.AddSession(options =>
@@ -105,7 +105,7 @@ namespace ERP
             });
 
             services.AddSingleton<DataProtectionPurposeStrings>();
-            services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
+            
 
         }
 

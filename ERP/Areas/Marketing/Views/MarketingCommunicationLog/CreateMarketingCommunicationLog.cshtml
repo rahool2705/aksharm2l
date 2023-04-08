@@ -49,10 +49,10 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Venue Type<span class="required">*</span></label>
                 <div class="col-sm-9">
-                    <select asp-for="VanueTypeID" asp-items="ViewBag.VenueTypeText" class="form-control" required="">
+                    <select asp-for="VenueTypeID" asp-items="ViewBag.VenueTypeText" class="form-control" required="">
                         <option value="">Select Venue Type...</option>
                     </select>
-                    <span asp-validation-for="VanueTypeID" class="text-danger "></span>
+                    <span asp-validation-for="VenueTypeID" class="text-danger "></span>
                 </div>
             </div>
 
@@ -69,7 +69,7 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Date<span class="required">*</span></label>
                 <div class="col-sm-9">
-                    <input type="datetime-local" required="" class="form-control" id="CommunicationLogDate" name="CommunicationLogDate" asp-for="CommunicationLogDate">
+                    <input type="date" required="" class="form-control" id="CommunicationLogDate" name="CommunicationLogDate" asp-for="CommunicationLogDate">
                     <span asp-validation-for="CommunicationLogDate" class="text-danger"></span>
                 </div>
             </div>
@@ -82,32 +82,6 @@
                 </div>
             </div>
 
-            <div class="row">
-
-                <div class="col-sm-6 col-md-6 col-lg-6 col-lx-6 mb-3">
-                    <label for="" class="col-form-label">Sent Document</label>
-                    @*<div class="col-sm-9">*@
-                        <input type="checkbox" class="form-check-input" asp-for="IsSentDocument" data-on-text="Yes" data-off-text="No">
-                    @*</div>*@
-                </div>
-
-                <div class="col-sm-6 col-md-6 col-lg-6 col-lx-6 mb-3">
-                    <label for="" class="col-form-label">Sent Marketing Document</label>
-                    @*<div class="col-sm-9">*@
-                        <input type="checkbox" class="form-check-input" asp-for="IsSentMarketingDocument" data-on-text="Yes" data-off-text="No">
-                    @*</div>*@
-                </div>
-
-            </div>
-
-
-            <div class="row mb-3">
-                <div class="col-sm-12 col-md-12 col-lg-12 col-lx-12">
-                <label for="" class="col-form-label">They provided any other reference for better business</label>                
-                    <input type="checkbox" class="form-check-input" asp-for="ReferenceBetterBusiness" data-on-text="Yes" data-off-text="No">
-                </div>
-            </div>
-
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">If provided reference, Mobile No / Email Id<span class="required">*</span></label>
                 <div class="col-sm-9">
@@ -117,6 +91,15 @@
             </div>
 
             <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Feedback</label>
+                <div class="col-sm-9">
+                    <select class="form-select" id="choices-multiple-remove-button" asp-items="@MarketingExtension.GetAllMarketingClientFeedbackNote()" multiple>
+                        @*<option value="">--Select--</option>*@
+                    </select>
+                </div>
+            </div>           
+
+            <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Notes</label>
                 <div class="col-sm-9">
                     <textarea class="form-control" rows="4" id="Note" name="Note" asp-for="Note"></textarea>
@@ -124,13 +107,41 @@
                 </div>
             </div>
 
-            <div class="row mb-3 pb-3">
-                <label class="col-sm-3 col-form-label">Feedback</label>
-                <div class="col-sm-9">
-                    <textarea class="form-control" rows="4" id="Feedback" name="Feedback" asp-for="Feedback"></textarea>
-                    <span asp-validation-for="Feedback" class="text-danger "></span>
+            @*<div class="row mb-3 pb-3">
+            <label class="col-sm-3 col-form-label">Feedback</label>
+            <div class="col-sm-9">
+            <textarea class="form-control" rows="4" id="Feedback" name="Feedback" asp-for="Feedback"></textarea>
+            <span asp-validation-for="Feedback" class="text-danger "></span>
+            </div>
+            </div>*@
+
+            
+
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 col-lx-6">
+                    <label for="" class="col-form-label">Sent Document</label>
+                    @*<div class="col-sm-9">*@
+                    <input type="checkbox" class="form-check-input" asp-for="IsSentDocument" data-on-text="Yes" data-off-text="No">
+                    @*</div>*@
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-lx-6">
+                    <label for="" class="col-form-label">Sent Marketing Document</label>
+                    @*<div class="col-sm-9">*@
+                    <input type="checkbox" class="form-check-input" asp-for="IsSentMarketingDocument" data-on-text="Yes" data-off-text="No">
+                    @*</div>*@
                 </div>
             </div>
+
+
+            <div class="row mb-3">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-lx-12">
+                    <label for="" class="col-form-label">They provided any other reference for better business</label>
+                    <input type="checkbox" class="form-check-input" asp-for="ReferenceBetterBusiness" data-on-text="Yes" data-off-text="No">
+                </div>
+            </div>
+
+            <input type="hidden" id="FeedbackNoteID" asp-for="FeedbackNoteID" name="FeedbackNoteID" />
 
             <div class="modal-footer-sticky text-center">
                 <button id="btnSave" type="button" onclick="fnSubmit()" class="btn btn-primary btn-info px-5 ladda-button">Save</button>
@@ -143,7 +154,23 @@
 
 <script type="text/javascript">
     var urlsave = '@Url.Action("InsertOrUpdateMarketingCommunicationLog", "MarketingCommunicationLog")';
+
+    $(document).ready(function () {
+        let feedbackNoteIds = document.getElementById("FeedbackNoteID").value;
+        $.each(feedbackNoteIds.split(","), function (i, e) {
+            $("#choices-multiple-remove-button option[value='" + e + "']").prop("selected", true);
+        });
+    });
+
     function fnSubmit() {
+        var selected = [];
+        for (var option of document.getElementById('choices-multiple-remove-button').options) {
+            if (option.selected) {
+                selected.push(option.value);
+            }
+        }
+        let feedbackIds = document.getElementById("FeedbackNoteID");
+        feedbackIds.value = selected.toString();
         if ($("#formMarketingCommunicationLog").valid()) {
             var l = laddaStart('btnSave');
             console.log(l);
@@ -153,8 +180,8 @@
                 url: urlsave,
                 data: modeldata,
                 dataType: 'json',
-                beforeSend: function() { },
-                success: function(data) {
+                beforeSend: function () { },
+                success: function (data) {
                     window.location.reload().delay(3000);
                     if (data.status) {
                         //notification
@@ -179,7 +206,7 @@
                         });
                     }
                 },
-                error: function(error) {
+                error: function (error) {
                     laddaStop(l);
                     Lobibox.notify('error', {
                         pauseDelayOnHover: true,
@@ -190,9 +217,18 @@
                         msg: "@MessageHelper.Error"
                     });
                 }
-            }).always(function() {
+            }).always(function () {
                 hideLoader();
             });
         }
     };
+
+    $(document).ready(function () {
+        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+            removeItemButton: true,
+            maxItemCount: 30,
+            searchResultLimit: 30,
+            renderChoiceLimit: 30
+        });
+    });
 </script>

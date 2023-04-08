@@ -1,6 +1,6 @@
-﻿
-@model Business.Entities.Marketing.Feedback.MarketingFeedback;
+﻿@model Business.Entities.Marketing.Feedback.MarketingFeedback;
 <form class="form-horizontal" role="form" id="formFeedback">
+
     <div class="row mt-3">
         <div class="col-md-12">
             <div class="row mb-3">
@@ -39,9 +39,18 @@
             </div>
 
             <div class="row mb-3">
-                <label for="" class="col-sm-3 col-form-label">Received Document</label>
+                <label class="col-sm-3 col-form-label">Feedback</label>
                 <div class="col-sm-9">
-                    <input type="checkbox" class="form-check-input" asp-for="IsReceivedDocument" data-on-text="Yes" data-off-text="No">
+                    @*<select class="form-select" id="choices-multiple-remove-button" asp-for="PositiveNoteID" asp-items="@MarketingExtension.GetAllMarketingClientFeedbackNote()" multiple>
+                    <option value="">--Select--</option>
+                    </select>
+                    <span asp-validation-for="PositiveNoteID" class="text-danger"></span>*@
+
+                    <select class="form-select" id="choices-multiple-remove-button" asp-items="@MarketingExtension.GetAllMarketingClientFeedbackNote()" multiple>
+                        @*<option value="">--Select--</option>*@
+                    </select>
+
+
                 </div>
             </div>
 
@@ -49,11 +58,16 @@
                 <label class="col-sm-3 col-form-label">Feedback Note</label>
                 <div class="col-sm-9">
                     <textarea class="form-control" rows="4" id="Note" name="Note" asp-for="Note"></textarea>
-                    <span asp-validation-for="Note" class="text-danger "></span>
+                    @* <span asp-validation-for="Note" class="text-danger "></span>*@
                 </div>
             </div>
 
-
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label">Received Document</label>
+                <div class="col-sm-9">
+                    <input type="checkbox" class="form-check-input" asp-for="IsReceivedDocument" data-on-text="Yes" data-off-text="No">
+                </div>
+            </div>
 
             @*<div class="row mb-3">
             <label for="roleName" class="col-sm-3 col-form-label text-end">Value<span class="required">*</span></label>
@@ -93,7 +107,7 @@
 
             </div>
             </div>*@
-
+            <input type="hidden" id="PositiveNoteID" asp-for="PositiveNoteID" name="PositiveNoteID" />
             <div class="modal-footer-sticky text-center">
                 <button id="btnSave" type="button" onclick="fnSubmit()" class="btn btn-primary btn-info px-5 ladda-button">Save</button>
                 <button type="button" data-bs-dismiss="offcanvas" class="btn btn-primary btn-info px-5 my-2">Cancel</button>
@@ -104,7 +118,23 @@
 @await Html.PartialAsync("_ValidationScriptsPartial")
 <script type="text/javascript">
     var urlsave = '@Url.Action("CreateMarketingFeedback", "Feedback")';
+
+    $(document).ready(function () {
+        let positiveNoteids = document.getElementById("PositiveNoteID").value;
+        $.each(positiveNoteids.split(","), function (i, e) {
+            $("#choices-multiple-remove-button option[value='" + e + "']").prop("selected", true);
+        });
+    });
+
     function fnSubmit() {
+        var selected = [];
+        for (var option of document.getElementById('choices-multiple-remove-button').options) {
+            if (option.selected) {
+                selected.push(option.value);
+            }
+        }
+        let positiveids = document.getElementById("PositiveNoteID");
+        positiveids.value = selected.toString();
         if ($("#formFeedback").valid()) {
             var l = laddaStart('btnSave');
             console.log(l);
@@ -156,4 +186,13 @@
             });
         }
     };
+
+    $(document).ready(function () {
+        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+            removeItemButton: true,
+            maxItemCount: 30,
+            searchResultLimit: 30,
+            renderChoiceLimit: 30
+        });
+    });
 </script>

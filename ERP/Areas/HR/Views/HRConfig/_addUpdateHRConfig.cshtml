@@ -58,7 +58,12 @@
                         <div class="row mb-3">
                             <label for="" class="col-sm-3 col-form-label ">OT-Payment:</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="OTPaymentIn" asp-for="OTPaymentIn" name="OTPaymentIn" placeholder="">
+                                <input type="radio" id="OTPaymentIn" name="OTPaymentIn" asp-for="OTPaymentIn" value="1">
+                                <label for="SinglePayment">Single Payment</label>&emsp; &emsp;
+                                <input type="radio" id="OTPaymentIn" name="OTPaymentIn" asp-for="OTPaymentIn" value="2">
+                                <label for="DoublePayment">DoublePayment</label>
+
+                                @*<input type="text" class="form-control" id="OTPaymentIn" asp-for="OTPaymentIn" name="OTPaymentIn" placeholder="">*@
                                 @*<span asp-validation-for="" class="text-danger"></span>*@
                             </div>
                         </div>

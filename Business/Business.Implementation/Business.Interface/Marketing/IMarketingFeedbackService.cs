@@ -1,4 +1,5 @@
-﻿using Business.Entities.Marketing.Feedback;
+﻿using Business.Entities.Designation;
+using Business.Entities.Marketing.Feedback;
 using Business.SQL;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace Business.Interface.Marketing
         Task<MarketingFeedback> GetMarketingFeedbackAsync(string MarketingFeedbackID);
 
         MarketingFeedback GetForm(int id, int MarketingFeedbackID);
+
+        PagedDataTable<MarketingFeedback> GetAllFeedbackNote();
 
     }
 }

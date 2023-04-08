@@ -75,7 +75,7 @@ namespace Business.Service.Marketing.VisitingDetailService
                 ,new SqlParameter("@VisitedTo", visitingDetail.VisitedTo)
                 ,new SqlParameter("@Email", visitingDetail.Email)
                 ,new SqlParameter("@MobileNo", visitingDetail.MobileNo)
-                ,new SqlParameter("@VanueTypeID", visitingDetail.VanueTypeID)
+                ,new SqlParameter("@VenueTypeID", visitingDetail.VenueTypeID)
                 ,new SqlParameter("@PartyTypeID", visitingDetail.PartyTypeID)
                 ,new SqlParameter("@Datetime", visitingDetail.DateTime)
                 ,new SqlParameter("@CompanyOrOrganazationName", visitingDetail.CompanyOrOrganazationName)

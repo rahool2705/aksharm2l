@@ -158,11 +158,11 @@ namespace ERP.Areas.Marketing.Controllers
         public async Task<IActionResult> CreateMarketingFeedback(MarketingFeedback model)
         {
             model.CreatedOrModifiedBy = USERID;
-            var _marketingFeedbackid = await _marketingFeedbackService.MarketingFeedbackCreateAsync(model);
+            var _marketingFeedbackId = await _marketingFeedbackService.MarketingFeedbackCreateAsync(model);
 
-            if (_marketingFeedbackid > 0)
+            if (_marketingFeedbackId > 0)
             {
-                model.MarketingFeedbackID = _marketingFeedbackid;
+                model.MarketingFeedbackID = _marketingFeedbackId;
                 return Json(new { status = true, message = MessageHelper.Added });
             }
             else

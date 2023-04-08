@@ -1,16 +1,29 @@
+<<<<<<< Updated upstream
 ﻿using Business.Entities.EmployeeAttendanceSummary;
+=======
+﻿using AspNetCoreHero.ToastNotification.Helpers;
+using Business.Entities.EmployeeAttendanceSummary;
+using Business.Entities.Master.EmployeeCategory;
+using Business.Entities.Master.EmployementType;
+>>>>>>> Stashed changes
 using Business.Interface;
 using Business.Interface.IEmployeeAttendanceSummary;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using ERP.Controllers;
+using ERP.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Constraints;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ERP.Areas.HR.Controllers
 {
@@ -156,5 +169,153 @@ namespace ERP.Areas.HR.Controllers
         }
         #endregion Export to excel
 
+<<<<<<< Updated upstream
+=======
+
+        #region Employee Salary Summuary
+
+        [HttpGet]
+        public IActionResult GetEmployeeSalarySummary(int employeeCategoryId, int companyId, int month, int year, int employeeId, bool isDownload, int employmentTypeId, DateTime salaryDate, int isSalProcess)
+        {
+            //int employmentTypeId,DateTime salaryDate
+            try
+            {
+                //string dateString = "Tue Apr 04 2023 16:44:09 GMT+0530 (India Standard Time)";
+                //DateTime dateTime = DateTime.Parse(salaryDate, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+
+                int userId = USERID;
+                month = month <= 0 ? DateTime.Now.Month : month;
+                year = year <= 0 ? DateTime.Now.Year : year;
+
+                ViewData["EmployeeCategoryID"] = employeeCategoryId;
+                ViewData["MonthYear"] = new DateTime(year, month, 1);
+                ViewData["EmployeeID"] = employeeId;
+                ViewData["CompanyID"] = companyId == 0 ? COMPANYID : companyId;
+                ViewData["EmploymentTypeID"] = employmentTypeId;
+
+                if (isSalProcess == 1)
+                {
+                    DataSet dataSet = _employeeAttendanceSummaryService.ProcesSalary(year, month, companyId, employmentTypeId, employeeCategoryId, userId, salaryDate).Result;
+                    if (dataSet != null && dataSet.Tables.Count > 0)
+                        return View("GetEmployeeSalarySummary",dataSet);
+                    else
+                        return View("GetEmployeeSalarySummary");
+                }
+                else
+                {
+                    DataSet dataSet = _employeeAttendanceSummaryService.GetEmployeeSalarySummary(employeeCategoryId, userId, companyId, month, year, employeeId).Result;
+                    if (dataSet.Tables.Count > 0)
+                    {
+                        if (isDownload)
+                        {
+                            return ExportToExcel(dataSet, "GetEmployeeSalarySummary");
+                        }
+                        else
+                        {
+                            return View(dataSet);
+                        }
+                    }
+                    else
+                    {
+                        return View("GetEmployeeSalarySummary");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        #endregion Employee Salary Summuary
+
+        #region Salary Process
+        [HttpPost]
+        public IActionResult RunSalaryProcess()
+        {
+            return View("GetEmployeeSalarySummary");
+        }
+
+        #endregion Salary Process
+
+        #region Salary Process Edit
+        [HttpGet]
+        public async Task<IActionResult> Edit(int year, int month, int companyId, int employeeId, int employeeCategoryId)
+        {
+            try
+            {
+                ViewData["EmployeeCategoryID"] = employeeCategoryId;
+                ViewData["MonthYear"] = new DateTime(year, month, 1);
+                ViewData["EmployeeID"] = employeeId;
+                ViewData["CompanyID"] = companyId == 0 ? COMPANYID : companyId;
+
+                DataSet dataSet = await _employeeAttendanceSummaryService.GetEmployeeSalaryDetail(year, month, companyId, employeeId, employeeCategoryId, USERID);
+                if (dataSet != null && dataSet.Tables.Count > 0)
+                    return View("EditEmployeeSalaryRecord", dataSet);
+                else
+                    return View("EditEmployeeSalaryRecord");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            // _employeeAttendanceSummaryService.GetEmployeeSalarySummaryEdit(editId);
+        }
+        #endregion Salary Process Edit
+
+        #region Varify Salary
+
+        [HttpPost]
+        public async Task<JsonResult> VerifySalary(int year, int month, int companyId, int employeeId, int employeeCategoryId)
+        {
+            try
+            {
+                int userId = USERID;
+                var result = await _employeeAttendanceSummaryService.VerifyEmplyeeSalary(year, month, companyId, employeeId, employeeCategoryId, userId);
+
+                if (result > 0)
+                    return Json(new { status = true, MessageHelper.Updated });
+
+                else
+                    return Json(new { status = true, MessageHelper.Error });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateVerifiedSalaryTable(List<UpdateSalary> dataTable)
+        {
+            try
+            {
+                var list = dataTable;
+                //var test1 = JsonConvert.DeserializeObject<DataTable>(dataTable);
+                //DataTable data = JsonConvert.DeserializeObject<DataTable>(dataTable);
+                //var emp = data;
+                return View();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        #endregion Varify Salary
+
+
+    }
+    public class UpdateSalary
+    {
+        public string SalaryHeadLabel { get; set; }
+        public string SalaryHeadName { get; set; }
+        public string CalculatedValue { get; set; }
+        public string SalaryFormula { get; set; }
+>>>>>>> Stashed changes
     }
 }

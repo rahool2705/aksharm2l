@@ -174,7 +174,7 @@ namespace ERP.Areas.Marketing.Controllers
                 ViewData["PartyTypeText"] = new SelectList(PartyTypeTextList, "PartyTypeID", "PartyTypeText");
 
                 var VanueTypeTextList = _masterService.GetVanueTypeMasterAsync();
-                ViewData["VenueTypeText"] = new SelectList(VanueTypeTextList, "VanueTypeID", "VanueTypeText");
+                ViewData["VenueTypeText"] = new SelectList(VanueTypeTextList, "VenueTypeID", "VenueTypeText");
 
                 if (id > 0)
                 {

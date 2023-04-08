@@ -1,4 +1,5 @@
 ﻿using Business.Entities.Marketing.CommunicationLog;
+using Business.Entities.Marketing.Feedback;
 using Business.Interface.Marketing.CommunicatonLog;
 using Business.SQL;
 using Microsoft.Extensions.Configuration;
@@ -73,7 +74,7 @@ namespace Business.Service.Marketing.CommunicationLogService
                 ,new SqlParameter("@ContactChannelTypeID", communicationLog.ContactChannelTypeID)
                 ,new SqlParameter("@Email", communicationLog.Email)
                 ,new SqlParameter("@MobileNo", communicationLog.MobileNo)
-                ,new SqlParameter("@VanueTypeID", communicationLog.VanueTypeID)
+                ,new SqlParameter("@VenueTypeID", communicationLog.VenueTypeID)
                 ,new SqlParameter("@PartyTypeID", communicationLog.PartyTypeID)
                 ,new SqlParameter("@CommunicationLogDate", communicationLog.CommunicationLogDate)
                 ,new SqlParameter("@PlaceOfMeeting", communicationLog.PlaceOfMeeting)
@@ -83,6 +84,7 @@ namespace Business.Service.Marketing.CommunicationLogService
                 ,new SqlParameter("@ReferenceMobileOrEmail", communicationLog.ReferenceMobileOrEmail)
                 ,new SqlParameter("@Note", communicationLog.Note)
                 ,new SqlParameter("@Feedback", communicationLog.Feedback)
+                ,new SqlParameter("@FeedbackNoteID", communicationLog.FeedbackNoteID)
                 ,new SqlParameter("@CreatedOrModifiedBy", communicationLog.CreatedOrModifiedBy)                
                 };
 

@@ -406,7 +406,24 @@ namespace ERP.Extensions
             }
         }
 
-        
+
         #endregion HR ReportHR
+
+        #region     Added by Rahul Mistry on 06-Apr-2023 for All employee list dropdown
+
+
+        public static SelectList GetAllEmployeesForDropDown()
+        {
+            try
+            {
+                var employeeList = _employeeService.GetAllEmployeesForDropDown().Result;
+                return new SelectList(employeeList, "EmployeeID", "EmployeeName");
+            }
+            catch
+            {
+                return new SelectList(Enumerable.Empty<SelectListItem>());
+            }
+        }
+        #endregion  Added by Rahul Mistry on 06-Apr-2023 for All employee list dropdown
     }
 }

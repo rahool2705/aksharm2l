@@ -23,6 +23,7 @@ namespace ERP.Areas.Marketing.Controllers
     [DisplayName("CommunicationLog")]
     public class MarketingCommunicationLogController : SettingsController
     {
+        #region Interface
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IMasterService _masterService;
         private readonly IMarketingCommunicationLogService _iMarketingCommunicationLogService;
@@ -33,8 +34,9 @@ namespace ERP.Areas.Marketing.Controllers
             this._masterService = masterService;
             this._iMarketingCommunicationLogService = iMarketingCommunicationLogService;
         }
+        #endregion Interface
 
-        /*Communicaton Log Index Start*/
+        #region /*Communicaton Log Index Start*/
         public IActionResult Index([FromQuery(Name = "grid-page")] string gridpage = "1", [FromQuery(Name = "grid-column")] string orderby = "", [FromQuery(Name = "grid-dir")] string sortby = "0", [FromQuery(Name = "grid-filter")] string gridfilter = "", [FromQuery(Name = "grid-search")] string search = "")
         {
             int userid = USERID;
@@ -128,7 +130,7 @@ namespace ERP.Areas.Marketing.Controllers
 
             };
 
-            PagedDataTable<CommunicationLog> pds = _iMarketingCommunicationLogService.GetAllMarketingCommunicationLogAsync(gridpage.ToInt(),
+            PagedDataTable<CommunicationLog> pds = (PagedDataTable<CommunicationLog>) _iMarketingCommunicationLogService.GetAllMarketingCommunicationLogAsync(gridpage.ToInt(),
                PAGESIZE, search, orderby.RemoveSpace(), sortby == "0" ? "ASC" : "DESC").Result;
             var server = new GridCoreServer<CommunicationLog>(pds, query, false, "ordersGrid",
                 columns, PAGESIZE, pds.TotalItemCount)
@@ -148,9 +150,9 @@ namespace ERP.Areas.Marketing.Controllers
                 .ClearFiltersButton(false);
             return View("Index", server.Grid);
         }
-        /*Communicaton Log Index End*/
+        #endregion /*Communicaton Log Index End*/
 
-        /*Communicaton Log  silder Start*/
+        #region /*Communicaton Log  silder Start*/
         [HttpPost]
         public PartialViewResult Get(int id, string key)
         {
@@ -164,8 +166,8 @@ namespace ERP.Areas.Marketing.Controllers
                 var ContactChannelTextList = _masterService.GetContactChannelMasterAsync();
                 ViewData["ContactChannelText"] = new SelectList(ContactChannelTextList, "ContactChannelTypeID", "ContactChannelTypeText");
 
-                var VanueTypeTextList = _masterService.GetVanueTypeMasterAsync();
-                ViewData["VenueTypeText"] = new SelectList(VanueTypeTextList, "VanueTypeID", "VanueTypeText");
+                var VenueTypeTextList = _masterService.GetVanueTypeMasterAsync();
+                ViewData["VenueTypeText"] = new SelectList(VenueTypeTextList, "VenueTypeID", "VenueTypeText");
 
                 if (id > 0)
                 {
@@ -184,9 +186,9 @@ namespace ERP.Areas.Marketing.Controllers
                 throw;
             }
         }
-        /*Communicaton Log  silder End*/
+        #endregion /*Communicaton Log  silder End*/
 
-        /*Communicaton Log Insert or Update Page Start*/
+        #region /*Communicaton Log Insert or Update Page Start*/
         [HttpPost]
         public async Task<IActionResult> InsertOrUpdateMarketingCommunicationLog(CommunicationLog model)
         {
@@ -201,6 +203,6 @@ namespace ERP.Areas.Marketing.Controllers
             else
                 return Json(new { status = false, message = MessageHelper.Error });
         }
-        /*Communicaton Log Insert or Update Page End*/
+        #endregion /*Communicaton Log Insert or Update Page End*/
     }
 }

@@ -28,9 +28,9 @@ namespace Business.Entities.Marketing.Feedback
 
         /*[Required(ErrorMessage = "Please Witer the Note")]*/
         public string Note { get; set; }
-
+        public string PositiveNoteID { get; set; }
+        public string PositiveNoteText { get; set; }
         public int CreatedOrModifiedBy { get; set; }
-
         public object SrNo { get; set; }
     }
 }

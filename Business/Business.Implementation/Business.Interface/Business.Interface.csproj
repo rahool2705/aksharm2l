@@ -12,6 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Marketing\old service\**" />
+    <EmbeddedResource Remove="Marketing\old service\**" />
+    <None Remove="Marketing\old service\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="IMvcControllerDiscovery.cs" />
   </ItemGroup>
 

@@ -8,7 +8,7 @@ namespace Business.Entities.VanueType
 {
     public class VanueTypeMaster
     {
-        public int VanueTypeID { get; set; }
-        public string VanueTypeText { get; set; }
+        public int VenueTypeID { get; set; }
+        public string VenueTypeText { get; set; }
     }
 }
