@@ -177,5 +177,77 @@ namespace Business.Service.EmployeeAttendanceSummary
         }
 
         #endregion Employee Salary Summuary
+<<<<<<< Updated upstream
+=======
+
+
+        public async Task<int> VerifyEmplyeeSalary(int year, int month, int companyId, int employeeId, int employeeCategoryId, int userId)
+        {
+            try
+            {
+                SqlParameter[] param = {
+                    new SqlParameter("@Year", year)
+                    ,new SqlParameter("@Month", month)
+                    ,new SqlParameter("@CompanyID", companyId)
+                    ,new SqlParameter("@EmployeeID", employeeId)
+                    ,new SqlParameter("@EmployeeCategoryId", employeeCategoryId)
+                    //,new SqlParameter("@IsDeleted", employeeDocument.IsDeleted)
+                    ,new SqlParameter("@UserID", userId)
+                    ,new SqlParameter("@IsVerified", true)
+                };
+
+                var obj = await SqlHelper.ExecuteScalarAsync(connection, CommandType.StoredProcedure, "USP_Insert_VerifiedEmployeeSalary", param);
+
+                return obj != null ? Convert.ToInt32(obj) : 0;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<DataSet> GetEmployeeSalaryDetail(int year, int month, int companyId, int employeeId, int employeeCategoryId,int userId)
+        {
+            DataTable table = new DataTable();
+            //int totalItemCount = 0;
+            //PagedDataTable<Entities.EmployeeAttendanceSummary.EmployeeAttendanceSummary> lst = null;
+            try
+            {
+                SqlParameter[] param = {
+                        new SqlParameter("@EmployeeCategoryId",employeeCategoryId )
+                        ,new SqlParameter("@UserID", userId)
+                        ,new SqlParameter("@Month", month)
+                        ,new SqlParameter("@Year", year)
+                        ,new SqlParameter("@EmployeeID", employeeId)
+                        ,new SqlParameter("@CompanyID", companyId)
+                        };
+                DataSet ds = await SqlHelper.ExecuteDatasetAsync(connection, CommandType.StoredProcedure, "UDF_Get_EmployeeSalaryDetailInHorizontal", param);
+                //{
+                //    if (ds.Tables.Count > 0)
+                //    {
+                //        table = ds.Tables[0];
+                //        if (table.Rows.Count > 0)
+                //        {
+                //            if (table.ContainColumn("TotalCount"))
+                //                totalItemCount = Convert.ToInt32(table.Rows[0]["TotalCount"]);
+                //            else
+                //                totalItemCount = table.Rows.Count;
+                //        }
+                //    }
+                //lst = table.ToPagedDataTableList<Entities.EmployeeAttendanceSummary.EmployeeAttendanceSummary>(1, 1000, totalItemCount);
+                return ds;
+                //}
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (table != null)
+                    table.Dispose();
+            }
+        }
+>>>>>>> Stashed changes
     }
 }

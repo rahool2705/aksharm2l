@@ -1,6 +1,10 @@
 ﻿using AspNetCoreHero.ToastNotification.Helpers;
 using Business.Entities.EmployeeAttendanceSummary;
 using Business.Entities.Master.EmployeeCategory;
+<<<<<<< Updated upstream
+=======
+using Business.Entities.Master.EmployementType;
+>>>>>>> Stashed changes
 using Business.Interface;
 using Business.Interface.IEmployeeAttendanceSummary;
 using ClosedXML.Excel;
@@ -233,5 +237,59 @@ namespace ERP.Areas.HR.Controllers
 
         #endregion Salary Process Edit
 
+<<<<<<< Updated upstream
+=======
+        #region Varify Salary
+
+        [HttpPost]
+        public async Task<JsonResult> VerifySalary(int year, int month, int companyId, int employeeId, int employeeCategoryId)
+        {
+            try
+            {
+                int userId = USERID;
+                var result = await _employeeAttendanceSummaryService.VerifyEmplyeeSalary(year, month, companyId, employeeId, employeeCategoryId, userId);
+
+                if (result > 0)
+                    return Json(new { status = true, MessageHelper.Updated });
+
+                else
+                    return Json(new { status = true, MessageHelper.Error });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateVerifiedSalaryTable(List<UpdateSalary> dataTable)
+        {
+            try
+            {
+                var list = dataTable;
+                //var test1 = JsonConvert.DeserializeObject<DataTable>(dataTable);
+                //DataTable data = JsonConvert.DeserializeObject<DataTable>(dataTable);
+                //var emp = data;
+                return View();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        #endregion Varify Salary
+
+
+    }
+    public class UpdateSalary
+    {
+        public string SalaryHeadLabel { get; set; }
+        public string SalaryHeadName { get; set; }
+        public string CalculatedValue { get; set; }
+        public string SalaryFormula { get; set; }
+>>>>>>> Stashed changes
     }
 }

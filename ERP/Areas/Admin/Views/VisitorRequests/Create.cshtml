@@ -80,8 +80,8 @@
                                 </div>
                                 <br />
                                 <img id="prevImg" style="display:none; width:100%;" />
-                                <input type="button" class="btn btn-primary" value="Show Preview" onClick="LoadCam()">
-                                <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshot()">
+                                <input type="button" class="btn btn-primary" value="Show Preview" onClick="LoadCam()" />
+                                <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshot()" />
 
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label asp-for="VehicleTypeID" class="control-label">Arrival by type</label>
-                                <select asp-for="VehicleTypeID" asp-items="ViewBag.VehicleTypeID" class="form-control">
+                                <select asp-for="VehicleTypeID" asp-items="@ViewBag.VehicleTypeID" class="form-control">
                                     <option value="">Select Vehicle Type</option>
                                 </select>
                                 <span asp-validation-for="VehicleTypeID" class="text-danger"></span>
@@ -254,6 +254,7 @@
     <script language="JavaScript">
 
         function LoadCam() {
+            alert('load cam invoked');
             $("#defImg").hide();
             $("#results").show();
             $("#prevImg").hide();
@@ -268,7 +269,7 @@
         }
         function CaptureSnapshot() {
 
-
+            alert('CaptureSnapshot  invoked');
             Webcam.snap(function (data) {
                 // display results in page
                 //document.getElementById('results').innerHTML = '<img src="' + data + '"/>';

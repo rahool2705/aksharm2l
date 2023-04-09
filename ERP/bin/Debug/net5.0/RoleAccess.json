@@ -277,6 +277,23 @@
           "roleName": null
         }
       ]
+<<<<<<< Updated upstream
+=======
+    },
+    {
+      "id": 8,
+      "roleId": null,
+      "userID": "7",
+      "compnayID": "1",
+      "userClaims": []
+    },
+    {
+      "id": 9,
+      "roleId": null,
+      "userID": "7",
+      "compnayID": "1",
+      "userClaims": []
+>>>>>>> Stashed changes
     }
   ]
 }

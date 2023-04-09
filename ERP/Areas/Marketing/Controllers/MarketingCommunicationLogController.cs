@@ -128,7 +128,11 @@ namespace ERP.Areas.Marketing.Controllers
 
             };
 
+<<<<<<< Updated upstream
             PagedDataTable<CommunicationLog> pds = _iMarketingCommunicationLogService.GetAllMarketingCommunicationLogAsync(gridpage.ToInt(),
+=======
+            PagedDataTable<CommunicationLog> pds = (PagedDataTable<CommunicationLog>)_iMarketingCommunicationLogService.GetAllMarketingCommunicationLogAsync(gridpage.ToInt(),
+>>>>>>> Stashed changes
                PAGESIZE, search, orderby.RemoveSpace(), sortby == "0" ? "ASC" : "DESC").Result;
             var server = new GridCoreServer<CommunicationLog>(pds, query, false, "ordersGrid",
                 columns, PAGESIZE, pds.TotalItemCount)
@@ -170,7 +174,6 @@ namespace ERP.Areas.Marketing.Controllers
                 if (id > 0)
                 {
                     model = _iMarketingCommunicationLogService.GetMarketingCommunicationLogAsync(id).Result;
-
                     return PartialView("CreateMarketingCommunicationLog", model);
                 }
                 else

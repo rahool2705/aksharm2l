@@ -142,7 +142,20 @@
 @await Html.PartialAsync("_ValidationScriptsPartial")
 
 <script type="text/javascript">
+
     var urlsave = '@Url.Action("InsertOrUpdateMarketingCommunicationLog", "MarketingCommunicationLog")';
+<<<<<<< Updated upstream
+=======
+
+    $(document).ready(function () {
+   
+        let feedbackNoteIds = document.getElementById("FeedbackNoteID").value;
+        $.each(feedbackNoteIds.split(","), function (i, e) {
+            $("#choices-multiple-remove-button option[value='" + e + "']").prop("selected", true);
+        });
+    });
+
+>>>>>>> Stashed changes
     function fnSubmit() {
         if ($("#formMarketingCommunicationLog").valid()) {
             var l = laddaStart('btnSave');
@@ -195,4 +208,17 @@
             });
         }
     };
+<<<<<<< Updated upstream
+=======
+
+    $(document).ready(function () {
+        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+            removeItemButton: true,
+            maxItemCount: 30,
+            searchResultLimit: 30,
+            renderChoiceLimit: 30
+        });
+    });
+
+>>>>>>> Stashed changes
 </script>
